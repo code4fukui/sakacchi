@@ -1,0 +1,10 @@
+<script type="module">
+import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
+
+const url = "https://ai-sakai.sabae.cc/api/conversation";
+
+const param = [{ role: "user", content: "世界の課題を1つ挙げて" }];
+const res = await fetchJSON(url, param);
+
+document.body.innerHTML += res;
+</script>
