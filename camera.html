@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴミをカメラで撮影</title>  
+  <link rel="stylesheet" href="./css/stylecamera.css">
+</head>
+<body>
+  <h1>拾ったゴミをカメラで撮影</h1>
+  <p>ゴミは必ず分別してゴミ箱に入れましょう</p>
+  <div class="container">
+    <video id="video" width="320" height="240" autoplay></video>
+    <button id="capture">撮影ボタン</button>
+    <canvas id="canvas" width="320" height="240"></canvas>
+    <p id="result">AIがゴミかどうか判断します。</p>
+  </div>
+
+  <script src="./js/scriptcamera.js"></script>
+</body>
+</html>
