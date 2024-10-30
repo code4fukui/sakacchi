@@ -23,11 +23,18 @@ captureButton.addEventListener('click', () => {
  
   //GPT-4oに画像情報を分析させる
   resultElement.textContent = 'AIが判断中...';  //分析中メッセージを表示
-  analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
+  const res = analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
+  if (res) {
+    alert("gomi datta");
+  } else {
+    alert("not gomi datta");
+  }
 });
 
 //GPT-4oにリクエストを送信
 async function analyzeImageWithGPT4o(imageDataUrl) {
+  return Math.random() < .5;
+  
   const base64Image = imageDataUrl.replace(/^data:image\/(png|jpg);base64,/, ''); //Base64画像データの抽出
     
     const fetchJSON = async (url, req) => {
