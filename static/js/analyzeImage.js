@@ -5,8 +5,14 @@ export const analyzeImage = async (canvasElement, prompt) => {
   const imgbin = canvas2jpeg(canvasElement, 600);
   const param = { imgbin, prompt };
   const res = await fetchCBOR("/api/imagerecog", param);
-  return res;
+  return parseJSON(res);
 };
 
-
-
+export const parseJSON = (s) => {
+  const n = s.indexOf("```json\n");
+  if (n < 0) return s;
+  const m = s.indexOf("\n```", n + 8);
+  if (m < 0) return s;
+  const s2 = s.substring(n + 8, m);
+  return JSON.parse(s2);
+};

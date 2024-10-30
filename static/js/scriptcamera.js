@@ -1,3 +1,5 @@
+import { analyzeImage } from "./analyzeImage.js";
+
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
@@ -23,11 +25,22 @@ captureButton.addEventListener('click', async () => {
  
   //GPT-4oに画像情報を分析させる
   resultElement.textContent = 'AIが判断中...';  //分析中メッセージを表示
+  /*
   const res = await analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
   if (res) {
     alert("gomi datta");
   } else {
     alert("not gomi datta");
+  }
+  */
+  const res = await analyzeImage(canvas, "ごみかどうかの判定を属性名is_wasteでtrueかfalseで、写真の日本語での説明を属性名descriptionのJSONで返して");
+  console.log(res);
+  resultElement.textContent = res?.description;
+  if (res?.is_waste) {
+    alert("これはごみです！")
+
+  } else {
+    alert("これはごみではありません")
   }
 });
 
