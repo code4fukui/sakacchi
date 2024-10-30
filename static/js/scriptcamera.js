@@ -37,8 +37,8 @@ captureButton.addEventListener('click', async () => {
   console.log(res);
   resultElement.textContent = res?.description;
   if (res?.is_waste) {
-    alert("これはごみです！")
-
+    //alert("これはごみです！")
+    location.href = "getcard.html"
   } else {
     alert("これはごみではありません")
   }
