@@ -14,7 +14,7 @@ navigator.mediaDevices.getUserMedia({ video: true }) //カメラへのアクセ�
   });
 
 //画像を撮影してCanvasに描画
-captureButton.addEventListener('click', () => {
+captureButton.addEventListener('click', async () => {
   // ビデオのフレームをCanvasに描画
   context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
@@ -23,7 +23,7 @@ captureButton.addEventListener('click', () => {
  
   //GPT-4oに画像情報を分析させる
   resultElement.textContent = 'AIが判断中...';  //分析中メッセージを表示
-  const res = analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
+  const res = await analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
   if (res) {
     alert("gomi datta");
   } else {

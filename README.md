@@ -1,5 +1,10 @@
 # sakacchi
 
-## 文章生成AI呼び出しテスト
+## Usage
 
-- [demo URL](https://code4fukui.github.io/sakacchi/ai-test1.html) プログラム: [ai-test1.html](ai-test1.html) [ss.sabae.ccでテストする](https://ss.sabae.cc/#5047)
+1. .env に OpenAI社のAPIキーを設定
+2. サーバー起動
+```sh
+nohup deno serve --port 8201 --host "[::]" server.js &
+```
+3. https://ai-sakai.sabae.cc/ にアクセス
