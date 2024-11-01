@@ -134,12 +134,19 @@ export function showNotification(message) {
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
 export function setupEventListeners() {
-    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
-    document.getElementById('reset-data').addEventListener('click', () => {
-        if (confirm('本当にデータをリセットしますか？')) {
-            resetData();
-        }
-    });
+    ocument.getElementById('open-chest-button').addEventListener('click', function() {
+        const chest = document.getElementById('treasure-chest');
+        const message = document.getElementById('message');
+      
+        // 宝箱を開くアニメーション
+        chest.src = './images/open-chest.png'; // 開いた宝箱の画像
+        chest.classList.remove('closed');
+        chest.classList.add('open');
+      
+        // メッセージを表示
+        message.classList.remove('hidden');
+        message.classList.add('visible');
+      });    
 }
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
