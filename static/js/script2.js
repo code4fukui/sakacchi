@@ -146,6 +146,7 @@ export function setupEventListeners() {
       
         //宝箱を開くアニメーションの処理
         chest.src = '${card.imageUrl}';
+        chest.alt = '${card.name}';
         //chest.src = './images/open-chest.png'; //開いた宝箱の画像
         chest.classList.remove('closed');
         chest.classList.add('open');
