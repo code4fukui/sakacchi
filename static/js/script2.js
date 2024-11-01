@@ -151,7 +151,10 @@ export function setupEventListeners() {
         message.classList.add('visible');
 
         handleCardAcquire();
-        location.href = "https://ai-sakai.sabae.cc/folder.html"        
+        //1秒（1000ms）待ってからページを遷移
+        setTimeout(() => {
+            location.href = "folder.html";
+        }, 1000);
     });
 }
 
