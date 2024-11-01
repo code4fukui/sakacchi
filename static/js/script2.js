@@ -113,6 +113,7 @@ export function handleCardAcquire() {
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
     showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
+    location.href = "folder.html"
 }
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
@@ -150,8 +151,7 @@ export function setupEventListeners() {
         message.classList.remove('hidden');
         message.classList.add('visible');
 
-        handleCardAcquire();
-        location.href = "folder.html"
+        handleCardAcquire();        
     });
 }
 
