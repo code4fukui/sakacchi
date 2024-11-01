@@ -112,8 +112,7 @@ export function handleCardAcquire() {
 
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
-    showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
-    location.href = "https://ai-sakai.sabae.cc/folder.html"
+    showNotification(`新しいカード「${newCard.name}」を獲得しました！`);    
 }
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
@@ -151,7 +150,8 @@ export function setupEventListeners() {
         message.classList.remove('hidden');
         message.classList.add('visible');
 
-        handleCardAcquire();        
+        handleCardAcquire();
+        location.href = "https://ai-sakai.sabae.cc/folder.html"        
     });
 }
 
