@@ -150,11 +150,13 @@ export function setupEventListeners() {
         message.classList.remove('hidden');
         message.classList.add('visible');
 
-        handleCardAcquire();
         //1秒（1000ms）待ってからページを遷移
         setTimeout(() => {
             location.href = "folder.html";
-        }, 3000);
+        }, 1000);
+
+        handleCardAcquire();
+        
     });
 }
 
