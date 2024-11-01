@@ -151,6 +151,7 @@ export function setupEventListeners() {
         message.classList.add('visible');
 
         handleCardAcquire();
+        location.href = "folder.html"
     });
 }
 
