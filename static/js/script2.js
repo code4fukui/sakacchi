@@ -138,14 +138,14 @@ export function setupEventListeners() {
     //'open-chest-button' のクリックイベントに handleCardAcquire 関数を登録
     document.getElementById('open-chest-button').addEventListener('click', () => { 
         
-        disabled = true;
+        document.getElementById('open-chest-button').disabled = true;//1回しかボタンを押させない
         
         //宝箱の要素とメッセージ要素を取得
         const chest = document.getElementById('treasure-chest');
         const message = document.getElementById('message');
       
         //宝箱を開くアニメーションの処理
-        chest.src = '${card.imageUrl} alt=${card.name}';
+        chest.src = '${card.imageUrl}';
         //chest.src = './images/open-chest.png'; //開いた宝箱の画像
         chest.classList.remove('closed');
         chest.classList.add('open');
