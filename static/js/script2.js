@@ -153,7 +153,7 @@ export function setupEventListeners() {
         //1秒（1000ms）待ってからページを遷移
         setTimeout(() => {
             location.href = "folder.html";
-        }, 1000);
+        }, 2000);
 
         handleCardAcquire();
         
