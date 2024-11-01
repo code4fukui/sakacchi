@@ -134,7 +134,7 @@ export function showNotification(message) {
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
 export function setupEventListeners() {
-    ocument.getElementById('open-chest-button').addEventListener('click', function() {
+    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire); {
         const chest = document.getElementById('treasure-chest');
         const message = document.getElementById('message');
       
@@ -146,7 +146,7 @@ export function setupEventListeners() {
         // メッセージを表示
         message.classList.remove('hidden');
         message.classList.add('visible');
-      });    
+      };    
 }
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
