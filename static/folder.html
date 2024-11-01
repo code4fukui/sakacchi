@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>さかっち</title>
+      <link rel="stylesheet" href="./css/style.css">
+    </head>
+    <body>      
+        <h1 style="background: #6d9;">カードリスト</h1>        
+
+        <!--検索部分 完成させなさい-->
+        <form action="#">
+          <label for="lang">カード名</label>
+          <select name="languages" id="lang">
+            <option value="剣">剣</option>
+            <option value="杖">杖</option>
+            <option value="盾">盾</option>
+            <option value="加藤">加藤</option>
+            <option value="竹腰">竹腰</option>
+            <option value="斧">斧</option>
+            <option value="青眼の白龍">青眼の白龍</option>
+            <option value="青い薔薇">青い薔薇</option>
+            <option value="水勢剣">水勢剣</option>
+            <option value="日本刀">日本刀</option>
+            <option value="狼牙剣">狼牙剣</option>
+            <option value="木の剣">木の剣</option>
+          </select>
+          <input type="submit" value="検索" />
+        </form>
+        
+        <div id="card-list"></div>
+        <div id="notification"></div> 
+        <!--button id="gacha">AIゴミ認定後の処理</button-->
+        <button id="reset-data">初めからやり直す</button>
+              
+        <script type="module" src="./js/script.js"></script>
+  </body>
+</html>
