@@ -40,6 +40,7 @@ const rarityWeights = {
     5: 0.1    // ウルトラレア
 };
 
+
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
 export function loadCards() {
     try {
@@ -135,25 +136,23 @@ export function showNotification(message) {
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
 export function setupEventListeners() {
     //'open-chest-button' のクリックイベントに handleCardAcquire 関数を登録
-    document.getElementById('open-chest-button').addEventListener('click', () => {        
+    document.getElementById('open-chest-button').addEventListener('click', () => { 
+        
+        disabled = true;
         
         //宝箱の要素とメッセージ要素を取得
         const chest = document.getElementById('treasure-chest');
         const message = document.getElementById('message');
       
         //宝箱を開くアニメーションの処理
-        chest.src = './images/open-chest.png'; // 開いた宝箱の画像
+        chest.src = '${card.imageUrl} alt=${card.name}';
+        //chest.src = './images/open-chest.png'; //開いた宝箱の画像
         chest.classList.remove('closed');
         chest.classList.add('open');
       
         //メッセージの表示
         message.classList.remove('hidden');
         message.classList.add('visible');
-
-        //1秒（1000ms）待ってからページを遷移
-        setTimeout(() => {
-            location.href = "folder.html";
-        }, 2000);
 
         handleCardAcquire();
         
