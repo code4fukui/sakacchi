@@ -134,7 +134,7 @@ function showNotification(message) {
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
 function setupEventListeners() {
-    document.getElementById('gacha').addEventListener('click', handleCardAcquire);
+    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
     document.getElementById('reset-data').addEventListener('click', () => {
         if (confirm('本当にデータをリセットしますか？')) {
             resetData();
