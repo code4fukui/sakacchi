@@ -22,9 +22,9 @@ navigator.mediaDevices.getUserMedia({ video: true })
 
 // 画像を撮影してCanvasに描画し、分析する
 captureButton.addEventListener('click', async () => {
-  // カメラが起動しているかを確認
-  if (!cameraActive) {
-    alert("カメラが起動していません。カメラを有効にしてからもう一度お試しください。");
+  // カメラが起動しているかと映像が取得できるかを確認
+  if (!cameraActive || video.readyState !== video.HAVE_ENOUGH_DATA) {
+    alert("カメラが起動していないか、映像がまだ表示されていません。カメラを有効にしてからもう一度お試しください。");
     return;
   }
 
