@@ -31,6 +31,15 @@ const initialCards = [
     { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
+//レアリティの重み
+const rarityWeights = {
+    1: 10,  // コモン
+    2: 5,   // アンコモン
+    3: 3,   // レア
+    4: 2,   // スーパーレア
+    5: 0.1    // ウルトラレア
+};
+
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
 export function loadCards() {
     try {
@@ -77,6 +86,35 @@ export function createCardElement(card) {
     return cardElement;
 }
 
+//カードの「レア度」に基づいてランダムにカードを選択するための処理
+export function getRandomCard() {
+    const currentCards = loadCards();
+    const weightedCards = [];
+
+    currentCards.forEach(card => {
+        for (let i = 0; i < rarityWeights[card.rarity]; i++) {
+            weightedCards.push(card);
+        }
+    });
+
+    const randomIndex = Math.floor(Math.random() * weightedCards.length);
+    return weightedCards[randomIndex];
+}
+
+//ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
+export function handleCardAcquire() {
+    const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
+
+    let currentCards = loadCards();
+    currentCards = currentCards.map(card => 
+        card.id === newCard.id ? { ...card, unlocked: true } : card
+    );
+
+    localStorage.setItem('cards', JSON.stringify(currentCards));
+    renderCards();
+    showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
+}
+
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
 export function resetData() {
     localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
@@ -84,8 +122,20 @@ export function resetData() {
     renderCards();
 }
 
+//指定されたメッセージを通知として表示し、３秒後に自動的に非表示にする処理（カードをゲットしましたのメッセージを消す処理）
+export function showNotification(message) {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.style.display = 'block';
+    setTimeout(() => {
+        notification.style.display = 'none';
+    }, 3000);
+}
+
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-export function setupEventListeners() {        
+export function setupEventListeners() {
+    //document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
+    document.getElementById('gacha').addEventListener('click', handleCardAcquire);
     document.getElementById('reset-data').addEventListener('click', () => {
         if (confirm('本当にデータをリセットしますか？')) {
             resetData();
