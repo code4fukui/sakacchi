@@ -6,40 +6,52 @@ const context = canvas.getContext('2d');
 const captureButton = document.getElementById('capture');
 const resultElement = document.getElementById('result');
 
-//カメラ映像を取得して表示
-navigator.mediaDevices.getUserMedia({ video: true }) //カメラへのアクセスを要求します。
+// カメラ映像を取得して表示
+let cameraActive = false;  // カメラの起動状態を管理するフラグ
+navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
     video.srcObject = stream;
+    cameraActive = true;  // カメラが起動していることを記録
   })
   .catch(err => {
     console.error('Error accessing the camera: ', err);
+    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
   });
 
-//画像を撮影してCanvasに描画
+// 画像を撮影してCanvasに描画し、分析する
 captureButton.addEventListener('click', async () => {
-  // ビデオのフレームをCanvasに描画
-  context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-  //CanvasからBase64形式で画像データを取得
-  const imageData = canvas.toDataURL('image/png');
- 
-  //GPT-4oに画像情報を分析させる
-  resultElement.textContent = 'AIが判断中...';  //分析中メッセージを表示
-  /*
-  const res = await analyzeImageWithGPT4o(imageData);  //GPT-4oで画像を分析
-  if (res) {
-    alert("gomi datta");
-  } else {
-    alert("not gomi datta");
+  // カメラが起動しているかを確認
+  if (!cameraActive) {
+    alert("カメラが起動していません。カメラを有効にしてからもう一度お試しください。");
+    return;
   }
-  */
-  const res = await analyzeImage(canvas, "ごみかどうかの判定を属性名is_wasteでtrueかfalseで、写真の日本語での説明を属性名descriptionのJSONで返して");
-  console.log(res);
-  resultElement.textContent = res?.description;
-  if (res?.is_waste) {
-    //alert("これはごみです！")
-    location.href = "getcard.html"
-  } else {
-    alert("これはごみではありません")
+
+  try {
+    // ビデオのフレームをCanvasに描画
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+    // CanvasからBase64形式で画像データを取得
+    const imageData = canvas.toDataURL('image/png');
+
+    // 分析開始メッセージを表示
+    resultElement.textContent = 'AIが判断中...';
+
+    // 画像解析のリクエストを送信
+    const res = await analyzeImage(canvas, "ごみかどうかの判定を属性名is_wasteでtrueかfalseで、写真の日本語での説明を属性名descriptionのJSONで返して");
+    
+    // 結果の処理
+    if (res && typeof res.is_waste === 'boolean' && res.description) {
+      resultElement.textContent = res.description;
+      if (res.is_waste) {
+        location.href = "getcard.html";  // ゴミと判定された場合の処理
+      } else {
+        alert("これはごみではありません");
+      }
+    } else {
+      alert("画像の解析に失敗しました。もう一度お試しください。");
+    }
+  } catch (error) {
+    console.error("画像解析エラー:", error);
+    alert("画像の解析中にエラーが発生しました。");
   }
 });
