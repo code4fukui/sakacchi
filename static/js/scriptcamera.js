@@ -11,7 +11,9 @@ let cameraActive = false;  // カメラの起動状態を管理するフラグ
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
     video.srcObject = stream;
-    cameraActive = true;  // カメラが起動していることを記録
+    video.onloadedmetadata = () => {
+      cameraActive = true;  // 映像が表示されて初めてカメラが有効と判断
+    };
   })
   .catch(err => {
     console.error('Error accessing the camera: ', err);
