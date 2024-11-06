@@ -1,15 +1,15 @@
-// 初期カードデータ
+// 初期カードデータ（10枚のカード）
 const initialCards = [
-    { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
-    { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
-    { id: 3, name: 'カード 3', description: 'これはカード3の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
-    { id: 4, name: 'カード 4', description: 'これはカード4の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
-    { id: 5, name: 'カード 5', description: 'これはカード5の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card5.jpg' },
-    { id: 6, name: 'カード 6', description: 'これはカード6の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card6.jpg' },
-    { id: 7, name: 'カード 7', description: 'これはカード7の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card7.jpg' },
-    { id: 8, name: 'カード 8', description: 'これはカード8の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card8.jpg' },
-    { id: 9, name: 'カード 9', description: 'これはカード9の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card9.jpg' },
-    { id: 10, name: 'カード 10', description: 'これはカード10の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card10.jpg' },
+  { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+  { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
+  { id: 3, name: 'カード 3', description: 'これはカード3の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
+  { id: 4, name: 'カード 4', description: 'これはカード4の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
+  { id: 5, name: 'カード 5', description: 'これはカード5の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card5.jpg' },
+  { id: 6, name: 'カード 6', description: 'これはカード6の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card6.jpg' },
+  { id: 7, name: 'カード 7', description: 'これはカード7の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card7.jpg' },
+  { id: 8, name: 'カード 8', description: 'これはカード8の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card8.jpg' },
+  { id: 9, name: 'カード 9', description: 'これはカード9の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card9.jpg' },
+  { id: 10, name: 'カード 10', description: 'これはカード10の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card10.jpg' },
     { id: 11, name: 'カード 11', description: 'これはカード11の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card11.jpg' },
     { id: 12, name: 'カード 12', description: 'これはカード12の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card12.jpg' },
     { id: 13, name: 'カード 13', description: 'これはカード13の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card13.jpg' },
@@ -34,104 +34,104 @@ const initialCards = [
 
 // レアリティの重み
 const rarityWeights = {
-    1: 10,
-    2: 5,
-    3: 3,
-    4: 2,
-    5: 0.1
+  1: 10,
+  2: 5,
+  3: 3,
+  4: 2,
+  5: 0.1
 };
 
 // ローカルストレージからカードデータをロード
 function loadCards() {
-    try {
-        const savedCards = localStorage.getItem('cards');
-        if (savedCards) {
-            return JSON.parse(savedCards);
-        }
-    } catch (e) {
-        console.error('カードデータの読み込みに失敗しました:', e);
+  try {
+    const savedCards = localStorage.getItem('cards');
+    if (savedCards) {
+      return JSON.parse(savedCards);
     }
-    localStorage.setItem('cards', JSON.stringify(initialCards));
-    return initialCards;
+  } catch (e) {
+    console.error('カードデータの読み込みに失敗しました:', e);
+  }
+  localStorage.setItem('cards', JSON.stringify(initialCards));
+  return initialCards;
 }
 
 // カードを表示する処理
 function renderCards() {
-    const cardList = document.getElementById('card-list');
-    const currentCards = loadCards();
-    cardList.innerHTML = '';
+  const cardList = document.getElementById('card-list');
+  const currentCards = loadCards();
+  cardList.innerHTML = '';
 
-    currentCards.forEach(card => {
-        const cardElement = createCardElement(card);
-        cardList.appendChild(cardElement);
-    });
+  currentCards.forEach(card => {
+    const cardElement = createCardElement(card);
+    cardList.appendChild(cardElement);
+  });
 }
 
 // カードのHTML要素を生成する
 function createCardElement(card) {
-    const cardElement = document.createElement('div');
-    cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-    if (card.rarity === 3) {
-        cardElement.classList.add('special-rarity');
-    }
-    cardElement.innerHTML = `
-        ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
-        <h2>${card.name}</h2>
-        <p>${card.description}</p>
-        <p>レア度: ${card.rarity}</p>
-        ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
-    `;
-    return cardElement;
+  const cardElement = document.createElement('div');
+  cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
+  if (card.rarity === 3) {
+    cardElement.classList.add('special-rarity');
+  }
+  cardElement.innerHTML = `
+    ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
+    <h2>${card.name}</h2>
+    <p>${card.description}</p>
+    <p>レア度: ${card.rarity}</p>
+    ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
+  `;
+  return cardElement;
 }
 
 // ランダムにカードを1枚選ぶ処理
 function getRandomCard() {
-    const currentCards = loadCards();
-    const weightedCards = [];
+  const currentCards = loadCards();
+  const weightedCards = [];
 
-    currentCards.forEach(card => {
-        for (let i = 0; i < rarityWeights[card.rarity]; i++) {
-            weightedCards.push(card);
-        }
-    });
+  currentCards.forEach(card => {
+    for (let i = 0; i < rarityWeights[card.rarity]; i++) {
+      weightedCards.push(card);
+    }
+  });
 
-    const randomIndex = Math.floor(Math.random() * weightedCards.length);
-    return weightedCards[randomIndex];
+  const randomIndex = Math.floor(Math.random() * weightedCards.length);
+  return weightedCards[randomIndex];
 }
 
 // ユーザーが新しいカードを獲得した際にそのカードをアンロックして表示を更新
 function handleCardAcquire() {
-    const newCard = getRandomCard();
-    let currentCards = loadCards();
-    currentCards = currentCards.map(card => 
-        card.id === newCard.id ? { ...card, unlocked: true } : card
-    );
-    localStorage.setItem('cards', JSON.stringify(currentCards));
-    renderCards();
-    displayAcquiredCard(newCard);
+  const newCard = getRandomCard();
+  let currentCards = loadCards();
+  currentCards = currentCards.map(card => 
+    card.id === newCard.id ? { ...card, unlocked: true } : card
+  );
+  localStorage.setItem('cards', JSON.stringify(currentCards));
+  renderCards();
+  displayAcquiredCard(newCard);
 }
 
 // 獲得したカードを画面に表示する
 function displayAcquiredCard(card) {
-    const cardDisplay = document.getElementById('card-display');
-    const cardDetails = document.getElementById('card-details');
-    
-    cardDisplay.classList.remove('hidden');
-    cardDetails.innerHTML = `
-        <h3>${card.name}</h3>
-        <p>${card.description}</p>
-        <p>レア度: ${card.rarity}</p>
-        <img src="${card.imageUrl}" alt="${card.name}">
-    `;
+  const cardDisplay = document.getElementById('card-display');
+  const cardDetails = document.getElementById('card-details');
+  
+  cardDisplay.classList.remove('hidden');
+  cardDetails.innerHTML = `
+    <h3>${card.name}</h3>
+    <p>${card.description}</p>
+    <p>レア度: ${card.rarity}</p>
+    <img src="${card.imageUrl}" alt="${card.name}">
+  `;
 }
 
 // ボタンのイベントリスナーを設定
 function setupEventListeners() {
-    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
+  document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
 }
 
 // ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
-    renderCards();
+  setupEventListeners();
+  renderCards(); // 初期カードを表示
 });
