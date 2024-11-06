@@ -59,12 +59,21 @@ function loadCards() {
 function renderCards() {
   const cardList = document.getElementById('card-list');
   const currentCards = loadCards();
+
+  // リストを空にする
   cardList.innerHTML = '';
 
   currentCards.forEach(card => {
-    const cardElement = createCardElement(card);
-    cardList.appendChild(cardElement);
+    if (!card.unlocked) {
+      const cardElement = createCardElement(card);
+      cardList.appendChild(cardElement);
+    }
   });
+
+  // カードリストが空でない場合に表示する
+  if (cardList.children.length > 0) {
+    cardList.classList.remove('hidden');
+  }
 }
 
 // カードのHTML要素を生成する
@@ -79,7 +88,7 @@ function createCardElement(card) {
     <h2>${card.name}</h2>
     <p>${card.description}</p>
     <p>レア度: ${card.rarity}</p>
-    ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
+    ${!card.unlocked ? `<p class="unlock-condition">カードをアンロックするにはボタンを押してください。</p>` : ''}
   `;
   return cardElement;
 }
@@ -106,6 +115,8 @@ function handleCardAcquire() {
   currentCards = currentCards.map(card => 
     card.id === newCard.id ? { ...card, unlocked: true } : card
   );
+
+  // ローカルストレージに更新されたカードを保存
   localStorage.setItem('cards', JSON.stringify(currentCards));
   renderCards(); // カードリストを更新
   displayAcquiredCard(newCard); // 獲得したカードを表示
