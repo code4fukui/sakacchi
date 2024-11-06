@@ -1,15 +1,10 @@
-// 初期カードデータ（10枚のカード）
+// 初期カードデータ（カード情報）
 const initialCards = [
   { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
   { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
   { id: 3, name: 'カード 3', description: 'これはカード3の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
   { id: 4, name: 'カード 4', description: 'これはカード4の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
   { id: 5, name: 'カード 5', description: 'これはカード5の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card5.jpg' },
-  { id: 6, name: 'カード 6', description: 'これはカード6の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card6.jpg' },
-  { id: 7, name: 'カード 7', description: 'これはカード7の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card7.jpg' },
-  { id: 8, name: 'カード 8', description: 'これはカード8の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card8.jpg' },
-  { id: 9, name: 'カード 9', description: 'これはカード9の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card9.jpg' },
-  { id: 10, name: 'カード 10', description: 'これはカード10の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card10.jpg' },
   { id: 11, name: 'カード 11', description: 'これはカード11の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card11.jpg' },
     { id: 12, name: 'カード 12', description: 'これはカード12の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card12.jpg' },
     { id: 13, name: 'カード 13', description: 'これはカード13の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card13.jpg' },
@@ -30,6 +25,7 @@ const initialCards = [
     { id: 28, name: 'カード 28', description: 'これはカード28の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card28.jpg' },
     { id: 29, name: 'カード 29', description: 'これはカード29の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
     { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
+  // 他のカードも追加可能...
 ];
 
 // ローカルストレージからカードデータをロード
@@ -47,15 +43,21 @@ function loadCards() {
 }
 
 // カードを表示する処理
-function renderCards() {
+function renderAcquiredCard() {
   const cardList = document.getElementById('card-list');
   const currentCards = loadCards();
-  cardList.innerHTML = '';
+  const unlockedCards = currentCards.filter(card => card.unlocked); // 獲得したカードだけを取得
 
-  currentCards.forEach(card => {
-    const cardElement = createCardElement(card);
-    cardList.appendChild(cardElement);
-  });
+  // すべての未獲得カードを非表示にする
+  cardList.innerHTML = ''; // 表示をリセット
+
+  if (unlockedCards.length > 0) {
+    // 獲得したカードを表示
+    unlockedCards.forEach(card => {
+      const cardElement = createCardElement(card);
+      cardList.appendChild(cardElement);
+    });
+  }
 }
 
 // カードのHTML要素を生成する
@@ -63,11 +65,10 @@ function createCardElement(card) {
   const cardElement = document.createElement('div');
   cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
   cardElement.innerHTML = `
-    ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
+    <img src="${card.imageUrl}" alt="${card.name}">
     <h2>${card.name}</h2>
     <p>${card.description}</p>
     <p>レア度: ${card.rarity}</p>
-    ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
   `;
   return cardElement;
 }
@@ -100,7 +101,7 @@ function handleCardAcquire() {
   const chest = document.getElementById('treasure-chest');
   
   // 開くときに画像を変更
-  chest.src = './images/open-chest.png'; // 開いた宝箱の画像に変更
+  chest.src = 'images/open-chest.png'; // 開いた宝箱の画像に変更
   chest.classList.remove('closed'); // 最初に「閉じている」状態を解除
   chest.classList.add('open'); // 「開く」アニメーションを追加
 
@@ -108,11 +109,11 @@ function handleCardAcquire() {
   setTimeout(() => {
     chest.classList.remove('open'); // 「開く」状態を解除
     chest.classList.add('closed'); // 「閉じる」状態を追加
-    chest.src = './images/closed-chest.png'; // 元の宝箱の画像に戻す
+    chest.src = 'images/closed-chest.png'; // 元の宝箱の画像に戻す
   }, 1000); // 1秒後に元に戻る
 
-  renderCards(); // カードリストを更新
-  displayAcquiredCard(newCard); // 獲得したカードを表示
+  renderAcquiredCard(); // 獲得したカードだけを表示
+  displayAcquiredCard(newCard); // 獲得したカードを画面に表示
 }
 
 // 獲得したカードを画面に表示する
@@ -138,5 +139,5 @@ function setupEventListeners() {
 // ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
-  renderCards(); // 初期カードの表示
+  renderAcquiredCard(); // 初期設定では獲得したカードのみ表示
 });
