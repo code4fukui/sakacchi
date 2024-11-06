@@ -34,15 +34,15 @@ const initialCards = [
 
 // レアリティの重み
 const rarityWeights = {
-    1: 10,  // コモン
-    2: 5,   // アンコモン
-    3: 3,   // レア
-    4: 2,   // スーパーレア
-    5: 0.1  // ウルトラレア
+    1: 10,
+    2: 5,
+    3: 3,
+    4: 2,
+    5: 0.1
 };
 
-// ローカルストレージからカードデータを読み込む関数
-export function loadCards() {
+// ローカルストレージからカードデータをロード
+function loadCards() {
     try {
         const savedCards = localStorage.getItem('cards');
         if (savedCards) {
@@ -55,8 +55,37 @@ export function loadCards() {
     return initialCards;
 }
 
-// ランダムにカードを取得する関数
-export function getRandomCard() {
+// カードを表示する処理
+function renderCards() {
+    const cardList = document.getElementById('card-list');
+    const currentCards = loadCards();
+    cardList.innerHTML = '';
+
+    currentCards.forEach(card => {
+        const cardElement = createCardElement(card);
+        cardList.appendChild(cardElement);
+    });
+}
+
+// カードのHTML要素を生成する
+function createCardElement(card) {
+    const cardElement = document.createElement('div');
+    cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
+    if (card.rarity === 3) {
+        cardElement.classList.add('special-rarity');
+    }
+    cardElement.innerHTML = `
+        ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
+        <h2>${card.name}</h2>
+        <p>${card.description}</p>
+        <p>レア度: ${card.rarity}</p>
+        ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
+    `;
+    return cardElement;
+}
+
+// ランダムにカードを1枚選ぶ処理
+function getRandomCard() {
     const currentCards = loadCards();
     const weightedCards = [];
 
@@ -70,27 +99,24 @@ export function getRandomCard() {
     return weightedCards[randomIndex];
 }
 
-// 新しいカードを獲得した際に表示する処理
-export function handleCardAcquire() {
+// ユーザーが新しいカードを獲得した際にそのカードをアンロックして表示を更新
+function handleCardAcquire() {
     const newCard = getRandomCard();
-
     let currentCards = loadCards();
     currentCards = currentCards.map(card => 
         card.id === newCard.id ? { ...card, unlocked: true } : card
     );
-
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
-    displayAcquiredCard(newCard);  // 獲得したカードを表示
+    displayAcquiredCard(newCard);
 }
 
-// ゲットしたカードを画面に表示する関数
-export function displayAcquiredCard(card) {
+// 獲得したカードを画面に表示する
+function displayAcquiredCard(card) {
     const cardDisplay = document.getElementById('card-display');
     const cardDetails = document.getElementById('card-details');
     
-    cardDisplay.classList.remove('hidden');  // カード表示エリアを表示
-
+    cardDisplay.classList.remove('hidden');
     cardDetails.innerHTML = `
         <h3>${card.name}</h3>
         <p>${card.description}</p>
@@ -99,19 +125,13 @@ export function displayAcquiredCard(card) {
     `;
 }
 
-// ボタンのイベントリスナーをセット
-export function setupEventListeners() {
-    document.getElementById('open-chest-button').addEventListener('click', () => { 
-        document.getElementById('open-chest-button').disabled = true; // ボタン無効化
-
-        // 宝箱のアニメーションなどを追加する場合はここに記述
-        
-        handleCardAcquire();  // カードを引く処理を実行
-    });
+// ボタンのイベントリスナーを設定
+function setupEventListeners() {
+    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
 }
 
-// ページ読み込み時に初期設定
+// ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
-    renderCards();  // 初期カードを表示
+    renderCards();
 });
