@@ -32,15 +32,6 @@ const initialCards = [
     { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
-// レアリティの重み
-const rarityWeights = {
-  1: 10,
-  2: 5,
-  3: 3,
-  4: 2,
-  5: 0.1
-};
-
 // ローカルストレージからカードデータをロード
 function loadCards() {
   try {
@@ -62,10 +53,8 @@ function renderCards() {
   cardList.innerHTML = '';
 
   currentCards.forEach(card => {
-    if (card.unlocked) {
-      const cardElement = createCardElement(card);
-      cardList.appendChild(cardElement);
-    }
+    const cardElement = createCardElement(card);
+    cardList.appendChild(cardElement);
   });
 }
 
@@ -73,14 +62,12 @@ function renderCards() {
 function createCardElement(card) {
   const cardElement = document.createElement('div');
   cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-  if (card.rarity === 3) {
-    cardElement.classList.add('special-rarity');
-  }
   cardElement.innerHTML = `
     ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
     <h2>${card.name}</h2>
     <p>${card.description}</p>
     <p>レア度: ${card.rarity}</p>
+    ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
   `;
   return cardElement;
 }
@@ -91,7 +78,7 @@ function getRandomCard() {
   const weightedCards = [];
 
   currentCards.forEach(card => {
-    for (let i = 0; i < rarityWeights[card.rarity]; i++) {
+    for (let i = 0; i < card.rarity; i++) {
       weightedCards.push(card);
     }
   });
@@ -104,19 +91,25 @@ function getRandomCard() {
 function handleCardAcquire() {
   const newCard = getRandomCard();
   let currentCards = loadCards();
-  currentCards = currentCards.map(card => 
+  currentCards = currentCards.map(card =>
     card.id === newCard.id ? { ...card, unlocked: true } : card
   );
   localStorage.setItem('cards', JSON.stringify(currentCards));
-  
+
   // 宝箱アニメーション
   const chest = document.getElementById('treasure-chest');
-  chest.classList.remove('closed');
-  chest.classList.add('open');
+  
+  // 開くときに画像を変更
+  chest.src = './images/open-chest.png'; // 開いた宝箱の画像に変更
+  chest.classList.remove('closed'); // 最初に「閉じている」状態を解除
+  chest.classList.add('open'); // 「開く」アニメーションを追加
+
+  // 1秒後に宝箱を閉じるアニメーション
   setTimeout(() => {
-    chest.classList.remove('open');
-    chest.classList.add('closed');
-  }, 300);
+    chest.classList.remove('open'); // 「開く」状態を解除
+    chest.classList.add('closed'); // 「閉じる」状態を追加
+    chest.src = './images/closed-chest.png'; // 元の宝箱の画像に戻す
+  }, 1000); // 1秒後に元に戻る
 
   renderCards(); // カードリストを更新
   displayAcquiredCard(newCard); // 獲得したカードを表示
