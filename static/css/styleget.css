@@ -1,4 +1,4 @@
-/* styleget.css */
+/* styles.css */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f2f2f2;
@@ -11,12 +11,6 @@ body {
   margin-top: 100px;
 }
 
-h1 {
-  font-size: 24px;
-  color: #333;
-}
-
-/* 宝箱の表示 */
 .chest-container {
   margin: 20px auto;
   position: relative;
@@ -44,14 +38,12 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
 
 button:hover {
   background-color: #e6b800;
 }
 
-/* メッセージエリア */
 .message {
   margin-top: 20px;
   font-size: 18px;
@@ -70,87 +62,4 @@ button:hover {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
-}
-
-/* カードリスト */
-#card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.card {
-  width: 200px;
-  margin: 10px;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  opacity: 0.7;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.card.unlocked {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
-.card.locked {
-  opacity: 0.5;
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.card h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-.card p {
-  font-size: 14px;
-  margin: 5px 0;
-}
-
-.card .unlock-condition {
-  font-size: 12px;
-  color: #888;
-  margin-top: 10px;
-}
-
-/* スペシャルレアリティカード */
-.card.special-rarity {
-  border: 2px solid gold;
-  background-color: #f3e6a3;
-}
-
-/* レスポンシブデザイン */
-@media (max-width: 768px) {
-  .container {
-    width: 90%;
-    margin-top: 50px;
-  }
-
-  .chest-container {
-    width: 150px;
-    height: 150px;
-  }
-
-  button {
-    width: 100%;
-    padding: 12px;
-    font-size: 18px;
-  }
-
-  #treasure-chest {
-    width: 80%;
-    height: auto;
-  }
 }
