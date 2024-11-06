@@ -1,3 +1,4 @@
+// 初期カードデータ
 const initialCards = [
     { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
     { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
@@ -31,17 +32,16 @@ const initialCards = [
     { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
-//レアリティの重み
+// レアリティの重み
 const rarityWeights = {
     1: 10,  // コモン
     2: 5,   // アンコモン
     3: 3,   // レア
     4: 2,   // スーパーレア
-    5: 0.1    // ウルトラレア
+    5: 0.1  // ウルトラレア
 };
 
-
-//カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
+// ローカルストレージからカードデータを読み込む関数
 export function loadCards() {
     try {
         const savedCards = localStorage.getItem('cards');
@@ -55,39 +55,7 @@ export function loadCards() {
     return initialCards;
 }
 
-//「card-list」内に動的にカードを生成して表示する処理
-export function renderCards() {
-    const cardList = document.getElementById('card-list');
-    const currentCards = loadCards();
-
-    cardList.innerHTML = '';
-
-    currentCards.forEach(card => {
-        const cardElement = createCardElement(card);
-        cardList.appendChild(cardElement);
-    });
-}
-
-//表示したカードを生成するプロパティ
-export function createCardElement(card) {
-    const cardElement = document.createElement('div');
-    cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;//カードがアンロックかロックされているかでCSSを変えられる
-    if (card.rarity === 3) {
-        cardElement.classList.add('special-rarity'); //レア度3のカードに特別なクラスを追加
-    }    
-    //カードがアンロックされている場合は、card.imageUrl に基づいた画像を表示し、そうでない場合はプレースホルダー画像（images/placeholder.jpg）を表示します。altは効いていない
-    cardElement.innerHTML = `
-        ${card.unlocked ? `<img src="${card.imageUrl}" alt="${card.name}">` : '<img src="images/placeholder.jpg" alt="カード画像非表示">'}
-        <h2>${card.name}</h2>
-        <p>${card.description}</p>
-        <p>レア度: ${card.rarity}</p>
-        ${!card.unlocked ? `<p class="unlock-condition">ここいる？</p>` : ''}
-        ${card.rarity === 3 && card.unlocked ? `<p class="special-message">レア度3のカードを３枚揃えると宝箱GET</p>` : ''}
-    `;
-    return cardElement;
-}
-
-//カードの「レア度」に基づいてランダムにカードを選択するための処理
+// ランダムにカードを取得する関数
 export function getRandomCard() {
     const currentCards = loadCards();
     const weightedCards = [];
@@ -102,9 +70,9 @@ export function getRandomCard() {
     return weightedCards[randomIndex];
 }
 
-//ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
+// 新しいカードを獲得した際に表示する処理
 export function handleCardAcquire() {
-    const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
+    const newCard = getRandomCard();
 
     let currentCards = loadCards();
     currentCards = currentCards.map(card => 
@@ -113,55 +81,37 @@ export function handleCardAcquire() {
 
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
-    showNotification(`新しいカード「${newCard.name}」を獲得しました！`);    
+    displayAcquiredCard(newCard);  // 獲得したカードを表示
 }
 
-//ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
-export function resetData() {
-    localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
-    localStorage.setItem('cards', JSON.stringify(initialCards));
-    renderCards();
+// ゲットしたカードを画面に表示する関数
+export function displayAcquiredCard(card) {
+    const cardDisplay = document.getElementById('card-display');
+    const cardDetails = document.getElementById('card-details');
+    
+    cardDisplay.classList.remove('hidden');  // カード表示エリアを表示
+
+    cardDetails.innerHTML = `
+        <h3>${card.name}</h3>
+        <p>${card.description}</p>
+        <p>レア度: ${card.rarity}</p>
+        <img src="${card.imageUrl}" alt="${card.name}">
+    `;
 }
 
-//指定されたメッセージを通知として表示し、３秒後に自動的に非表示にする処理（カードをゲットしましたのメッセージを消す処理）
-export function showNotification(message) {
-    const notification = document.getElementById('notification');
-    notification.textContent = message;
-    notification.style.display = 'block';
-    setTimeout(() => {
-        notification.style.display = 'none';
-    }, 3000);
-}
-
-//ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
+// ボタンのイベントリスナーをセット
 export function setupEventListeners() {
-    //'open-chest-button' のクリックイベントに handleCardAcquire 関数を登録
     document.getElementById('open-chest-button').addEventListener('click', () => { 
-        
-        document.getElementById('open-chest-button').disabled = true;//1回しかボタンを押させない
-        
-        //宝箱の要素とメッセージ要素を取得
-        const chest = document.getElementById('treasure-chest');
-        const message = document.getElementById('message');
-      
-        //宝箱を開くアニメーションの処理
-        chest.src = '${card.imageUrl}';
-        chest.alt = '${card.name}';
-        //chest.src = './images/open-chest.png'; //開いた宝箱の画像
-        chest.classList.remove('closed');
-        chest.classList.add('open');
-      
-        //メッセージの表示
-        message.classList.remove('hidden');
-        message.classList.add('visible');
+        document.getElementById('open-chest-button').disabled = true; // ボタン無効化
 
-        handleCardAcquire();
+        // 宝箱のアニメーションなどを追加する場合はここに記述
         
+        handleCardAcquire();  // カードを引く処理を実行
     });
 }
 
-//ページが完全に読み込まれた後に特定の初期設定を行う処理
+// ページ読み込み時に初期設定
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
-    renderCards();
+    renderCards();  // 初期カードを表示
 });
