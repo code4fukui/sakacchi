@@ -1,65 +1,78 @@
-/* 基本的なレイアウト設定 */
+/* styleget.css */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f9;
+  font-family: 'Arial', sans-serif;
+  background-color: #f2f2f2;
+  text-align: center;
   margin: 0;
   padding: 0;
 }
 
 .container {
-  width: 80%;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
+  margin-top: 100px;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
 }
 
 /* 宝箱の表示 */
 .chest-container {
-  margin: 30px 0;
+  margin: 20px auto;
+  position: relative;
+  width: 200px;
+  height: 200px;
 }
 
 #treasure-chest {
-  width: 150px;
-  height: 150px;
-  transition: transform 0.5s ease;
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.closed {
+  transform: scale(1);
+}
+
+.open {
+  transform: scale(1.2);
 }
 
 button {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #ffcc00;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #e6b800;
 }
 
-/* 獲得したカードを表示するエリア */
-#card-display {
-  display: none;
+/* メッセージエリア */
+.message {
   margin-top: 20px;
+  font-size: 18px;
+  color: #28a745;
 }
 
-#card-display.hidden {
+.hidden {
   display: none;
 }
 
-#card-details {
-  margin-top: 10px;
-  font-size: 18px;
+.visible {
+  display: block;
+  animation: fadeIn 1s;
 }
 
-#card-details img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* カードリストエリア */
+/* カードリスト */
 #card-list {
   display: flex;
   flex-wrap: wrap;
@@ -118,28 +131,26 @@ button:hover {
   background-color: #f3e6a3;
 }
 
-.hidden {
-  display: none;
-}
-
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
   .container {
     width: 90%;
+    margin-top: 50px;
   }
 
-  .card {
+  .chest-container {
     width: 150px;
-  }
-
-  #treasure-chest {
-    width: 120px;
-    height: 120px;
+    height: 150px;
   }
 
   button {
     width: 100%;
-    padding: 15px;
+    padding: 12px;
     font-size: 18px;
+  }
+
+  #treasure-chest {
+    width: 80%;
+    height: auto;
   }
 }
