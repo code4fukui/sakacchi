@@ -1,66 +1,145 @@
-/* styles.css */
+/* 基本的なレイアウト設定 */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f2f2f2;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 宝箱の表示 */
+.chest-container {
+  margin: 30px 0;
+}
+
+#treasure-chest {
+  width: 150px;
+  height: 150px;
+  transition: transform 0.5s ease;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* 獲得したカードを表示するエリア */
+#card-display {
+  display: none;
+  margin-top: 20px;
+}
+
+#card-display.hidden {
+  display: none;
+}
+
+#card-details {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+#card-details img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+/* カードリストエリア */
+#card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.card {
+  width: 200px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card.unlocked {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.card.locked {
+  opacity: 0.5;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.card p {
+  font-size: 14px;
+  margin: 5px 0;
+}
+
+.card .unlock-condition {
+  font-size: 12px;
+  color: #888;
+  margin-top: 10px;
+}
+
+/* スペシャルレアリティカード */
+.card.special-rarity {
+  border: 2px solid gold;
+  background-color: #f3e6a3;
+}
+
+.hidden {
+  display: none;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
   .container {
-    margin-top: 100px;
+    width: 90%;
   }
-  
-  .chest-container {
-    margin: 20px auto;
-    position: relative;
-    width: 200px;
-    height: 200px;
+
+  .card {
+    width: 150px;
   }
-  
+
   #treasure-chest {
-    width: 100%;
-    transition: transform 0.3s ease-in-out;
+    width: 120px;
+    height: 120px;
   }
-  
-  .closed {
-    transform: scale(1);
-  }
-  
-  .open {
-    transform: scale(1.2);
-  }
-  
+
   button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ffcc00;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #e6b800;
-  }
-  
-  .message {
-    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
     font-size: 18px;
-    color: #28a745;
   }
-  
-  .hidden {
-    display: none;
-  }
-  
-  .visible {
-    display: block;
-    animation: fadeIn 1s;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
+}
