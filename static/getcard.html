@@ -9,11 +9,23 @@
 <body>
   <div class="container">
     <h1>カードを獲得しました！</h1>
+    
+    <!-- 宝箱 -->
     <div class="chest-container">
       <img src="./images/closed-chest.png" alt="宝箱" id="treasure-chest" class="closed">
     </div>
+    
+    <!-- 「カードを引く」ボタン -->
     <button id="open-chest-button">カードを引く</button>
+    
+    <!-- メッセージ -->
     <div id="message" class="message hidden">おめでとう！カードを手に入れました！</div>
+    
+    <!-- ゲットしたカードを表示するエリア -->
+    <div id="card-display" class="card-display hidden">
+      <h2>ゲットしたカード:</h2>
+      <div id="card-details" class="card-details"></div>
+    </div>
   </div>
 
   <script type="module" src="./js/script2.js"></script>
