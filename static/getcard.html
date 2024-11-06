@@ -4,26 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カードを獲得</title>
-  <link rel="stylesheet" href="./css/styleget.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>カードを獲得しました！</h1>
+    <h1>カードを引く</h1>
+
+    <!-- 宝箱エリア -->
     <div class="chest-container">
-      <img src="./images/closed-chest.png" alt="宝箱" id="treasure-chest" class="closed">
+      <img src="images/closed-chest.png" alt="宝箱" id="treasure-chest" class="closed">
     </div>
+
+    <!-- カードを引くボタン -->
     <button id="open-chest-button">カードを引く</button>
 
-    <!-- 獲得したカードを表示するためのエリア -->
+    <!-- 獲得したカードの表示エリア -->
     <div id="card-display" class="hidden">
       <h3>獲得したカード</h3>
       <div id="card-details"></div>
     </div>
 
-    <!-- 獲得していないカードを隠すために最初は非表示にします -->
-    <div id="card-list" class="hidden"></div>
+    <!-- すべてのカードリスト -->
+    <div id="card-list"></div>
   </div>
 
-  <script type="module" src="./js/script2.js"></script>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
