@@ -10,7 +10,7 @@ const initialCards = [
   { id: 8, name: 'カード 8', description: 'これはカード8の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card8.jpg' },
   { id: 9, name: 'カード 9', description: 'これはカード9の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card9.jpg' },
   { id: 10, name: 'カード 10', description: 'これはカード10の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card10.jpg' },
-    { id: 11, name: 'カード 11', description: 'これはカード11の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card11.jpg' },
+  { id: 11, name: 'カード 11', description: 'これはカード11の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card11.jpg' },
     { id: 12, name: 'カード 12', description: 'これはカード12の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card12.jpg' },
     { id: 13, name: 'カード 13', description: 'これはカード13の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card13.jpg' },
     { id: 14, name: 'カード 14', description: 'これはカード14の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card14.jpg' },
@@ -107,8 +107,8 @@ function handleCardAcquire() {
     card.id === newCard.id ? { ...card, unlocked: true } : card
   );
   localStorage.setItem('cards', JSON.stringify(currentCards));
-  renderCards();
-  displayAcquiredCard(newCard);
+  renderCards(); // カードリストを更新
+  displayAcquiredCard(newCard); // 獲得したカードを表示
 }
 
 // 獲得したカードを画面に表示する
@@ -116,6 +116,7 @@ function displayAcquiredCard(card) {
   const cardDisplay = document.getElementById('card-display');
   const cardDetails = document.getElementById('card-details');
   
+  // 獲得したカードを表示
   cardDisplay.classList.remove('hidden');
   cardDetails.innerHTML = `
     <h3>${card.name}</h3>
@@ -133,5 +134,5 @@ function setupEventListeners() {
 // ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
-  renderCards(); // 初期カードを表示
+  renderCards(); // 初期カードの表示
 });
