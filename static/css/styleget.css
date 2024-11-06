@@ -1,4 +1,4 @@
-/* styles.css */
+/* styleget.css */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f2f2f2;
@@ -63,3 +63,36 @@ button:hover {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+.card {
+  margin: 20px;
+  display: inline-block;
+  text-align: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  width: 200px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #ddd;
+}
+
+.card h2 {
+  font-size: 1.2em;
+  margin: 10px 0;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+.unlocked {
+  background-color: #d3f8e2;
+}
+
+.locked {
+  background-color: #f2f2f2;
+}
+
