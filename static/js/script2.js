@@ -57,8 +57,17 @@ function getRandomCard() {
   return weightedCards[randomIndex];
 }
 
+// ボタンが押されたかどうかのフラグ
+let isButtonClicked = false;
+
 // ユーザーが新しいカードを獲得した際にそのカードをアンロックして表示を更新
 function handleCardAcquire() {
+  if (isButtonClicked) return; // ボタンが既に押されている場合は何もしない
+
+  // ボタンを無効化
+  isButtonClicked = true;
+  document.getElementById('open-chest-button').disabled = true;
+
   const newCard = getRandomCard();
   let currentCards = loadCards();
   currentCards = currentCards.map(card =>
@@ -79,9 +88,8 @@ function handleCardAcquire() {
     chest.classList.remove('open'); // 「開く」状態を解除
     chest.classList.add('closed'); // 「閉じる」状態を追加
     chest.src = 'images/closed-chest.png'; // 元の宝箱の画像に戻す
+    renderAcquiredCard(newCard); // 獲得したカードだけを表示
   }, 1000); // 1秒後に元に戻る
-
-  renderAcquiredCard(newCard); // 獲得したカードだけを表示
 }
 
 // 獲得したカードを表示する
