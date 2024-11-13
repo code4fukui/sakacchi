@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>カードを獲得</title>
   <link rel="stylesheet" href="css/styleget.css">
+  <style>
+    /* 初期状態でカード表示エリアを隠しておく */
+    #card-display {
+      display: none; /* 初期状態で隠す */
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -15,12 +21,12 @@
     <button id="open-chest-button">カードを引く</button>
 
     <!-- 獲得したカードを表示するためのエリア -->
-    <div id="card-display" class="hidden">
+    <div id="card-display">
       <h3>獲得したカード</h3>
       <div id="card-details"></div>
     </div>
 
-    <!-- 獲得したカードを表示する場所 -->
+    <!-- 獲得したカードを表示する場所（表示されるのは1枚のカードのみ） -->
     <div id="card-list"></div>
 
     <!-- 別のページに遷移するボタン -->
