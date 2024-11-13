@@ -42,37 +42,6 @@ function loadCards() {
   return initialCards;
 }
 
-// カードを表示する処理
-function renderAcquiredCard() {
-  const cardList = document.getElementById('card-list');
-  const currentCards = loadCards();
-  const unlockedCards = currentCards.filter(card => card.unlocked); // 獲得したカードだけを取得
-
-  // すべての未獲得カードを非表示にする
-  cardList.innerHTML = ''; // 表示をリセット
-
-  if (unlockedCards.length > 0) {
-    // 獲得したカードを表示
-    unlockedCards.forEach(card => {
-      const cardElement = createCardElement(card);
-      cardList.appendChild(cardElement);
-    });
-  }
-}
-
-// カードのHTML要素を生成する
-function createCardElement(card) {
-  const cardElement = document.createElement('div');
-  cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-  cardElement.innerHTML = `
-    <img src="${card.imageUrl}" alt="${card.name}">
-    <h2>${card.name}</h2>
-    <p>${card.description}</p>
-    <p>レア度: ${card.rarity}</p>
-  `;
-  return cardElement;
-}
-
 // ランダムにカードを1枚選ぶ処理
 function getRandomCard() {
   const currentCards = loadCards();
@@ -90,11 +59,6 @@ function getRandomCard() {
 
 // ユーザーが新しいカードを獲得した際にそのカードをアンロックして表示を更新
 function handleCardAcquire() {
-  const openChestButton = document.getElementById('open-chest-button');
-  
-  // ボタンを無効化
-  openChestButton.disabled = true;
-
   const newCard = getRandomCard();
   let currentCards = loadCards();
   currentCards = currentCards.map(card =>
@@ -117,25 +81,39 @@ function handleCardAcquire() {
     chest.src = 'images/closed-chest.png'; // 元の宝箱の画像に戻す
   }, 1000); // 1秒後に元に戻る
 
-  renderAcquiredCard(); // 獲得したカードだけを表示
-  displayAcquiredCard(newCard); // 獲得したカードを画面に表示
+  renderAcquiredCard(newCard); // 獲得したカードだけを表示
 }
 
-// 別のページに遷移する処理
-function goToAnotherPage() {
-  window.location.href = 'Toppage.html'; // 遷移先のURLを指定
+// 獲得したカードを表示する
+function renderAcquiredCard(card) {
+  const cardList = document.getElementById('card-list');
+  cardList.innerHTML = ''; // まずは表示をリセット
+  const cardElement = createCardElement(card);
+  cardList.appendChild(cardElement);
+}
+
+// カードのHTML要素を生成する
+function createCardElement(card) {
+  const cardElement = document.createElement('div');
+  cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
+  cardElement.innerHTML = `
+    <img src="${card.imageUrl}" alt="${card.name}">
+    <h2>${card.name}</h2>
+    <p>${card.description}</p>
+    <p>レア度: ${card.rarity}</p>
+  `;
+  return cardElement;
 }
 
 // ボタンのイベントリスナーを設定
 function setupEventListeners() {
   document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
-
-  // 新しいボタンのイベントリスナーを設定
-  document.getElementById('go-to-page-button').addEventListener('click', goToAnotherPage);
+  document.getElementById('go-to-page-button').addEventListener('click', () => {
+    window.location.href = 'Toppage.html'; // 別のページに遷移
+  });
 }
 
 // ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
-  renderAcquiredCard(); // 初期設定では獲得したカードのみ表示
 });
