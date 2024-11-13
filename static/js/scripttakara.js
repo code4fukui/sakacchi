@@ -35,6 +35,24 @@ function addCardToFolder(card) {
     }
 }
 
+// フォルダをリセットする関数
+function resetFolder() {
+    // フォルダのカードリストをクリア
+    folderCards = [];
+    
+    // フォルダ内のカードを全て削除
+    folder.innerHTML = '';
+
+    // 宝箱を非表示に戻す
+    treasureBox.classList.add('hidden');
+
+    // 各カードのスタイルを初期状態に戻す
+    cards.forEach(card => {
+        card.style.backgroundColor = '';
+        card.style.pointerEvents = '';  // 再度クリック可能にする
+    });
+}
+
 // カードがクリックされたときの処理
 cards.forEach(card => {
     card.addEventListener('click', () => {
@@ -42,3 +60,8 @@ cards.forEach(card => {
     });
 });
 
+// リセットボタンを作成して追加
+const resetButton = document.createElement('button');
+resetButton.textContent = 'リセット';
+resetButton.addEventListener('click', resetFolder);
+document.body.appendChild(resetButton);
