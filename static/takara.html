@@ -1,28 +1,187 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>カードコレクションゲーム</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カードフォルダ管理</title>
+  <link rel="stylesheet" href="css/styletakara.css">
 </head>
 <body>
-    <h1>カードコレクション</h1>
-    
-    <div id="card-container"></div> <!-- 動的にカードが追加されるコンテナ -->
+  <div class="container">
+    <h1>カードをフォルダに追加しよう！</h1>
 
-    <div id="folder" role="region" aria-live="polite">
-        <h2>フォルダ</h2>
-        <div id="folder-cards"></div>
-    </div>
-    
-    <div id="treasure-box" class="hidden" aria-hidden="true">
-        <h2>宝箱が開きました！</h2>
-        <p>おめでとうございます！必要なカードが揃いました。</p>
+    <!-- カードのリスト -->
+    <div id="card-container">
+      <div class="card" data-type="1">
+        <img src="images/card1.jpg" alt="カード 1">
+        <h2>カード 1</h2>
+        <p>カード 1の説明です。</p>
+      </div>
+      <div class="card" data-type="2">
+        <img src="images/card2.jpg" alt="カード 2">
+        <h2>カード 2</h2>
+        <p>カード 2の説明です。</p>
+      </div>
+      <div class="card" data-type="3">
+        <img src="images/card3.jpg" alt="カード 3">
+        <h2>カード 3</h2>
+        <p>カード 3の説明です。</p>
+      </div>
+      <div class="card" data-type="4">
+        <img src="images/card4.jpg" alt="カード 4">
+        <h2>カード 4</h2>
+        <p>カード 4の説明です。</p>
+      </div>
+      <div class="card" data-type="5">
+        <img src="images/card5.jpg" alt="カード 5">
+        <h2>カード 5</h2>
+        <p>カード 5の説明です。</p>
+      </div>
+      <div class="card" data-type="6">
+        <img src="images/card6.jpg" alt="カード 6">
+        <h2>カード 6</h2>
+        <p>カード 6の説明です。</p>
+      </div>
+      <div class="card" data-type="7">
+        <img src="images/card7.jpg" alt="カード 7">
+        <h2>カード 7</h2>
+        <p>カード 7の説明です。</p>
+      </div>
+      <div class="card" data-type="8">
+        <img src="images/card8.jpg" alt="カード 8">
+        <h2>カード 8</h2>
+        <p>カード 8の説明です。</p>
+      </div>
+      <div class="card" data-type="9">
+        <img src="images/card9.jpg" alt="カード 9">
+        <h2>カード 9</h2>
+        <p>カード 9の説明です。</p>
+      </div>
+      <div class="card" data-type="10">
+        <img src="images/card10.jpg" alt="カード 10">
+        <h2>カード 10</h2>
+        <p>カード 10の説明です。</p>
+      </div>
+      <div class="card" data-type="11">
+        <img src="images/card11.jpg" alt="カード 11">
+        <h2>カード 11</h2>
+        <p>カード 11の説明です。</p>
+      </div>
+      <div class="card" data-type="12">
+        <img src="images/card12.jpg" alt="カード 12">
+        <h2>カード 12</h2>
+        <p>カード 12の説明です。</p>
+      </div>
+      <div class="card" data-type="13">
+        <img src="images/card13.jpg" alt="カード 13">
+        <h2>カード 13</h2>
+        <p>カード 13の説明です。</p>
+      </div>
+      <div class="card" data-type="14">
+        <img src="images/card14.jpg" alt="カード 14">
+        <h2>カード 14</h2>
+        <p>カード 14の説明です。</p>
+      </div>
+      <div class="card" data-type="15">
+        <img src="images/card15.jpg" alt="カード 15">
+        <h2>カード 15</h2>
+        <p>カード 15の説明です。</p>
+      </div>
+      <div class="card" data-type="16">
+        <img src="images/card16.jpg" alt="カード 16">
+        <h2>カード 16</h2>
+        <p>カード 16の説明です。</p>
+      </div>
+      <div class="card" data-type="17">
+        <img src="images/card17.jpg" alt="カード 17">
+        <h2>カード 17</h2>
+        <p>カード 17の説明です。</p>
+      </div>
+      <div class="card" data-type="18">
+        <img src="images/card18.jpg" alt="カード 18">
+        <h2>カード 18</h2>
+        <p>カード 18の説明です。</p>
+      </div>
+      <div class="card" data-type="19">
+        <img src="images/card19.jpg" alt="カード 19">
+        <h2>カード 19</h2>
+        <p>カード 19の説明です。</p>
+      </div>
+      <div class="card" data-type="20">
+        <img src="images/card20.jpg" alt="カード 20">
+        <h2>カード 20</h2>
+        <p>カード 20の説明です。</p>
+      </div>
+      <div class="card" data-type="21">
+        <img src="images/card21.jpg" alt="カード 21">
+        <h2>カード 21</h2>
+        <p>カード 21の説明です。</p>
+      </div>
+      <div class="card" data-type="22">
+        <img src="images/card22.jpg" alt="カード 22">
+        <h2>カード 22</h2>
+        <p>カード 22の説明です。</p>
+      </div>
+      <div class="card" data-type="23">
+        <img src="images/card23.jpg" alt="カード 23">
+        <h2>カード 23</h2>
+        <p>カード 23の説明です。</p>
+      </div>
+      <div class="card" data-type="24">
+        <img src="images/card24.jpg" alt="カード 24">
+        <h2>カード 24</h2>
+        <p>カード 24の説明です。</p>
+      </div>
+      <div class="card" data-type="25">
+        <img src="images/card25.jpg" alt="カード 25">
+        <h2>カード 25</h2>
+        <p>カード 25の説明です。</p>
+      </div>
+      <div class="card" data-type="26">
+        <img src="images/card26.jpg" alt="カード 26">
+        <h2>カード 26</h2>
+        <p>カード 26の説明です。</p>
+      </div>
+      <div class="card" data-type="27">
+        <img src="images/card27.jpg" alt="カード 27">
+        <h2>カード 27</h2>
+        <p>カード 27の説明です。</p>
+      </div>
+      <div class="card" data-type="28">
+        <img src="images/card28.jpg" alt="カード 28">
+        <h2>カード 28</h2>
+        <p>カード 28の説明です。</p>
+      </div>
+      <div class="card" data-type="29">
+        <img src="images/card29.jpg" alt="カード 29">
+        <h2>カード 29</h2>
+        <p>カード 29の説明です。</p>
+      </div>
+      <div class="card" data-type="30">
+        <img src="images/card30.jpg" alt="カード 30">
+        <h2>カード 30</h2>
+        <p>カード 30の説明です。</p>
+      </div>
     </div>
 
+    <!-- フォルダ -->
+    <div id="folder">
+      <h2>フォルダ</h2>
+      <p>カードをフォルダにドラッグ＆ドロップしてください。</p>
+    </div>
+
+    <!-- 宝箱 -->
+    <div id="treasure-box" class="hidden">
+      <h2>宝箱！</h2>
+      <p>必要なカードがすべて揃いました！</p>
+    </div>
+
+    <!-- リセットボタン -->
     <button id="reset-button">リセット</button>
-    
-    <script type="module" src="js/scripttakara.js"></script>
+  </div>
+
+  <script type="module" src="js/scripttakara.js"></script>
 </body>
 </html>
+
+
