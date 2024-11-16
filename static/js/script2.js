@@ -154,6 +154,6 @@ const initialCards = [
   
   // ページ読み込み後の初期設定
   document.addEventListener('DOMContentLoaded', () => {
-    //renderCards();
+    renderCards();
     setupEventListeners();
   });
