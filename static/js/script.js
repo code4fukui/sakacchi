@@ -133,7 +133,7 @@ export function showNotification(message) {
 }
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-export function setupEventListeners() {
+//export function setupEventListeners() {
     //document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
     //document.getElementById('gacha').addEventListener('click', handleCardAcquire);
     //document.getElementById('reset-data').addEventListener('click', () => {
@@ -141,10 +141,10 @@ export function setupEventListeners() {
             //resetData();
         //}
     //});
-}
+//}
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
+    //setupEventListeners();
     renderCards();
 });
