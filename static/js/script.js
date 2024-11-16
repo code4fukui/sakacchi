@@ -32,13 +32,13 @@ const initialCards = [
 ];
 
 //レアリティの重み
-const rarityWeights = {
+/*const rarityWeights = {
     1: 10,  // コモン
     2: 5,   // アンコモン
     3: 3,   // レア
     4: 2,   // スーパーレア
     5: 0.1    // ウルトラレア
-};
+};*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
 function loadCards() {
@@ -87,7 +87,7 @@ function createCardElement(card) {
 }
 
 //カードの「レア度」に基づいてランダムにカードを選択するための処理
-function getRandomCard() {
+/*function getRandomCard() {
     const currentCards = loadCards();
     const weightedCards = [];
 
@@ -99,10 +99,10 @@ function getRandomCard() {
 
     const randomIndex = Math.floor(Math.random() * weightedCards.length);
     return weightedCards[randomIndex];
-}
+}*/
 
 //ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
-function handleCardAcquire() {
+/*function handleCardAcquire() {
     const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
 
     let currentCards = loadCards();
@@ -113,7 +113,7 @@ function handleCardAcquire() {
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
     showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
-}
+}*/
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
 function resetData() {
