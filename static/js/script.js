@@ -1,4 +1,4 @@
-const initialCards = [
+/*const initialCards = [
     { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
     { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
     { id: 3, name: 'カード 3', description: 'これはカード3の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
@@ -38,7 +38,7 @@ const rarityWeights = {
     3: 3,   // レア
     4: 2,   // スーパーレア
     5: 0.1    // ウルトラレア
-};
+};*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
 function loadCards() {
@@ -66,7 +66,7 @@ function renderCards() {
         cardList.appendChild(cardElement);
     });
 }
-
+/*
 //表示したカードを生成するプロパティ
 function createCardElement(card) {
     const cardElement = document.createElement('div');
@@ -113,7 +113,7 @@ function handleCardAcquire() {
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
     showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
-}
+}*/
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
 function resetData() {

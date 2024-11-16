@@ -41,6 +41,7 @@ const initialCards = [
     5: 0.1  // ウルトラレア
   };
   
+  /*
   // ローカルストレージからカードデータをロード
   function loadCards() {
     try {
@@ -67,7 +68,7 @@ const initialCards = [
       cardList.appendChild(cardElement);
     });
   }    
-  
+  */
   // ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
   function getRandomCard() {
     const currentCards = loadCards();
@@ -153,6 +154,6 @@ const initialCards = [
   
   // ページ読み込み後の初期設定
   document.addEventListener('DOMContentLoaded', () => {
-    renderCards();
+    //renderCards();
     setupEventListeners();
   });
