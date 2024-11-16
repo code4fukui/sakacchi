@@ -145,18 +145,7 @@ function resetData() {
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
-    resetData()
+    resetData();
     //setupEventListeners();
     renderCards();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderCards();
-    console.log('カードリストの初期化完了');
-    
-    const cardList = document.getElementById('card-list');
-    console.log('card-list要素:', cardList);
-
-    const currentCards = loadCards();
-    console.log('ロードされたカード:', currentCards);
 });
