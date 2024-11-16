@@ -41,7 +41,7 @@ const initialCards = [
 };*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
-function loadCards0() {
+function loadCards() {
     try {
         const savedCards = localStorage.getItem('cards');
         if (savedCards) {
@@ -55,9 +55,9 @@ function loadCards0() {
 }
 
 //「card-list」内に動的にカードを生成して表示する処理
-function renderCards0() {
+function renderCards() {
     const cardList = document.getElementById('card-list');
-    const currentCards = loadCards0();
+    const currentCards = loadCards();
 
     cardList.innerHTML = '';
 
@@ -68,7 +68,7 @@ function renderCards0() {
 }
 
 //表示したカードを生成するプロパティ
-function createCardElement(card) {
+/*function createCardElement(card) {
     const cardElement = document.createElement('div');
     cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;//カードがアンロックかロックされているかでCSSを変えられる
     if (card.rarity === 3) {
@@ -84,7 +84,20 @@ function createCardElement(card) {
         ${card.rarity === 3 && card.unlocked ? `<p class="special-message">レア度3のカードを３枚揃えると宝箱GET</p>` : ''}
     `;
     return cardElement;
-}
+}*/
+
+// カードのHTML要素を生成する
+function createCardElement(card) {
+    const cardElement = document.createElement('div');
+    cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
+    cardElement.innerHTML = `
+      <img src="${card.imageUrl}" alt="${card.name}">
+      <h2>${card.name}</h2>
+      <p>${card.description}</p>
+      <p>レア度: ${card.rarity}</p>
+    `;
+    return cardElement;
+  }
 
 //カードの「レア度」に基づいてランダムにカードを選択するための処理
 /*function getRandomCard() {
@@ -146,16 +159,16 @@ function createCardElement(card) {
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
     //setupEventListeners();
-    renderCards0();
+    renderCards();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderCards0();
+    renderCards();
     console.log('カードリストの初期化完了');
     
     const cardList = document.getElementById('card-list');
     console.log('card-list要素:', cardList);
 
-    const currentCards = loadCards0();
+    const currentCards = loadCards();
     console.log('ロードされたカード:', currentCards);
 });
