@@ -116,11 +116,11 @@ export function handleCardAcquire() {
 }
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
-export function resetData() {
-    localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
-    localStorage.setItem('cards', JSON.stringify(initialCards));
-    renderCards();
-}
+//export function resetData() {
+    //localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
+    //localStorage.setItem('cards', JSON.stringify(initialCards));
+    //renderCards();
+//}
 
 //指定されたメッセージを通知として表示し、３秒後に自動的に非表示にする処理（カードをゲットしましたのメッセージを消す処理）
 export function showNotification(message) {
@@ -133,7 +133,7 @@ export function showNotification(message) {
 }
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-export function setupEventListeners() {
+//export function setupEventListeners() {
     //document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
     //document.getElementById('gacha').addEventListener('click', handleCardAcquire);
     //document.getElementById('reset-data').addEventListener('click', () => {
@@ -141,10 +141,10 @@ export function setupEventListeners() {
             //resetData();
         //}
     //});
-}
+//}
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
+    //setupEventListeners();
     renderCards();
 });
