@@ -102,7 +102,7 @@ function getRandomCard() {
 }
 
 //ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
-function handleCardAcquire() {
+/*function handleCardAcquire() {
     const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
 
     let currentCards = loadCards();
@@ -113,7 +113,7 @@ function handleCardAcquire() {
     localStorage.setItem('cards', JSON.stringify(currentCards));
     renderCards();
     showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
-}
+}*/
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
 function resetData() {
@@ -132,21 +132,12 @@ function resetData() {
     }, 3000);
 }*/
 
-//ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-/*function setupEventListeners() {
-    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
-    document.getElementById('gacha').addEventListener('click', handleCardAcquire);
-    document.getElementById('reset-data').addEventListener('click', () => {
-        if (confirm('本当にデータをリセットしますか？')) {
-            resetData();
-        }
-    });
-}*/
+
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
     resetData();
-    handleCardAcquire();
+    //handleCardAcquire();
     //setupEventListeners();
     renderCards();
 });
