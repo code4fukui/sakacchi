@@ -102,18 +102,18 @@ export function getRandomCard() {
 }
 
 //ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
-export function handleCardAcquire() {
-    const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
+//export function handleCardAcquire() {
+    //const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
 
-    let currentCards = loadCards();
-    currentCards = currentCards.map(card => 
-        card.id === newCard.id ? { ...card, unlocked: true } : card
-    );
+    //let currentCards = loadCards();
+    //currentCards = currentCards.map(card => 
+        //card.id === newCard.id ? { ...card, unlocked: true } : card
+    //);
 
-    localStorage.setItem('cards', JSON.stringify(currentCards));
-    renderCards();
-    showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
-}
+    //localStorage.setItem('cards', JSON.stringify(currentCards));
+    //renderCards();
+    //showNotification(`新しいカード「${newCard.name}」を獲得しました！`);
+//}
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
 //export function resetData() {
