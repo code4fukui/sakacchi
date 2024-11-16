@@ -156,6 +156,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardList = document.getElementById('card-list');
     console.log('card-list要素:', cardList);
 
-    const currentCards = loadCards();
+    const currentCards = loadCards0();
     console.log('ロードされたカード:', currentCards);
 });
