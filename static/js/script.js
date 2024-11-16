@@ -41,7 +41,7 @@ const initialCards = [
 };*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
-function loadCards() {
+function loadCards0() {
     try {
         const savedCards = localStorage.getItem('cards');
         if (savedCards) {
@@ -55,9 +55,9 @@ function loadCards() {
 }
 
 //「card-list」内に動的にカードを生成して表示する処理
-function renderCards() {
+function renderCards0() {
     const cardList = document.getElementById('card-list');
-    const currentCards = loadCards();
+    const currentCards = loadCards0();
 
     cardList.innerHTML = '';
 
@@ -146,11 +146,11 @@ function createCardElement(card) {
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
     //setupEventListeners();
-    renderCards();
+    renderCards0();
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    renderCards();
+    renderCards0();
     console.log('カードリストの初期化完了');
     
     const cardList = document.getElementById('card-list');
