@@ -41,7 +41,7 @@ const initialCards = [
     5: 0.1  // ウルトラレア
   };
   
-  /*
+  
   // ローカルストレージからカードデータをロード
   function loadCards() {
     try {
@@ -68,7 +68,7 @@ const initialCards = [
       cardList.appendChild(cardElement);
     });
   }    
-  */
+  
   // ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
   function getRandomCard() {
     const currentCards = loadCards();
@@ -122,7 +122,7 @@ const initialCards = [
       renderAcquiredCard(newCard); // 獲得したカードだけを表示
     }, 1000); // 1秒後に元に戻る
   }
-
+  /*
   // 獲得したカードを表示する
   function renderAcquiredCard(card) {
     const cardList = document.getElementById('card-list');
@@ -130,7 +130,7 @@ const initialCards = [
     const cardElement = createCardElement(card);
     cardList.appendChild(cardElement);
   }
-  
+  */
   // カードのHTML要素を生成する
   function createCardElement(card) {
     const cardElement = document.createElement('div');
