@@ -116,11 +116,11 @@ function createCardElement(card) {
 }*/
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
-//function resetData() {
+function resetData() {
     //localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
-    //localStorage.setItem('cards', JSON.stringify(initialCards));
-    //renderCards();
-//}
+    localStorage.setItem('cards', JSON.stringify(initialCards));
+    renderCards();
+}
 
 //指定されたメッセージを通知として表示し、３秒後に自動的に非表示にする処理（カードをゲットしましたのメッセージを消す処理）
 /*function showNotification(message) {
@@ -145,6 +145,7 @@ function createCardElement(card) {
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
+    resetData()
     //setupEventListeners();
     renderCards();
 });
