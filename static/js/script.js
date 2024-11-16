@@ -68,7 +68,7 @@ function renderCards() {
 }
 
 //表示したカードを生成するプロパティ
-/*function createCardElement(card) {
+function createCardElement(card) {
     const cardElement = document.createElement('div');
     cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;//カードがアンロックかロックされているかでCSSを変えられる
     if (card.rarity === 3) {
@@ -84,20 +84,7 @@ function renderCards() {
         ${card.rarity === 3 && card.unlocked ? `<p class="special-message">レア度3のカードを３枚揃えると宝箱GET</p>` : ''}
     `;
     return cardElement;
-}*/
-
-// カードのHTML要素を生成する
-function createCardElement(card) {
-    const cardElement = document.createElement('div');
-    cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-    cardElement.innerHTML = `
-      <img src="${card.imageUrl}" alt="${card.name}">
-      <h2>${card.name}</h2>
-      <p>${card.description}</p>
-      <p>レア度: ${card.rarity}</p>
-    `;
-    return cardElement;
-  }
+}
 
 //カードの「レア度」に基づいてランダムにカードを選択するための処理
 /*function getRandomCard() {
