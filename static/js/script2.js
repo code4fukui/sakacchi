@@ -54,6 +54,19 @@ const initialCards = [
     localStorage.setItem('cards', JSON.stringify(initialCards));
     return initialCards;
   }
+
+  // すべてのカードを表示する関数（アンロックされたカードも含む）
+  function renderCards() {
+    const cardList = document.getElementById('card-list');
+    cardList.innerHTML = ''; // まずは表示をリセット
+    const currentCards = loadCards(); // ローカルストレージから最新のカードデータを取得
+    
+    // 現在のカードリストを表示
+    currentCards.forEach(card => {
+      const cardElement = createCardElement(card);
+      cardList.appendChild(cardElement);
+    });
+  }    
   
   // ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
   function getRandomCard() {
@@ -109,20 +122,6 @@ const initialCards = [
     }, 1000); // 1秒後に元に戻る
   }
 
-
-  // すべてのカードを表示する関数（アンロックされたカードも含む）
-function renderCards() {
-  const cardList = document.getElementById('card-list');
-  cardList.innerHTML = ''; // まずは表示をリセット
-  const currentCards = loadCards(); // ローカルストレージから最新のカードデータを取得
-  
-  // 現在のカードリストを表示
-  currentCards.forEach(card => {
-    const cardElement = createCardElement(card);
-    cardList.appendChild(cardElement);
-  });
-}
-  
   // 獲得したカードを表示する
   function renderAcquiredCard(card) {
     const cardList = document.getElementById('card-list');
