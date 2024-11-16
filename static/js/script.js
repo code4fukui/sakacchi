@@ -148,3 +148,14 @@ document.addEventListener('DOMContentLoaded', () => {
     //setupEventListeners();
     renderCards();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderCards();
+    console.log('カードリストの初期化完了');
+    
+    const cardList = document.getElementById('card-list');
+    console.log('card-list要素:', cardList);
+
+    const currentCards = loadCards();
+    console.log('ロードされたカード:', currentCards);
+});
