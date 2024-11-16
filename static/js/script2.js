@@ -107,6 +107,20 @@ const initialCards = [
       renderAcquiredCard(newCard); // 獲得したカードだけを表示
     }, 1000); // 1秒後に元に戻る
   }
+
+
+  // すべてのカードを表示する関数（アンロックされたカードも含む）
+function renderCards() {
+  const cardList = document.getElementById('card-list');
+  cardList.innerHTML = ''; // まずは表示をリセット
+  const currentCards = loadCards(); // ローカルストレージから最新のカードデータを取得
+  
+  // 現在のカードリストを表示
+  currentCards.forEach(card => {
+    const cardElement = createCardElement(card);
+    cardList.appendChild(cardElement);
+  });
+}
   
   // 獲得したカードを表示する
   function renderAcquiredCard(card) {
@@ -139,5 +153,7 @@ const initialCards = [
   
   // ページ読み込み後の初期設定
   document.addEventListener('DOMContentLoaded', () => {
+    renderCards();
     setupEventListeners();
+
   });
