@@ -132,15 +132,8 @@ function resetData() {
     }, 3000);
 }*/
 
-// ボタンのイベントリスナーを設定
-function setupEventListeners() {
-    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
-}
-
-
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
     resetData();
-    setupEventListeners()
     renderCards();
 });
