@@ -41,7 +41,7 @@ const initialCards = [
 };*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
-export function loadCards() {
+function loadCards() {
     try {
         const savedCards = localStorage.getItem('cards');
         if (savedCards) {
@@ -55,7 +55,7 @@ export function loadCards() {
 }
 
 //「card-list」内に動的にカードを生成して表示する処理
-export function renderCards() {
+function renderCards() {
     const cardList = document.getElementById('card-list');
     const currentCards = loadCards();
 
@@ -68,7 +68,7 @@ export function renderCards() {
 }
 
 //表示したカードを生成するプロパティ
-export function createCardElement(card) {
+function createCardElement(card) {
     const cardElement = document.createElement('div');
     cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;//カードがアンロックかロックされているかでCSSを変えられる
     if (card.rarity === 3) {
@@ -87,7 +87,7 @@ export function createCardElement(card) {
 }
 
 //カードの「レア度」に基づいてランダムにカードを選択するための処理
-/*export function getRandomCard() {
+/*function getRandomCard() {
     const currentCards = loadCards();
     const weightedCards = [];
 
@@ -102,7 +102,7 @@ export function createCardElement(card) {
 }*/
 
 //ユーザーが新しいカードを取得した際に、そのカードをアンロックして表示を更新する処理（ゴミと認識した場合、この関数を呼び出すとよい）
-/*export function handleCardAcquire() {
+/*function handleCardAcquire() {
     const newCard = getRandomCard();//getRandomCard() 関数を呼び出して、ランダムにカードを1枚取得します。このカードが新しく獲得されたものとして扱われます。
 
     let currentCards = loadCards();
@@ -116,14 +116,14 @@ export function createCardElement(card) {
 }*/
 
 //ローカルストレージに保存されている「カード」データを初期化し、画面にその初期状態のデータを再表示させる処理
-//export function resetData() {
+//function resetData() {
     //localStorage.removeItem('cards');//cardというキーで保存されているデータを削除
     //localStorage.setItem('cards', JSON.stringify(initialCards));
     //renderCards();
 //}
 
 //指定されたメッセージを通知として表示し、３秒後に自動的に非表示にする処理（カードをゲットしましたのメッセージを消す処理）
-/*export function showNotification(message) {
+/*function showNotification(message) {
     const notification = document.getElementById('notification');
     notification.textContent = message;
     notification.style.display = 'block';
@@ -133,7 +133,7 @@ export function createCardElement(card) {
 }*/
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-//export function setupEventListeners() {
+//function setupEventListeners() {
     //document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
     //document.getElementById('gacha').addEventListener('click', handleCardAcquire);
     //document.getElementById('reset-data').addEventListener('click', () => {
