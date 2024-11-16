@@ -133,15 +133,15 @@ function resetData() {
 }*/
 
 //ボタンをクリックしたときの処理レア度に合わせたカードゲットやリセットボタン
-//function setupEventListeners() {
-    //document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
-    //document.getElementById('gacha').addEventListener('click', handleCardAcquire);
-    //document.getElementById('reset-data').addEventListener('click', () => {
-        //if (confirm('本当にデータをリセットしますか？')) {
-            //resetData();
-        //}
-    //});
-//}
+/*function setupEventListeners() {
+    document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
+    document.getElementById('gacha').addEventListener('click', handleCardAcquire);
+    document.getElementById('reset-data').addEventListener('click', () => {
+        if (confirm('本当にデータをリセットしますか？')) {
+            resetData();
+        }
+    });
+}*/
 
 //ページが完全に読み込まれた後に特定の初期設定を行う処理
 document.addEventListener('DOMContentLoaded', () => {
