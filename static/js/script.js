@@ -32,13 +32,13 @@ const initialCards = [
 ];
 
 //レアリティの重み
-const rarityWeights = {
+/*const rarityWeights = {
     1: 10,  // コモン
     2: 5,   // アンコモン
     3: 3,   // レア
     4: 2,   // スーパーレア
     5: 0.1    // ウルトラレア
-};
+};*/
 
 //カードをロードし、ローカルストレージに保存されているゲットしたカードも表示
 function loadCards() {
