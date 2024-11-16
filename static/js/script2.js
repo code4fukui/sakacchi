@@ -103,7 +103,6 @@ const initialCards = [
       card.id === newCard.id ? { ...card, unlocked: true } : card
     );
     localStorage.setItem('cards', JSON.stringify(currentCards));
-    renderCards();
   
     // 宝箱アニメーション
     const chest = document.getElementById('treasure-chest');
@@ -153,6 +152,6 @@ const initialCards = [
   
   // ページ読み込み後の初期設定
   document.addEventListener('DOMContentLoaded', () => {
-    //renderCards();
+    renderCards();
     setupEventListeners();
   });
