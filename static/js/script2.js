@@ -1,6 +1,6 @@
 // 初期カードデータ（カード情報）
 const initialCards = [
-  { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+ { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
   { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
   { id: 3, name: 'カード 3', description: '魔王を殺した魔法使いが使用した杖', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
   { id: 4, name: 'カード 4', description: '初めて魔法を使う初心者が使う杖', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
@@ -29,7 +29,7 @@ const initialCards = [
   { id: 27, name: 'カード 27', description: 'これはカード27の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card27.jpg' },
   { id: 28, name: 'カード 28', description: 'これはカード28の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card28.jpg' },
   { id: 29, name: 'カード 29', description: 'これはカード29の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
-  { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' }
+  { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
 // レアリティに基づく重み付け（変更部分）
@@ -75,10 +75,18 @@ function getRandomCard() {
 
 // 獲得したカードを表示する
 function renderAcquiredCard(card) {
-  const cardList = document.getElementById('card-list');
-  const cardElement = createCardElement(card);
-  cardList.innerHTML = '';  // 既存のカードをリセット
-  cardList.appendChild(cardElement);
+  const cardDetails = document.getElementById('card-details');
+  cardDetails.innerHTML = `
+    <img src="${card.imageUrl}" alt="${card.name}">
+    <h2>${card.name}</h2>
+    <p>${card.description}</p>
+    <p>レア度: ${card.rarity}</p>
+  `;
+  
+  // カードを表示エリアに追加
+  const cardDisplay = document.getElementById('card-display');
+  cardDisplay.style.display = 'block';  // 表示
+
   // カードを「アンロック」状態にしてローカルストレージを更新
   let currentCards = loadCards();
   currentCards = currentCards.map(c =>
@@ -87,40 +95,21 @@ function renderAcquiredCard(card) {
   localStorage.setItem('cards', JSON.stringify(currentCards));
 }
 
-// カードのHTML要素を生成する
-function createCardElement(card) {
-  const cardElement = document.createElement('div');
-  cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-  cardElement.innerHTML = `
-    <img src="${card.imageUrl}" alt="${card.name}">
-    <h2>${card.name}</h2>
-    <p>${card.description}</p>
-    <p>レア度: ${card.rarity}</p>
-  `;
-  return cardElement;
-}
-
-// 宝箱を開けるアニメーション
-function openChest() {
-  const chestImage = document.getElementById('treasure-chest');
-  chestImage.classList.remove('closed'); // 「閉じた」状態を解除
-  chestImage.classList.add('opened');    // 「開いた」状態に変更
-
-  // 数秒後にカードを引く
-  setTimeout(() => {
-    const newCard = getRandomCard();
-    renderAcquiredCard(newCard);
-  }, 1500); // 宝箱を開けてから1.5秒後にカードが引かれる
-}
-
 // ボタンが押された時にカードをランダムに取得
 function handleCardAcquire() {
-  openChest();
+  const newCard = getRandomCard();
+  renderAcquiredCard(newCard);
 }
 
 // イベントリスナーの設定
 function setupEventListeners() {
+  // カードを引くボタンのクリックイベント
   document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
+
+  // メニュー遷移ボタンのクリックイベント
+  document.getElementById('go-to-page-button').addEventListener('click', () => {
+    window.location.href = 'Mainmenu.html'; // メニューページに遷移
+  });
 }
 
 // ページ読み込み後の初期設定
