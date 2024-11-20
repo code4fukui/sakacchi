@@ -1,4 +1,4 @@
-/* styleget.css */
+/* 全体のレイアウトとフォント */
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f2f2f2;
@@ -7,10 +7,12 @@ body {
   padding: 0;
 }
 
+/* コンテナ */
 .container {
   margin-top: 100px;
 }
 
+/* チェストコンテナ */
 .chest-container {
   margin: 20px auto;
   position: relative;
@@ -31,6 +33,7 @@ body {
   transform: scale(1.2);
 }
 
+/* ボタンのスタイル */
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -44,6 +47,7 @@ button:hover {
   background-color: #e6b800;
 }
 
+/* メッセージの表示 */
 .message {
   margin-top: 20px;
   font-size: 18px;
@@ -64,35 +68,52 @@ button:hover {
   to { opacity: 1; }
 }
 
+/* カードの基本スタイル */
 .card {
   margin: 20px;
   display: inline-block;
   text-align: center;
   border: 2px solid #ddd;
-  border-radius: 8px;
+  border-radius: 10px;
   width: 200px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* カードに影をつけて浮き上がったように */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
+.card:hover {
+  transform: translateY(-5px);  /* ホバー時にカードが少し浮き上がる */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);  /* より強い影 */
+}
+
+/* カード内の画像 */
 .card img {
   width: 100%;
-  height: auto;
+  height: 200px;  /* 高さを固定してカード内で画像を均等に見せる */
+  object-fit: cover;  /* 画像をトリミングしてカードに合わせる */
   border-bottom: 2px solid #ddd;
+  border-radius: 8px 8px 0 0;  /* 上の角を丸く */
 }
 
+/* カードタイトルのスタイル */
 .card h2 {
   font-size: 1.2em;
   margin: 10px 0;
+  color: #333;
 }
 
+/* カードの説明文 */
 .card p {
   margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
 }
 
+/* ロック状態とアンロック状態のスタイル */
 .unlocked {
-  background-color: #d3f8e2;
+  background-color: #d3f8e2;  /* アンロックされたカードの色 */
 }
 
 .locked {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2;  /* ロックされたカードの色 */
 }
-
