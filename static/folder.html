@@ -3,19 +3,19 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>さかっち - カードリスト</title>
+    <title>さかっち</title>
     <link rel="stylesheet" href="./css/styleget.css">
   </head>
   <body>
     <h1 style="background: #6d9;">カードリスト</h1>
 
     <!-- アンロックされたカードを表示するエリア -->
-    <div id="card-list" class="container"></div>
+    <div id="card-list"></div>
 
     <script type="module">
-      // 初期カードデータ（仮のデータ）
-      const cards = [
-       { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+      // 初期カードデータ（カード情報）
+      const initialCards = [
+        { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
         { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
         { id: 3, name: 'カード 3', description: '魔王を殺した魔法使いが使用した杖', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
         { id: 4, name: 'カード 4', description: '初めて魔法を使う初心者が使う杖', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
@@ -47,28 +47,45 @@
         { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
       ];
 
-      // カードリストにアンロックされたカードを追加する関数
-      function renderCards() {
-        const cardListContainer = document.getElementById('card-list');
-        cardListContainer.innerHTML = ''; // リストを初期化
+      // ローカルストレージからカードデータをロード
+      function loadCards() {
+        try {
+          const savedCards = localStorage.getItem('cards');
+          if (savedCards) {
+            return JSON.parse(savedCards);
+          }
+        } catch (e) {
+          console.error('カードデータの読み込みに失敗しました:', e);
+        }
+        localStorage.setItem('cards', JSON.stringify(initialCards));
+        return initialCards;
+      }
 
-        // アンロックされたカードのみ表示
-        cards.filter(card => card.unlocked).forEach(card => {
+      // アンロックされたカードのみを表示する関数
+      function displayUnlockedCards() {
+        const currentCards = loadCards();
+        const unlockedCards = currentCards.filter(card => card.unlocked); // unlockedがtrueのカードのみを抽出
+
+        const cardListContainer = document.getElementById('card-list');
+        cardListContainer.innerHTML = ''; // 既存のカードリストをリセット
+
+        unlockedCards.forEach(card => {
           const cardElement = document.createElement('div');
           cardElement.classList.add('card');
-          
           cardElement.innerHTML = `
-            <img src="${card.imageUrl}" alt="${card.name}">
+            <img src="${card.imageUrl}" alt="${card.name}" style="width: 100px; height: 150px;">
             <h2>${card.name}</h2>
             <p>${card.description}</p>
+            <p>レア度: ${card.rarity}</p>
           `;
-          
           cardListContainer.appendChild(cardElement);
         });
       }
 
-      // ページが読み込まれた後にカードを描画
-      document.addEventListener('DOMContentLoaded', renderCards);
+      // ページ読み込み後にアンロックされたカードを表示
+      document.addEventListener('DOMContentLoaded', () => {
+        displayUnlockedCards();
+      });
     </script>
   </body>
 </html>
