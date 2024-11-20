@@ -1,6 +1,6 @@
 // 初期カードデータ（カード情報）
 const initialCards = [
-  { id: 1, name: 'カード 1', description: 'これはカード1の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+  { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書。', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
   { id: 2, name: 'カード 2', description: 'これはカード2の説明です。', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
   { id: 3, name: 'カード 3', description: 'これはカード3の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
   { id: 4, name: 'カード 4', description: 'これはカード4の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
