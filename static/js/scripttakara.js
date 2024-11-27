@@ -1,4 +1,4 @@
-// 初期カードデータ
+// 初期カードデータ（画像URLを追加）
 const initialCards = [
      { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
         { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
@@ -48,23 +48,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = loadCards();
     const cardContainer = document.getElementById('card-container');
 
-    // カードを表示
+    // 獲得済みのカードのみを表示
     cards.forEach(card => {
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.dataset.id = card.id;
-
         if (card.unlocked) {
+            const cardElement = document.createElement('div');
+            cardElement.classList.add('card');
+            cardElement.dataset.id = card.id;
             cardElement.classList.add('unlocked');
-            cardElement.textContent = card.name;
-            cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id)); // 獲得済みカードをクリック可能にする
-        } else {
-            cardElement.classList.add('locked');
-            cardElement.textContent = `ロック中: ${card.name}`;
-            // ロック済みカードはクリック不可
-        }
 
-        cardContainer.appendChild(cardElement);
+            // 画像を表示
+            const cardImage = document.createElement('img');
+            cardImage.src = card.imageUrl;  // 画像のURLを設定
+            cardImage.alt = card.name;      // 画像の代替テキストを設定
+            cardElement.appendChild(cardImage);
+
+            // カード名を表示
+            const cardName = document.createElement('p');
+            cardName.textContent = card.name;
+            cardElement.appendChild(cardName);
+
+            // カードをクリックしてフォルダに追加する
+            cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id)); // 獲得済みカードをクリック可能にする
+            cardContainer.appendChild(cardElement);
+        }
     });
 
     // フォルダの準備（獲得したカードがここに入る）
