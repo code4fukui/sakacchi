@@ -96,6 +96,15 @@ function handleCardAcquire() {
   // カードを引くボタンを無効化
   const openButton = document.getElementById('open-chest-button');
   openButton.disabled = true;
+
+  // ローカルストレージに獲得したカードを保存
+  const savedCards = loadCards();
+  savedCards.forEach(card => {
+    if (card.id === newCard.id) {
+      card.unlocked = true; // 獲得したカードをアンロック状態に
+    }
+  });
+  localStorage.setItem('cards', JSON.stringify(savedCards));
 }
 
 // メニュー遷移ボタンをクリック
