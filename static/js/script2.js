@@ -86,19 +86,24 @@ function renderAcquiredCard(card) {
   // カードを表示エリアに追加
   const cardDisplay = document.getElementById('card-display');
   cardDisplay.style.display = 'block';  // 表示
-
-  // カードを「アンロック」状態にしてローカルストレージを更新
-  let currentCards = loadCards();
-  currentCards = currentCards.map(c =>
-    c.id === card.id ? { ...c, unlocked: true } : c
-  );
-  localStorage.setItem('cards', JSON.stringify(currentCards));
 }
 
 // ボタンが押された時にカードをランダムに取得
 function handleCardAcquire() {
   const newCard = getRandomCard();
   renderAcquiredCard(newCard);
+}
+
+// ボタンが押された後にページを再読み込み
+function disableButtonUntilReload() {
+  // ボタンを無効化
+  const openButton = document.getElementById('open-chest-button');
+  openButton.disabled = true;
+  
+  // ページを遷移する
+  setTimeout(() => {
+    window.location.reload(); // ページを再読み込み
+  }, 2000); // 2秒後にページがリロードされる
 }
 
 // イベントリスナーの設定
