@@ -73,7 +73,7 @@
           const cardElement = document.createElement('div');
           cardElement.classList.add('card');
           cardElement.innerHTML = `
-            <img src="${card.imageUrl}" alt="${card.name}" style="width: 100px; height: 150px;">
+            <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
             <h2>${card.name}</h2>
             <p>${card.description}</p>
             <p>レア度: ${card.rarity}</p>
@@ -87,5 +87,45 @@
         displayUnlockedCards();
       });
     </script>
+
+    <style>
+      /* カードリストのレイアウト */
+      #card-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 20px;
+        padding: 20px;
+      }
+
+      /* カードのスタイル */
+      .card {
+        border: 2px solid #ccc;
+        padding: 15px;
+        border-radius: 10px;
+        width: 180px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 画像サイズの調整 */
+      .card-img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+
+      /* 見出しのスタイル */
+      h2 {
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      /* 説明文のスタイル */
+      p {
+        font-size: 14px;
+        margin: 5px 0;
+      }
+    </style>
   </body>
 </html>
