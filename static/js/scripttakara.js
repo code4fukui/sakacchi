@@ -1,6 +1,6 @@
-// 初期データ
+// 初期カードデータ
 const initialCards = [
-    { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+     { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
         { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
         { id: 3, name: 'カード 3', description: '魔王を殺した魔法使いが使用した杖', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
         { id: 4, name: 'カード 4', description: '初めて魔法を使う初心者が使う杖', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
@@ -32,7 +32,7 @@ const initialCards = [
         { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
-// カード状態をローカルストレージから取得
+// カード状態をローカルストレージから取得または初期化
 function loadCards() {
     const savedCards = localStorage.getItem('cards');
     if (savedCards) return JSON.parse(savedCards);
@@ -46,14 +46,12 @@ function renderCards(cards) {
     container.innerHTML = '';
     cards.forEach(card => {
         const cardElement = document.createElement('div');
-        cardElement.className = 'card';
+        cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
         cardElement.textContent = card.name;
         cardElement.dataset.id = card.id;
 
-        if (card.unlocked) {
-            cardElement.style.backgroundColor = 'lightgreen';
-        } else {
-            cardElement.style.backgroundColor = '';
+        // 獲得していないカードのみクリック可能
+        if (!card.unlocked) {
             cardElement.addEventListener('click', () => addCardToFolder(cardElement));
         }
 
