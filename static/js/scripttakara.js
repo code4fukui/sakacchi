@@ -32,66 +32,99 @@ const initialCards = [
         { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
 ];
 
-// カード状態をローカルストレージから取得または初期化
+// ローカルストレージからカードデータを取得、なければ初期データを保存
 function loadCards() {
     const savedCards = localStorage.getItem('cards');
-    if (savedCards) return JSON.parse(savedCards);
-    localStorage.setItem('cards', JSON.stringify(initialCards));
-    return initialCards;
+    if (savedCards) {
+        return JSON.parse(savedCards);
+    } else {
+        localStorage.setItem('cards', JSON.stringify(initialCards));
+        return initialCards;
+    }
 }
 
-// 必要なカードを表示
-function renderCards(cards) {
-    const container = document.getElementById('card-container');
-    container.innerHTML = '';
+// ページ読み込み時にカードを表示
+document.addEventListener('DOMContentLoaded', () => {
+    const cards = loadCards();
+    const cardContainer = document.getElementById('card-container');
+
+    // カードを表示
     cards.forEach(card => {
         const cardElement = document.createElement('div');
-        cardElement.className = `card ${card.unlocked ? 'unlocked' : 'locked'}`;
-        cardElement.textContent = card.name;
+        cardElement.classList.add('card');
         cardElement.dataset.id = card.id;
 
-        // 獲得していないカードのみクリック可能
-        if (!card.unlocked) {
-            cardElement.addEventListener('click', () => addCardToFolder(cardElement));
+        if (card.unlocked) {
+            cardElement.classList.add('unlocked');
+            cardElement.textContent = card.name;
+            cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id)); // 獲得済みカードをクリック可能にする
+        } else {
+            cardElement.classList.add('locked');
+            cardElement.textContent = `ロック中: ${card.name}`;
+            // ロック済みカードはクリック不可
         }
 
-        container.appendChild(cardElement);
+        cardContainer.appendChild(cardElement);
     });
-}
 
-// フォルダにカードを追加
-const folder = document.getElementById('folder');
-const treasureBox = document.getElementById('treasure-box');
-const requiredCards = [1, 3, 4];
-let folderCards = [];
+    // フォルダの準備（獲得したカードがここに入る）
+    const folder = document.getElementById('folder');
+    const treasureBox = document.getElementById('treasure-box');
 
-function addCardToFolder(card) {
-    const cardId = parseInt(card.dataset.id, 10);
-    if (!folderCards.includes(cardId)) {
-        folderCards.push(cardId);
-        const folderCard = card.cloneNode(true);
-        folderCard.classList.add('folder-card');
-        folder.appendChild(folderCard);
+    // 必要なカードが揃ったかチェック
+    const requiredCards = [4, 5, 6]; // 必要カード（例：カード4、カード5、カード6）
+    const unlockedCards = cards.filter(c => c.unlocked);
+    const unlockedIds = unlockedCards.map(c => c.id);
 
-        card.style.pointerEvents = 'none';
-        checkCompletion();
-    }
-}
-
-// 必要カードが揃ったかチェック
-function checkCompletion() {
-    if (requiredCards.every(id => folderCards.includes(id))) {
+    if (requiredCards.every(id => unlockedIds.includes(id))) {
         treasureBox.classList.remove('hidden');
     }
-}
-
-// リセット
-document.getElementById('reset-button').addEventListener('click', () => {
-    folderCards = [];
-    folder.innerHTML = '<p>ここにカードをドラッグしてください</p>';
-    treasureBox.classList.add('hidden');
-    renderCards(loadCards());
 });
 
-// 初期化
-document.addEventListener('DOMContentLoaded', () => renderCards(loadCards()));
+// フォルダにカードを追加する関数
+function addCardToFolder(cardElement, cardId) {
+    const cards = loadCards();
+    const card = cards.find(c => c.id === cardId);
+
+    // フォルダ内にカードを追加
+    const folder = document.getElementById('folder');
+    const folderCard = cardElement.cloneNode(true);
+    folderCard.classList.add('folder-card');
+    folder.appendChild(folderCard);
+
+    // クリックされたカードを選択済みにする
+    cardElement.style.pointerEvents = 'none';
+    cardElement.style.backgroundColor = 'lightgray';
+}
+
+// リセットボタンの処理
+document.getElementById('reset-button').addEventListener('click', () => {
+    const cards = loadCards();
+    cards.forEach(card => card.unlocked = false);  // すべてのカードを未獲得にリセット
+    localStorage.setItem('cards', JSON.stringify(cards));
+
+    // 表示を更新
+    const cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
+    document.getElementById('folder').innerHTML = '';
+    document.getElementById('treasure-box').classList.add('hidden');
+
+    // カードを再表示
+    cards.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.classList.add('card');
+        cardElement.dataset.id = card.id;
+
+        if (card.unlocked) {
+            cardElement.classList.add('unlocked');
+            cardElement.textContent = card.name;
+            cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id)); // 獲得済みカードをクリック可能にする
+        } else {
+            cardElement.classList.add('locked');
+            cardElement.textContent = `ロック中: ${card.name}`;
+            // ロック済みカードはクリック不可
+        }
+
+        cardContainer.appendChild(cardElement);
+    });
+});
