@@ -92,21 +92,13 @@ function renderAcquiredCard(card) {
 function handleCardAcquire() {
   const newCard = getRandomCard();
   renderAcquiredCard(newCard);
-}
-
-// ボタンが押された後にページを再読み込み
-function disableButtonUntilReload() {
-  // ボタンを無効化
+  
+  // カードを引くボタンを無効化
   const openButton = document.getElementById('open-chest-button');
   openButton.disabled = true;
-  
-  // ページを遷移する
-  setTimeout(() => {
-    window.location.reload(); // ページを再読み込み
-  }, 2000); // 2秒後にページがリロードされる
 }
 
-// イベントリスナーの設定
+// メニュー遷移ボタンをクリック
 function setupEventListeners() {
   // カードを引くボタンのクリックイベント
   document.getElementById('open-chest-button').addEventListener('click', handleCardAcquire);
