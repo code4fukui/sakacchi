@@ -1,196 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>カードフォルダ管理</title>
-  <link rel="stylesheet" href="css/styletakara.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カードコレクション</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>カードをフォルダに追加しよう！</h1>
-
-    <!-- カードのリスト -->
+    <h1>カードコレクション</h1>
     <div id="card-container">
-      <!-- カードは動的に挿入される -->
+        <!-- カードはJavaScriptで動的に生成 -->
     </div>
-
-    <!-- フォルダ -->
-    <div id="folder">
-      <h2>フォルダ</h2>
-      <p>カードをクリックしてフォルダに追加してください。</p>
-      <div id="folder-container" class="folder-container"></div>
+    <div class="folder" id="folder">
+        <p>ここにカードをドラッグしてください</p>
     </div>
-
-    <!-- 宝箱 -->
     <div id="treasure-box" class="hidden">
-      <h2>宝箱！</h2>
-      <p>新しいカードが手に入りました！</p>
-      <p id="new-card-name"></p>
+        必要なカードが揃いました！宝箱を開けてください！
     </div>
-
-    <!-- リセットボタン -->
     <button id="reset-button">リセット</button>
-  </div>
-
-  <script type="module">
-    // 初期カードデータ（カード情報）
-    const initialCards = [
-      { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
-      { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
-      { id: 3, name: 'カード 3', description: '魔王を殺した魔法使いが使用した杖', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
-      { id: 4, name: 'カード 4', description: '封印された古の魔法、強大な力を秘めたカード', unlocked: false, rarity: 5, imageUrl: 'images/card4.jpg' },
-      // 他のカード情報も追加...
-    ];
-
-    // フォルダに入れるカードの指定
-    const targetCardCombination = [1, 2, 3]; // 例えばカード 1, 2, 3を組み合わせで新しいカードをゲット
-
-    // ゲットできないカードのIDを指定
-    const restrictedCardId = 4; // 例えば、カード4だけ制限
-
-    // ゲットページのURLを指定
-    const cardGetPageUrl = "get-card.html";  // ゲットページのURL（例）
-
-    // ローカルストレージからカードデータを取得
-    function loadCards() {
-      try {
-        const savedCards = localStorage.getItem('cards');
-        if (savedCards) {
-          return JSON.parse(savedCards);
-        }
-      } catch (e) {
-        console.error('カードデータの読み込みに失敗しました:', e);
-      }
-      // ローカルストレージに保存されていない場合、初期データを保存
-      localStorage.setItem('cards', JSON.stringify(initialCards));
-      return initialCards;
-    }
-
-    // ゲットしたカードをチェックする関数
-    function isCardAlreadyUnlocked(cardId) {
-      const unlockedCards = JSON.parse(localStorage.getItem('unlockedCards') || '[]');
-      return unlockedCards.includes(cardId);
-    }
-
-    // 現在のページがゲットページかどうかを判定
-    function isGetCardPage() {
-      return window.location.pathname.includes(cardGetPageUrl);
-    }
-
-    // カードを表示する関数
-    function displayCards() {
-      const currentCards = loadCards();
-      const cardContainer = document.getElementById('card-container');
-      cardContainer.innerHTML = '';  // 既存のカードリストをリセット
-
-      currentCards.forEach(card => {
-        // ゲット済みのカードは表示しない
-        if (isCardAlreadyUnlocked(card.id)) {
-          return;
-        }
-
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('card');
-        cardElement.dataset.type = card.id;
-
-        const img = document.createElement('img');
-        img.src = card.imageUrl;
-        img.alt = card.name;
-
-        const title = document.createElement('h2');
-        title.textContent = card.name;
-
-        const description = document.createElement('p');
-        description.textContent = card.description;
-
-        cardElement.appendChild(img);
-        cardElement.appendChild(title);
-        cardElement.appendChild(description);
-        cardContainer.appendChild(cardElement);
-
-        // カードをクリックしたときにフォルダに追加
-        cardElement.addEventListener('click', () => {
-          addCardToFolder(card.id);
-        });
-      });
-    }
-
-    // フォルダにカードを追加する関数
-    function addCardToFolder(cardId) {
-      const folderCards = getFolderCards();
-
-      // フォルダにカードがすでに含まれていなければ追加
-      if (folderCards.indexOf(cardId) === -1) {
-        folderCards.push(cardId);
-        setFolderCards(folderCards);
-        displayFolderCards();
-        checkForCardReward();
-      }
-    }
-
-    // フォルダ内のカードを取得
-    function getFolderCards() {
-      return JSON.parse(localStorage.getItem('folderCards') || '[]');
-    }
-
-    // フォルダ内のカードを設定
-    function setFolderCards(cards) {
-      localStorage.setItem('folderCards', JSON.stringify(cards));
-    }
-
-    // フォルダ内のカードを表示
-    function displayFolderCards() {
-      const folderCards = getFolderCards();
-      const folderContainer = document.getElementById('folder-container');
-      folderContainer.innerHTML = '';  // 現在のフォルダカードをリセット
-
-      folderCards.forEach(cardId => {
-        const card = initialCards.find(c => c.id === cardId);
-        const cardElement = document.createElement('div');
-        cardElement.classList.add('folder-card');
-        cardElement.textContent = card.name;
-        folderContainer.appendChild(cardElement);
-      });
-    }
-
-    // 条件を満たすカードを手に入れるか確認
-    function checkForCardReward() {
-      const folderCards = getFolderCards();
-
-      if (folderCards.length === 3) {
-        const cardIdsSet = new Set(folderCards);
-        if (targetCardCombination.every(id => cardIdsSet.has(id))) {
-          // 条件を満たした場合、新しいカードを手に入れる
-          const newCard = { id: 4, name: '新しいカード', description: '指定されたカードの組み合わせで手に入れるカード', unlocked: true, rarity: 5, imageUrl: 'images/card4.jpg' };
-
-          // ゲットページでのみカードをゲットできる
-          if (isGetCardPage() && !isCardAlreadyUnlocked(restrictedCardId)) {
-            alert(`${newCard.name} を手に入れました！`);
-            document.getElementById('new-card-name').textContent = newCard.name;
-            document.getElementById('treasure-box').classList.remove('hidden');
-
-            // ゲットしたカードをローカルストレージに保存
-            const unlockedCards = JSON.parse(localStorage.getItem('unlockedCards') || '[]');
-            unlockedCards.push(newCard.id);
-            localStorage.setItem('unlockedCards', JSON.stringify(unlockedCards));
-          }
-        }
-      }
-    }
-
-    // ページ読み込み時にカードを表示
-    window.addEventListener('DOMContentLoaded', () => {
-      displayCards();
-      displayFolderCards();
-    });
-
-    // リセットボタン
-    document.getElementById('reset-button').addEventListener('click', () => {
-      localStorage.clear();
-      location.reload();
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
-
