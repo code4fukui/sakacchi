@@ -162,5 +162,8 @@ function resetFolder() {
     displayCards(); // 画面を再描画してカードを表示
 }
 
+// リセットボタンにイベントを追加
+document.getElementById('reset-button').addEventListener('click', resetFolder);
+
 // 最初にカードを表示
 displayCards();
