@@ -30,10 +30,10 @@ const initialCards = [
   { id: 28, name: 'カード 28', description: 'これはカード28の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card28.jpg' },
   { id: 29, name: 'カード 29', description: 'これはカード29の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
   { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
-  { id: 27, name: 'カード 31', description: 'これはカード31の説明です。', unlocked: false, rarity: 3, imageUrl: 'images/card31.jpg' },
-  { id: 28, name: 'カード 32', description: 'これはカード32の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card32.jpg' },
-  { id: 29, name: 'カード 33', description: 'これはカード33の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
-  { id: 30, name: 'カード 34', description: 'これはカード34の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card34.jpg' },
+  { id: 31, name: 'カード 31', description: 'これはカード31の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
+  { id: 32, name: 'カード 32', description: 'これはカード32の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
+  { id: 33, name: 'カード 33', description: 'これはカード33の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
+  { id: 34, name: 'カード 34', description: 'これはカード34の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
 ];
 
 // ローカルストレージからカードデータを取得、なければ初期データを保存
