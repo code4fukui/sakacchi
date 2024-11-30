@@ -51,11 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 獲得済みのカードのみを表示
     cards.forEach(card => {
+        const cardElement = createCardElement(card);
         if (card.unlocked) {
-            const cardElement = createCardElement(card);
             cardElement.classList.add('unlocked');
-            cardContainer.appendChild(cardElement);
         }
+        cardContainer.appendChild(cardElement);
     });
 
     // フォルダの準備（獲得したカードがここに入る）
@@ -86,7 +86,7 @@ function addCardToFolder(cardElement, cardId) {
     // クリックされたカードを選択済みにする
     cardElement.style.pointerEvents = 'none';
     cardElement.style.backgroundColor = 'lightgray';
-    
+
     // カードデータを保存（カードが選ばれた時点でローカルストレージを更新）
     card.unlocked = true;
     saveCards(cards);
@@ -102,8 +102,19 @@ document.getElementById('reset-button').addEventListener('click', () => {
     const treasureBox = document.getElementById('treasure-box');
     treasureBox.classList.add('hidden');
 
-    // カードデータをリセット（unlocked状態をfalseに戻す）
+    // カードデータをリセット（unlocked状態をfalseに戻し、カードを再びクリック可能にする）
     const cards = loadCards();
-    cards.forEach(card => card.unlocked = false);
+    cards.forEach(card => {
+        card.unlocked = false; // カードのunlockedフラグをfalseに戻す
+    });
     saveCards(cards);
+
+    // 画面上のカードの状態を更新
+    const cardContainer = document.getElementById('card-container');
+    const cardElements = cardContainer.querySelectorAll('.card');
+    cardElements.forEach(cardElement => {
+        cardElement.classList.remove('unlocked');
+        cardElement.style.pointerEvents = 'auto'; // クリックできるようにする
+        cardElement.style.backgroundColor = ''; // 背景色を元に戻す
+    });
 });
