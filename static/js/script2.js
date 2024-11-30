@@ -60,11 +60,16 @@ function getRandomCard() {
   const currentCards = loadCards();
   const weightedCards = [];
 
+  // 除外するカードID
+  const excludedCardIds = [31, 32, 33, 34];
+
   // レアリティごとの重み付けに基づいてカードを追加
   currentCards.forEach(card => {
-    const weight = rarityWeights[card.rarity] || 1; // rarityWeightsに設定されていない場合は1として扱う
-    for (let i = 0; i < weight; i++) {
-      weightedCards.push(card);
+    if (!excludedCardIds.includes(card.id)) {  // 31, 32, 33, 34を除外
+      const weight = rarityWeights[card.rarity] || 1; // rarityWeightsに設定されていない場合は1として扱う
+      for (let i = 0; i < weight; i++) {
+        weightedCards.push(card);
+      }
     }
   });
 
