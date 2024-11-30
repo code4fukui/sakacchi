@@ -36,7 +36,7 @@ const initialCards = [
     { id: 34, name: 'カード 34', description: '獲得できるカード 34', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
 ];
 
-// フォルダ内のカードを3枚に変更し、条件を追加
+// カードの獲得条件
 const unlockConditions = {
     31: [1, 2, 3],  // カード31はカード1、カード2、カード3が必要
     32: [4, 5, 6],  // カード32はカード4、カード5、カード6が必要
@@ -96,6 +96,7 @@ function displayCards() {
     const unlockedCards = cards.filter(card => card.unlocked && ![31, 32, 33, 34].includes(card.id));
 
     // 表示するカードが解放されている場合のみ追加
+    cardContainer.innerHTML = ''; // 以前のカードを消す
     unlockedCards.forEach(card => {
         const cardElement = createCardElement(card);
         cardContainer.appendChild(cardElement);
