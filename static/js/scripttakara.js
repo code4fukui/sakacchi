@@ -90,8 +90,6 @@ function createCardElement(card) {
 // ページにカードを表示
 function displayCards() {
     const cardContainer = document.getElementById('card-container');
-    cardContainer.innerHTML = '';  // 既存のカードを削除してから表示
-
     const cards = loadCards();
 
     // 解放されているカードのみ表示
@@ -155,22 +153,14 @@ function unlockCard(cardId) {
     }
 }
 
-// リセットボタン処理
+// フォルダ内のカードをリセットし、カードを再表示
 function resetFolder() {
     const folder = document.getElementById('folder');
     folder.innerHTML = '';  // フォルダをリセット
 
-    const cards = loadCards();
-    // フォルダ内のカードを解除
-    cards.forEach(card => card.unlocked = false);
-    saveCards(cards); // ローカルストレージに保存
-
-    // カードが再びクリック可能な状態になるように再描画
-    displayCards();
+    // ローカルストレージのカードデータはそのままにして、画面上でのみリセット
+    displayCards(); // 画面を再描画してカードを表示
 }
 
 // 最初にカードを表示
 displayCards();
-
-// リセットボタンのイベント
-document.getElementById('reset-button').addEventListener('click', resetFolder);
