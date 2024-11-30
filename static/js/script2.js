@@ -28,12 +28,12 @@ const initialCards = [
   { id: 26, name: '見習い魔法使いの杖', description: '初めて魔法を使う初心者が使う杖', unlocked: false, rarity: 2, imageUrl: 'images/card26.jpg' },
   { id: 27, name: 'レジェンドバタフライ', description: '1000年に1度生まれる幻の蝶', unlocked: false, rarity: 3, imageUrl: 'images/card27.jpg' },
   { id: 28, name: 'ウリボー', description: 'キレた時にはそのハンマーで敵を叩き潰す', unlocked: false, rarity: 4, imageUrl: 'images/card28.jpg' },
-  { id: 29, name: 'はーとの弓矢', description: 'これはカード29の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
-  { id: 30, name: '思いの力starlight wings', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
-  { id: 31, name: '猫神様', description: 'これはカード31の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
-  { id: 32, name: 'よつばちゃん〜清掃ver〜', description: 'これはカード32の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
-  { id: 33, name: '西洋の鎧', description: 'これはカード33の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
-  { id: 34, name: '鳳凰（赤）', description: 'これはカード34の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
+  { id: 29, name: 'ハートの弓矢', description: '撃ち抜かれた人は恋に落ちてしまう', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
+  { id: 30, name: '思いの力starlight wings', description: '想いの力でリボンの大きさが変わる', unlocked: false, rarity: 4, imageUrl: 'images/card30.jpg' },
+  { id: 31, name: '猫神様', description: '人々に幸福を与えるために突如現れるねこ', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
+  { id: 32, name: 'よつばちゃん〜清掃ver〜', description: 'みんなゴミ拾いしてありがとう！これからも続けてね！', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
+  { id: 33, name: '西洋の鎧', description: '中世の時代に英雄が着ていた鎧', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
+  { id: 34, name: '鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
 ];
 
 // レアリティに基づく重み付け（変更部分）
