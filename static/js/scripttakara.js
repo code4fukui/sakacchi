@@ -1,6 +1,6 @@
-// 初期カードデータ（画像URLを追加）
+// 初期カードデータ（31, 32, 33, 34 は獲得条件付きのカード）
 const initialCards = [
-    { id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
+{ id: 1, name: 'カード 1', description: '書庫に封印されていた禁書 禍々しいオーラが漂う', unlocked: false, rarity: 1, imageUrl: 'images/card1.jpg' },
   { id: 2, name: 'カード 2', description: '歴代の呪文が全て収録されている', unlocked: false, rarity: 2, imageUrl: 'images/card2.jpg' },
   { id: 3, name: 'カード 3', description: '魔王を殺した魔法使いが使用した杖', unlocked: false, rarity: 3, imageUrl: 'images/card3.jpg' },
   { id: 4, name: 'カード 4', description: '初めて魔法を使う初心者が使う杖', unlocked: false, rarity: 4, imageUrl: 'images/card4.jpg' },
@@ -30,11 +30,19 @@ const initialCards = [
   { id: 28, name: 'カード 28', description: 'これはカード28の説明です。', unlocked: false, rarity: 4, imageUrl: 'images/card28.jpg' },
   { id: 29, name: 'カード 29', description: 'これはカード29の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card29.jpg' },
   { id: 30, name: 'カード 30', description: 'これはカード30の説明です。', unlocked: false, rarity: 1, imageUrl: 'images/card30.jpg' },
-  { id: 31, name: 'カード 31', description: 'これはカード31の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
-  { id: 32, name: 'カード 32', description: 'これはカード32の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
-  { id: 33, name: 'カード 33', description: 'これはカード33の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
-  { id: 34, name: 'カード 34', description: 'これはカード34の説明です。', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
+    { id: 31, name: 'カード 31', description: '獲得できるカード 31', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
+    { id: 32, name: 'カード 32', description: '獲得できるカード 32', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
+    { id: 33, name: 'カード 33', description: '獲得できるカード 33', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
+    { id: 34, name: 'カード 34', description: '獲得できるカード 34', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
 ];
+
+// フォルダ内のカードを3枚に変更し、条件を追加
+const unlockConditions = {
+    31: [1, 2, 3],  // カード31はカード1、カード2、カード3が必要
+    32: [4, 5, 6],  // カード32はカード4、カード5、カード6が必要
+    33: [7, 8, 9],  // カード33はカード7、カード8、カード9が必要
+    34: [10, 11, 12], // カード34はカード10、カード11、カード12が必要
+};
 
 // ローカルストレージからカードデータを取得、なければ初期データを保存
 function loadCards() {
@@ -68,83 +76,82 @@ function createCardElement(card) {
     cardName.textContent = card.name;
     cardElement.appendChild(cardName);
 
-    // カードをクリックしてフォルダに追加
-    cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id));
+    // 解放されたカードのみクリック可能
+    if (card.unlocked) {
+        cardElement.addEventListener('click', () => addCardToFolder(cardElement, card.id));
+        cardElement.style.cursor = 'pointer';  // クリック可能に見せる
+    } else {
+        cardElement.style.cursor = 'not-allowed';  // 解放されていない場合クリック不可
+    }
 
     return cardElement;
 }
 
-// ページ読み込み時にカードを表示
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = loadCards();
+// ページにカードを表示
+function displayCards() {
     const cardContainer = document.getElementById('card-container');
+    const cards = loadCards();
 
-    // 獲得済みのカードのみを表示
-    cards.forEach(card => {
+    // 解放されているカードのみ表示
+    const unlockedCards = cards.filter(card => card.unlocked && ![31, 32, 33, 34].includes(card.id));
+
+    // 表示するカードが解放されている場合のみ追加
+    unlockedCards.forEach(card => {
         const cardElement = createCardElement(card);
-        if (card.unlocked) {
-            cardElement.classList.add('unlocked');
-        }
         cardContainer.appendChild(cardElement);
     });
+}
 
-    // フォルダの準備（獲得したカードがここに入る）
-    const folder = document.getElementById('folder');
-    const treasureBox = document.getElementById('treasure-box');
-
-    // 必要なカードが揃ったかチェック
-    const requiredCards = [4, 5, 6]; // 必要カード（例：カード4、カード5、カード6）
-    const unlockedCards = cards.filter(c => c.unlocked);
-    const unlockedIds = unlockedCards.map(c => c.id);
-
-    if (requiredCards.every(id => unlockedIds.includes(id))) {
-        treasureBox.classList.remove('hidden');
-    }
-});
-
-// フォルダにカードを追加する関数
+// フォルダにカードを追加する処理
 function addCardToFolder(cardElement, cardId) {
     const cards = loadCards();
     const card = cards.find(c => c.id === cardId);
 
-    // フォルダ内にカードを追加
+    // カードをフォルダに追加
     const folder = document.getElementById('folder');
     const folderCard = cardElement.cloneNode(true);
     folderCard.classList.add('folder-card');
     folder.appendChild(folderCard);
 
-    // クリックされたカードを選択済みにする
+    // カードの状態を変更（unlockedをtrueに）
+    card.unlocked = true;
+    saveCards(cards); // ローカルストレージに保存
+
+    // カードがフォルダに追加されたら選択済みにする
     cardElement.style.pointerEvents = 'none';
     cardElement.style.backgroundColor = 'lightgray';
 
-    // カードデータを保存（カードが選ばれた時点でローカルストレージを更新）
-    card.unlocked = true;
-    saveCards(cards);
+    // フォルダ内のカードをチェック
+    checkFolderForUnlock();
 }
 
-// リセットボタンの処理
-document.getElementById('reset-button').addEventListener('click', () => {
-    // フォルダ内のカードをすべて削除
+// フォルダ内のカードをチェックし、指定されたカードがすべて入ったか確認
+function checkFolderForUnlock() {
     const folder = document.getElementById('folder');
-    folder.innerHTML = '';
+    const folderCards = folder.querySelectorAll('.folder-card');
+    const folderCardIds = Array.from(folderCards).map(card => parseInt(card.dataset.id));
 
-    // 宝箱を非表示にする
-    const treasureBox = document.getElementById('treasure-box');
-    treasureBox.classList.add('hidden');
+    // 各カードの獲得条件を確認
+    for (let cardId in unlockConditions) {
+        const requiredCards = unlockConditions[cardId];
 
-    // カードデータをリセット（unlocked状態をfalseに戻し、カードを再びクリック可能にする）
+        // 必要なカードがすべてフォルダに入っている場合
+        if (requiredCards.every(id => folderCardIds.includes(id))) {
+            unlockCard(parseInt(cardId)); // 該当するカードを解放
+        }
+    }
+}
+
+// 特定のカードを解放
+function unlockCard(cardId) {
     const cards = loadCards();
-    cards.forEach(card => {
-        card.unlocked = false; // カードのunlockedフラグをfalseに戻す
-    });
-    saveCards(cards);
+    const card = cards.find(c => c.id === cardId);
+    if (card && !card.unlocked) {
+        card.unlocked = true;  // 解放
+        saveCards(cards); // ローカルストレージに保存
+        alert(`${card.name}を獲得しました！`);
+    }
+}
 
-    // 画面上のカードの状態を更新
-    const cardContainer = document.getElementById('card-container');
-    const cardElements = cardContainer.querySelectorAll('.card');
-    cardElements.forEach(cardElement => {
-        cardElement.classList.remove('unlocked');
-        cardElement.style.pointerEvents = 'auto'; // クリックできるようにする
-        cardElement.style.backgroundColor = ''; // 背景色を元に戻す
-    });
-});
+// 最初にカードを表示
+displayCards();
