@@ -33,7 +33,7 @@ const initialCards = [
   { id: 31, name: '猫神様', description: '人々に幸福を与えるために突如現れるねこ', unlocked: false, rarity: 5, imageUrl: 'images/card31.jpg' },
   { id: 32, name: 'よつばちゃん〜清掃ver〜', description: 'みんなゴミ拾いしてありがとう！これからも続けてね！', unlocked: false, rarity: 5, imageUrl: 'images/card32.jpg' },
   { id: 33, name: '西洋の鎧', description: '中世の時代に英雄が着ていた鎧', unlocked: false, rarity: 5, imageUrl: 'images/card33.jpg' },
-  { id: 34, name: '鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' },
+  { id: 34, name: '鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/card34.jpg' }
 ];
 
 // レアリティに基づく重み付け（変更部分）
