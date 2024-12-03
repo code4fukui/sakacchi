@@ -33,30 +33,34 @@ const initialCards = [
   { id: 31, name: '猫神様', description: '人々に幸福を与えるために突如現れるねこ', unlocked: false, rarity: 5, imageUrl: 'images/kawaii.png' },
   { id: 32, name: 'よつばちゃん〜清掃ver〜', description: 'みんなゴミ拾いしてありがとう！これからも続けてね！', unlocked: false, rarity: 5, imageUrl: 'images/yotuba.png' },
   { id: 33, name: '西洋の鎧', description: '中世の時代に英雄が着ていた鎧', unlocked: false, rarity: 5, imageUrl: 'images/yoroi.png' },
-  { id: 34, name: '鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/tori1.png' }
+  { id: 34, name: '鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/tori1.png' },
 ];
 
-// レアリティに基づく重み付け（変更部分）
+// レアリティごとの重み付け（レア度が高いほど重みが大きくなる）
 const rarityWeights = {
-  1: 10,  // コモン
-  2: 5,   // アンコモン
-  3: 3,   // レア
-  4: 2,   // スーパーレア
-  5: 1    // ウルトラレア（重みが最も小さい）
+  1: 1,  // レア度1のカードは1回だけ
+  2: 2,  // レア度2のカードは2回
+  3: 3,  // レア度3のカードは3回
+  4: 4,  // レア度4のカードは4回
+  5: 5,  // レア度5のカードは5回
 };
 
-// ローカルストレージからカードデータをロード
+// ローカルストレージから保存されているカードデータを取得
 function loadCards() {
-  try {
-    const savedCards = localStorage.getItem('cards');
-    if (savedCards) {
-      return JSON.parse(savedCards);
-    }
-  } catch (e) {
-    console.error('カードデータの読み込みに失敗しました:', e);
+  const savedCards = JSON.parse(localStorage.getItem('cards'));
+  return savedCards || initialCards;
+}
+
+// すべてのカードが開放されたかを確認する
+function checkAllCardsUnlocked() {
+  const currentCards = loadCards();
+  const allUnlocked = currentCards.every(card => card.unlocked);
+
+  if (allUnlocked) {
+    const savedState = JSON.parse(localStorage.getItem('kansyzyou')) || {};
+    savedState.kansyzyou = 1; // すべてのカードが開放された場合、kansyzyouに1を設定
+    localStorage.setItem('kansyzyou', JSON.stringify(savedState)); // ローカルストレージに保存
   }
-  localStorage.setItem('cards', JSON.stringify(initialCards));
-  return initialCards;
 }
 
 // ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
@@ -114,6 +118,9 @@ function handleCardAcquire() {
     }
   });
   localStorage.setItem('cards', JSON.stringify(savedCards));
+
+  // すべてのカードが開放されたかをチェック
+  checkAllCardsUnlocked();
 }
 
 // メニュー遷移ボタンをクリック
