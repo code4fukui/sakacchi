@@ -15,7 +15,7 @@ const initialCards = [
   { id: 13, name: '木剣', description: '修行用に作られたただの木剣', unlocked: false, rarity: 1, imageUrl: 'images/ki.png' },
   { id: 14, name: '村長キングゴブリン', description: 'ゴブリン村の長 見た目からいつも可愛がられる', unlocked: false, rarity: 3, imageUrl: 'images/kingu.png' },
   { id: 15, name: 'ツインタガー', description: '鎖で繋がれた剣 扱うには時間がかかる', unlocked: false, rarity: 3, imageUrl: 'images/nihonn.png' },
-  { id: 16, name: 'スライム〜戦闘態勢〜', description: 'やる気あふれるスライム 強さは･･･', unlocked: false, rarity: 1, imageUrl: 'images/obake.png' },
+  { id: 16, name: 'スライム〜戦闘態勢〜', description: 'やる気あふれるスライム 強さは･･･', unlocked: false, rarity: 1, imageUrl: 'images/oabke.png' },
   { id: 17, name: '狼牙剣', description: '鍔が狼でできた剣 使う度に使用者の命を喰らう', unlocked: false, rarity: 4, imageUrl: 'images/ookami.png' },
   { id: 18, name: '神の使いペガサス', description: '神に使える神獣 常に機嫌が悪い', unlocked: false, rarity: 3, imageUrl: 'images/pegasasu.png' },
   { id: 19, name: '森の精霊エルフ', description: '森を守るエルフ 侵入者に対して厳しい', unlocked: false, rarity: 4, imageUrl: 'images/erufu.png' },
