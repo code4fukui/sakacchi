@@ -2,23 +2,36 @@
     <head>
         <title>さかっち</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-        
-        <link rel="stylesheet" hrel="style.css">
-        
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        
         <div class="container">
-            <br>
-            <br>
+            <br><br>
             <div class="alert alert-primary text-center" style="box-shadow: 7px 7px 10px #999;">
-                    <h3><b>このアプリは、</b><br>地域をきれいにしながらカードを集める。</br>ボランティア型<br>コレクションゲームです。</br></h3>
-                        <h2><b>キミの力で地域をきれいにしよう！</b></h2>
-                    </div>
-                    <div class="a text-center">
-                    <a href="Mainmenu.html" class="btn btn-success btn-lg flex-fill ">START!</a>
-                </div>
+                <h3><b>このアプリは、</b><br>地域をきれいにしながらカードを集める。</br>ボランティア型<br>コレクションゲームです。</br></h3>
+                <h2><b>キミの力で地域をきれいにしよう！</b></h2>
+            </div>
+            
+            <div class="text-center">
+                <a href="Mainmenu.html" class="btn btn-success btn-lg flex-fill">START!</a>
+            </div>
+            
+            <!-- ローカルストレージ削除ボタン -->
+            <div class="text-center mt-4">
+                <button id="clear-localstorage" class="btn btn-danger btn-lg">ローカルストレージを削除</button>
             </div>
         </div>
+
+        <script>
+            // ローカルストレージを削除する関数
+            document.getElementById('clear-localstorage').addEventListener('click', function() {
+                if (confirm('本当にローカルストレージを削除しますか？')) {
+                    localStorage.clear(); // ローカルストレージをクリア
+                    alert('ローカルストレージが削除されました。');
+                }
+            });
+        </script>
     </body>
 </html>
