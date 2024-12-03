@@ -74,7 +74,7 @@ button:hover {
 }
 
 .card img {
-  width: 70%;
+  width: 100%;
   height: auto;
   border-bottom: 2px solid #ddd;
 }
