@@ -93,7 +93,7 @@ button:hover {
 
 /* カード全体のスタイル */
 .card {
-  width: 200px; /* 幅を固定 */
+  width: 250px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
   background-color: #fff; /* 背景色を白に */
   border: 2px solid #ccc; /* 枠線を追加 */
