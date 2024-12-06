@@ -116,6 +116,8 @@ button:hover {
   padding: 10px; /* テキスト部分に余白を設定 */
   text-align: center; /* テキストを中央揃え */
   flex-grow: 1; /* 残りのスペースを埋める */
+  overflow: hidden; /* テキストがはみ出さないように */
+  text-overflow: ellipsis; /* 長すぎるテキストに「...」を追加 */
 }
 
 /* カード内のテキスト */
@@ -124,7 +126,18 @@ button:hover {
   margin: 5px 0; /* 上下のマージンを均一に */
   padding: 0; /* パディングをリセット */
   color: #333; /* テキストカラーを設定 */
+  word-wrap: break-word; /* 長い単語でも折り返して表示 */
 }
+
+/* カードのテキスト部分の高さ調整 */
+.card h2 {
+  font-size: 18px; /* 見出し文字の大きさ */
+}
+
+.card p {
+  font-size: 14px; /* 説明文字の大きさ */
+}
+
 
 
 
