@@ -130,6 +130,7 @@ button:hover {
   color: #444; /* ダークなテキストカラー */
   font-family: 'Open Sans', sans-serif; /* フォントを指定 */
   line-height: 1.4; /* 行間を広めに */
+  background-color: #f0f0f0; /* 背景色をライトグレーに設定 */
 }
 
 /*カード内のテキスト*/
