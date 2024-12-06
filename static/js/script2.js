@@ -50,6 +50,21 @@ const rarityWeights = {
  const savedCards = JSON.parse(localStorage.getItem('cards'));
  return savedCards || initialCards;
 }*/
+function loadCards() {
+  try {
+    const savedCards = localStorage.getItem('cards');
+    if (savedCards) {
+      return JSON.parse(savedCards);
+    }
+  } catch (e) {
+    console.error('カードデータの読み込みに失敗しました:', e);
+  }
+  localStorage.setItem('cards', JSON.stringify(initialCards));
+  return initialCards;
+}
+
+
+
 
 // すべてのカードが開放されたかを確認する
 function checkAllCardsUnlocked() {
