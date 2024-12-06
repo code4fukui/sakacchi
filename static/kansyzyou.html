@@ -25,10 +25,10 @@
 <script>
   // ローカルストレージからkansyzyouの値を取得
   const kansyzyouValue = localStorage.getItem('kansyzyou');
-  console.log(localStorage.getItem('kansyzyou')); // ローカルストレージから取得した値を表示
+  console.log(kansyzyouValue); // ローカルストレージから取得した値を確認
 
 //画像の表示ロジック
-if (kansyzyouValue === '1') {
+if (String(kansyzyouValue) === '1') {
   document.getElementById('message').textContent = 'おめでとうございます！すべてのカードが開放されました！';
   
 //画像を表示
