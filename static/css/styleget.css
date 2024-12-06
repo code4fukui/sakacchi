@@ -88,7 +88,7 @@ button:hover {
   }
 }
 
-/* カード全体のスタイル */
+//* カード全体のスタイル */
 .card {
   width: 200px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
@@ -105,18 +105,18 @@ button:hover {
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅を100%に */
-  height: 100%; /* 高さを100%に */
+  height: 180px; /* 画像部分の高さを固定 */
   object-fit: contain; /* 画像が枠内に収まるように縮小 */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
   box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
-
 /* テキスト部分 */
 .card .card-text {
   padding: 10px; /* テキスト部分に余白を設定 */
   text-align: center; /* テキストを中央揃え */
+  flex-grow: 1; /* 残りのスペースを埋める */
 }
 
 /* カード内のテキスト */
@@ -125,9 +125,8 @@ button:hover {
   margin: 5px 0; /* 上下のマージンを均一に */
   padding: 0; /* パディングをリセット */
   color: #333; /* テキストカラーを設定 */
-  font-size: 14px; /* フォントサイズを調整 */
-  line-height: 1.5; /* 行間を調整 */
 }
+
 
 /* ロック状態のカードの色分け */
 .unlocked {
