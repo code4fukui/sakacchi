@@ -68,7 +68,7 @@ function getRandomCard() {
  const currentCards = loadCards();
  const weightedCards = [];
 
- // 除外するカードID
+ //除外するカードID
  const excludedCardIds = [31, 32, 33, 34];
 
  // レアリティごとの重み付けに基づいてカードを追加
@@ -133,7 +133,7 @@ function setupEventListeners() {
  });
 }
 
-// ページ読み込み後の初期設定
+//ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
  setupEventListeners();
 });
