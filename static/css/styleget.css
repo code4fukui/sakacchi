@@ -56,6 +56,32 @@ button:hover {
   to { opacity: 1; }
 }
 
+
+
+/* カードリストのコンテナ */
+#card-list {
+  display: flex;
+  flex-wrap: wrap; /* 画面サイズに合わせてカードを折り返す */
+  justify-content: center; /* カードを中央に配置 */
+  gap: 20px; /* カード間に間隔を作る */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* 画面が小さい場合 */
+@media (max-width: 768px) {
+  .card {
+    width: 45%; /* 幅を45%にして2列に並べる */
+  }
+}
+
+/* さらに画面が小さい場合（モバイル端末など） */
+@media (max-width: 480px) {
+  .card {
+    width: 90%; /* 幅を90%にして1列に並べる */
+  }
+}
+
 /* カード全体のスタイル */
 .card {
   width: 200px; /* 幅を固定 */
@@ -67,6 +93,7 @@ button:hover {
   display: flex;
   flex-direction: column; /* 縦方向に要素を並べる */
   box-sizing: border-box; /* パディングやボーダーを含める */
+  overflow: hidden; /* 画像が枠からはみ出さないように */
 }
 
 /* 画像部分 */
@@ -90,14 +117,14 @@ button:hover {
   margin: 5px 0; /* 上下のマージンを均一に */
   padding: 0; /* パディングをリセット */
   color: #333; /* テキストカラーを設定 */
+  font-size: 14px; /* フォントサイズを調整 */
+  line-height: 1.5; /* 行間を調整 */
 }
 
-
-
-/*ロック状態のカードの色分け*/
+/* ロック状態のカードの色分け */
 .unlocked {
-  background-color: #d3f8e2;
+  background-color: #d3f8e2; /* アンロック状態の背景色 */
 }
 .locked {
-  background-color: #f2f2f2;
+  background-color: #f2f2f2; /* ロック状態の背景色 */
 }
