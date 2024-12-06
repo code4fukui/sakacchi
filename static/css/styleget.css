@@ -17,6 +17,7 @@ body {
   width: 200px;
   height: 200px;
 }
+/*getcardで使用*/
 #treasure-chest {
   width: 100%;
   transition: transform 0.3s ease-in-out;
@@ -25,9 +26,9 @@ body {
 .closed {
   transform: scale(1);
 }
-.open {
+/*.open {
   transform: scale(1.2);
-}
+}*/
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -58,7 +59,7 @@ button:hover {
 
 
 
-/* カードリストのコンテナ */
+/*カードリストのコンテナ*/
 #card-list {
   display: flex;
   flex-wrap: wrap; /* 画面サイズに合わせてカードを折り返す */
@@ -68,7 +69,7 @@ button:hover {
   box-sizing: border-box;
 }
 
-/* 画面が小さい場合 */
+/*画面が小さい場合*/
 @media (max-width: 768px) {
   .card {
     width: 45%; /* 幅を45%にして2列に並べる */
@@ -77,7 +78,7 @@ button:hover {
     height: 150px; /* 画像の高さを小さくする */
   }
 }
-/* さらに画面が小さい場合（モバイル端末など） */
+/*さらに画面が小さい場合（モバイル端末など）*/
 @media (max-width: 480px) {
   .card {
     width: 90%; /* 幅を90%にして1列に並べる */
@@ -87,14 +88,14 @@ button:hover {
   }
 }
 
-/* Google Fontsでおしゃれなフォントを使用 */
+/*Google Fontsでおしゃれなフォントを使用*/
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap');
 
 /*カード全体のスタイル*/
 .card {
   width: 240px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
-  background-color: #fff; /* 背景色を白に */
+  background-color: #ffffffc5; /* 背景色 */
   border: 2px solid #ccc; /* 枠線を追加 */
   border-radius: 12px; /* 角を少し丸くする */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 影を少し強く */
@@ -166,6 +167,7 @@ button:hover {
   background-color: #f2f2f2;
 }
 
+/*getcardで使用*/
 #card-display {
   display: none; /* 初期状態では非表示 */
   background-color: rgba(255, 215, 0, 0.1); /* 軽い金色っぽい背景 */
