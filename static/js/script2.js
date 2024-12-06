@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+
+
 // すべてのカードが開放されたかを確認する
 function checkAllCardsUnlocked() {
  const currentCards = loadCards();
