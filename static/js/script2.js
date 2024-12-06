@@ -46,10 +46,10 @@ const rarityWeights = {
 };
 
 // ローカルストレージから保存されているカードデータを取得
-function loadCards() {
+/*function loadCards() {
  const savedCards = JSON.parse(localStorage.getItem('cards'));
  return savedCards || initialCards;
-}
+}*/
 
 // すべてのカードが開放されたかを確認する
 function checkAllCardsUnlocked() {
