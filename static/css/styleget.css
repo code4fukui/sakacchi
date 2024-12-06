@@ -58,27 +58,26 @@ button:hover {
 
 /*カードリストのレイアウト*/
 #card-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
-  padding: 20px;
+  display: flex; /* フレックスボックスで配置 */
+  flex-wrap: wrap; /* カードを折り返す */
+  justify-content: space-around; /* カード間の間隔を均等に */
+  gap: 20px; /* カード間のスペース */
+  padding: 20px; /* 全体の余白 */
 }
+
 /*カードのスタイル*/
 .card {
   border: 2px solid #ccc;
-  padding: 15px;
   border-radius: 10px;
-  width: 200px; /*幅を固定*/
-  height: 300px; /*高さを固定*/
-  text-align: center;
-  box-sizing: border-box;
+  width: 200px; /* 幅を固定 */
+  height: 300px; /* 高さを固定 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #fff; /*背景色を設定*/
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /*画像とテキストの間隔を調整*/
-  align-items: center;
+  background-color: #fff;
+  display: flex; /* フレックスボックスを使用 */
+  flex-direction: column; /* 縦方向に要素を配置 */
+  justify-content: space-between; /* 画像とテキストを等間隔に配置 */
+  align-items: center; /* 中央揃え */
+  overflow: hidden; /* 内容が枠を超えた場合に隠す */
 }
 
 /*画像サイズの調整  getcard,folderで使用*/
@@ -86,8 +85,9 @@ button:hover {
 .card img {
   width: 100%; /* 枠の幅に合わせる */
   height: auto; /* 縦横比を維持 */
-  max-height: 180px; /* 高さを超えないようにする */
+  max-height: 180px; /* 最大高さを指定 */
   object-fit: contain; /* 画像を枠内に収める（縦横比を保持） */
+  border-bottom: 1px solid #ccc; /* 画像と説明文の間に線を追加 */
 }
 
 .card h2 {
