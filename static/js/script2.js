@@ -100,7 +100,7 @@ function renderAcquiredCard(card) {
  cardDisplay.style.display = 'block';  // 表示
  
  setTimeout(function() {
-  window.location.href = 'Mainmenu.html';
+  window.location.href = 'folder.html';
 }, 3000); // 3000ミリ秒 = 3秒
 
 }
