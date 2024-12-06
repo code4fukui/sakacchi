@@ -120,19 +120,6 @@ button:hover {
   box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
-/*テキスト部分*/
-.card .card-text {
-  padding: 15px; /* テキスト部分に余白を設定 */
-  text-align: center; /* テキストを中央揃え */
-  flex-grow: 1; /* 残りのスペースを埋める */
-  overflow: hidden; /* テキストがはみ出さないように */
-  text-overflow: ellipsis; /* 長すぎるテキストに「...」を追加 */
-  color: #444; /* ダークなテキストカラー */
-  font-family: 'Open Sans', sans-serif; /* フォントを指定 */
-  line-height: 1.4; /* 行間を広めに */
-  background-color: #f0f0f0; /* 背景色をライトグレーに設定 */
-}
-
 /*カード内のテキスト*/
 .card h2,
 .card p {
