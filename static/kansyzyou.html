@@ -21,10 +21,11 @@
   <h1>カード開放確認ページ</h1>
   <p id="message"></p>
   <div id="cardImage"></div>
-  
+
 <script>
-  //ローカルストレージからkansyzyouの値を取得
-const kansyzyouValue = localStorage.getItem('kansyzyou');
+  // ローカルストレージからkansyzyouの値を取得
+  const kansyzyouValue = localStorage.getItem('kansyzyou');
+  console.log(kansyzyouValue); //ローカルストレージから取得した値を確認
 
 //画像の表示ロジック
 if (kansyzyouValue === '1') {
