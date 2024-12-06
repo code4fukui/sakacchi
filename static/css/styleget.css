@@ -31,7 +31,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   position: fixed; /* 画面に固定 */
-  top: 50%; /* 垂直方向の中央 */
+  top: 60%; /* 垂直方向の中央 */
   left: 50%; /* 水平方向の中央 */
   transform: translate(-50%, -50%); /* 要素の中央を基準にする */
   width: 80%; /* 幅を80%に設定 */
