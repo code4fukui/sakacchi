@@ -17,6 +17,7 @@ body {
   width: 250px;
   height: 250px;
   background-color: transparent; /* 必要であれば親要素の透過は維持 */
+  opacity: 1; /* 親要素の透過を解除 */
 }
 /*getcardで使用*/
 #treasure-chest {
