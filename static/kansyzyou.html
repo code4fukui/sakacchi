@@ -23,24 +23,6 @@
   <p id="message"></p>
   <div id="cardImage"></div>
 
-  <script>
-    // ローカルストレージからkansyzyouの値を取得
-    const kansyzyouValue = localStorage.getItem('kansyzyou');
-
-    // 画像の表示ロジック
-    if (kansyzyouValue === '1') {
-      document.getElementById('message').textContent = 'おめでとうございます！すべてのカードが開放されました！';
-      
-      // 画像を表示
-      const img = document.createElement('img');
-      img.src = 'images/celebration_image.jpg';  // 画像のパスを指定
-      img.alt = 'Celebration Image';  // 画像の説明文
-      document.getElementById('cardImage').appendChild(img);
-    } else {
-      document.getElementById('message').textContent = 'カードがすべて開放されていません。';
-    }
-  </script>
-
+<script type="module" src="js/script2.js"></script>
 </body>
 </html>
-
