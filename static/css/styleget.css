@@ -65,7 +65,7 @@ button:hover {
   padding: 20px; /* 全体の余白 */
 }
 
-/* カード全体のスタイル */
+* カード全体のスタイル */
 .card {
   width: 200px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
@@ -76,17 +76,25 @@ button:hover {
   overflow: hidden; /* 内容がはみ出さないように */
   display: flex; /* フレックスボックスを使用 */
   flex-direction: column; /* 縦方向に要素を並べる */
-  justify-content: space-between; /* 要素を均等に配置 */
-  align-items: center; /* 要素を中央揃え */
   box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
-/* カード内の画像 */
+/* 画像部分 */
 .card img {
-  width: 100%; /* 横幅いっぱいに広げる */
-  height: auto; /* 高さを固定 */
-  object-fit: cover; /* カード枠内に収める（切り取りあり） */
-  background-color: #fff; /* 画像背景を白に設定 */
+  width: 100%; /* 横幅をカードに合わせる */
+  height: 180px; /* 画像部分の高さを指定 */
+  object-fit: cover; /* 画像がカード内に収まるように切り取る */
+  background-color: #fff; /* 背景を白に */
+}
+
+/* テキスト部分 */
+.card .card-text {
+  padding: 10px; /* 余白を設定 */
+  flex-grow: 1; /* 余白を取って、テキスト部分を適切に広げる */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* テキストを上下に均等に配置 */
+  text-align: center; /* テキストを中央揃え */
 }
 
 /* カード内のテキスト */
@@ -94,7 +102,6 @@ button:hover {
 .card p {
   margin: 5px 0; /* 上下のマージンを均一に */
   padding: 0; /* パディングをリセット */
-  text-align: center; /* テキストを中央揃え */
   color: #333; /* テキストカラーを設定 */
 }
 
