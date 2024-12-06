@@ -128,18 +128,13 @@ button:hover {
   color: #333; /* テキストカラーを設定 */
   word-wrap: break-word; /* 長い単語でも折り返して表示 */
 }
-
 /* カードのテキスト部分の高さ調整 */
 .card h2 {
   font-size: 18px; /* 見出し文字の大きさ */
 }
-
 .card p {
-  font-size: 14px; /* 説明文字の大きさ */
+  font-size: 12px; /* 説明文字の大きさ */
 }
-
-
-
 
 /* ロック状態のカードの色分け */
 .unlocked {
