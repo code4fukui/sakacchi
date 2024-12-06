@@ -27,7 +27,7 @@ body {
 /*getcardで使用*/
 #card-display {
   display: none; /* 初期状態では非表示 */
-  background-color: #fff; /* 背景を明確に設定 */
+  background-color: #f2f2f2;
   opacity: 1; /* 完全に不透明に */
   padding: 20px;
   border-radius: 12px;
