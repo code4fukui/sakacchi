@@ -98,6 +98,11 @@ function renderAcquiredCard(card) {
  // カードを表示エリアに追加
  const cardDisplay = document.getElementById('card-display');
  cardDisplay.style.display = 'block';  // 表示
+ 
+ setTimeout(function() {
+  window.location.href = 'Mainmenu.html';
+}, 3000); // 3000ミリ秒 = 3秒
+
 }
 
 // ボタンが押された時にカードをランダムに取得
