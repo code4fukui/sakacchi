@@ -80,8 +80,8 @@
           cardElement.innerHTML = `
              <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
              <h2>${card.name}</h2>
-             <p style="display: inline;">${card.description}</p>
-             <p style="display: inline;">レア度: ${card.rarity}</p>
+             <p style="display: inline-block; margin-right: 10px;">${card.description}</p>
+             <p style="display: inline-block;">レア度: ${card.rarity}</p>
           `;
           cardListContainer.appendChild(cardElement);
         });
