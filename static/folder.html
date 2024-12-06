@@ -15,18 +15,7 @@
 
     <script type="module">      
       // ローカルストレージからカードデータをロード
-      function loadCards() {
-        try {
-          const savedCards = localStorage.getItem('cards');
-          if (savedCards) {
-            return JSON.parse(savedCards);
-          }
-        } catch (e) {
-          console.error('カードデータの読み込みに失敗しました:', e);
-        }
-        localStorage.setItem('cards', JSON.stringify(initialCards));
-        return initialCards;
-      }
+      
 
       // アンロックされたカードのみを表示する関数
       function displayUnlockedCards() {
