@@ -73,12 +73,18 @@ button:hover {
   .card {
     width: 45%; /* 幅を45%にして2列に並べる */
   }
+  .card img {
+    height: 150px; /* 画像の高さを小さくする */
+  }
 }
 
 /* さらに画面が小さい場合（モバイル端末など） */
 @media (max-width: 480px) {
   .card {
     width: 90%; /* 幅を90%にして1列に並べる */
+  }
+  .card img {
+    height: 120px; /* 画像の高さをさらに小さくする */
   }
 }
 
@@ -99,10 +105,12 @@ button:hover {
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅いっぱいに広げる */
-  height: 180px; /* 画像部分の高さを固定 */
+  height: 180px; /* 高さを固定 */
   object-fit: cover; /* 画像を枠内に収める（切り取りあり） */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
+  box-sizing: border-box; /* パディングやボーダーを含める */
+  overflow: hidden; /* はみ出さないように */
 }
 
 /* テキスト部分 */
