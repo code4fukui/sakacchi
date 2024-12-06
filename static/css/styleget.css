@@ -113,7 +113,7 @@ button:hover {
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅を100%に */
-  height: 150px; /* 画像部分の高さを固定 */
+  height: 180px; /* 画像部分の高さを固定 */
   object-fit: cover; /* 画像を枠内に収める（縮小して表示） */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
