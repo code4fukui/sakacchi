@@ -79,6 +79,9 @@ button:hover {
   justify-content: center; /* 垂直方向に中央揃え */
   align-items: center; /* 水平方向に中央揃え */
   background-color: #fff; /* 背景色を設定 */
+  overflow: hidden; /* 枠内に収める */
+  text-overflow: ellipsis; /* テキストが長い場合に省略記号を表示 */
+  white-space: nowrap; /* テキストを1行に制限 */
 }
 
 /*画像サイズの調整  getcard,folderで使用*/
