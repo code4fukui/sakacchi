@@ -77,89 +77,12 @@ function displayUnlockedCards() {
     cardListContainer.appendChild(cardElement);
   });
 }
-// ページ読み込み後にアンロックされたカードを表示
+//ページ読み込み後にアンロックされたカードを表示
 document.addEventListener('DOMContentLoaded', () => {
   displayUnlockedCards();
 });
 
 /*------------------------------------------------------------------*/
-//すべてのカードが開放されたかを確認する
-function checkAllCardsUnlocked() {
-  const currentCards = loadCards();
-  const allUnlocked = currentCards.every(card => card.unlocked);
-
-  if (allUnlocked) {
-    // ローカルストレージに保存
-    const savedState = JSON.parse(localStorage.getItem('kansyzyou')) || {};
-    savedState.kansyzyou = 1; // すべてのカードが開放された場合、kansyzyouに1を設定
-    localStorage.setItem('kansyzyou', JSON.stringify(savedState));
-
-    // kansyzyou.html に遷移
-    window.location.href = 'kansyzyou.html';
-  }
-
-//ローカルストレージからkansyzyouの値を取得
-const kansyzyouValue = localStorage.getItem('kansyzyou');
-
-//画像の表示ロジック
-if (kansyzyouValue === '1') {
-  document.getElementById('message').textContent = 'おめでとうございます！すべてのカードが開放されました！';
-  
-//画像を表示
-  const img = document.createElement('img');
-  img.src = 'images/celebration_image.jpg';  // 画像のパスを指定
-  img.alt = 'Celebration Image';  // 画像の説明文
-  document.getElementById('cardImage').appendChild(img);
-} else {
-  document.getElementById('message').textContent = 'カードがすべて開放されていません。';
-}
-}
-/*------------------------------------------------------------------*/
-
-//ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
-function getRandomCard() {
- const currentCards = loadCards();
- const weightedCards = [];
-
- //除外するカードID
- const excludedCardIds = [31, 32, 33, 34];
-
- //レアリティごとの重み付けに基づいてカードを追加
- currentCards.forEach(card => {
-   if (!excludedCardIds.includes(card.id)) {  //31, 32, 33, 34を除外
-     const weight = rarityWeights[card.rarity] || 1; // rarityWeightsに設定されていない場合は1として扱う
-     for (let i = 0; i < weight; i++) {
-       weightedCards.push(card);
-     }
-   }
- });
-
- //重み付けされたカードリストからランダムに1枚選ぶ
- const randomIndex = Math.floor(Math.random() * weightedCards.length);
- return weightedCards[randomIndex];
-}
-
-/*------------------------------------------------------------------*/
-//獲得したカードを表示する
-function renderAcquiredCard(card) {
- const cardDetails = document.getElementById('card-details');
- cardDetails.innerHTML = `
-   <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
-   <h2>${card.name}</h2>
-   <p>${card.description} (レア度: ${card.rarity})</p>
- `; 
- //カードを表示エリアに追加
- const cardDisplay = document.getElementById('card-display');
- cardDisplay.style.display = 'block';  //表示
-
-//すべてのカードが開放されたかをチェック
-checkAllCardsUnlocked();
- 
- setTimeout(function() {
-  window.location.href = 'folder.html';
-}, 3000); // 3000ミリ秒 = 3秒
-}
-
 //ボタンが押された時にカードをランダムに取得
 function handleCardAcquire() {
  const newCard = getRandomCard();
@@ -178,7 +101,68 @@ function handleCardAcquire() {
  });
  localStorage.setItem('cards', JSON.stringify(savedCards)); 
 }
+
+//ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
+function getRandomCard() {
+  const currentCards = loadCards();
+  const weightedCards = [];
+ 
+  //除外するカードID
+  const excludedCardIds = [31, 32, 33, 34];
+ 
+  //レアリティごとの重み付けに基づいてカードを追加
+  currentCards.forEach(card => {
+    if (!excludedCardIds.includes(card.id)) {  //31, 32, 33, 34を除外
+      const weight = rarityWeights[card.rarity] || 1; // rarityWeightsに設定されていない場合は1として扱う
+      for (let i = 0; i < weight; i++) {
+        weightedCards.push(card);
+      }
+    }
+  }); 
+  //重み付けされたカードリストからランダムに1枚選ぶ
+  const randomIndex = Math.floor(Math.random() * weightedCards.length);
+  return weightedCards[randomIndex];
+ }
 /*------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------*/
+//獲得したカードを表示する
+function renderAcquiredCard(card) {
+  const cardDetails = document.getElementById('card-details');
+  cardDetails.innerHTML = `
+    <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
+    <h2>${card.name}</h2>
+    <p>${card.description} (レア度: ${card.rarity})</p>
+  `; 
+  //カードを表示エリアに追加
+  const cardDisplay = document.getElementById('card-display');
+  cardDisplay.style.display = 'block';  //表示
+ 
+ //すべてのカードが開放されたかをチェック
+ checkAllCardsUnlocked(); 
+ }
+
+ //すべてのカードが開放されたかを確認する
+function checkAllCardsUnlocked() {
+  const currentCards = loadCards();
+  const allUnlocked = currentCards.every(card => card.unlocked);
+
+  if (allUnlocked) {
+    // ローカルストレージに保存
+    const savedState = JSON.parse(localStorage.getItem('kansyzyou')) || {};
+    savedState.kansyzyou = 1; // すべてのカードが開放された場合、kansyzyouに1を設定
+    localStorage.setItem('kansyzyou', JSON.stringify(savedState));
+    //kansyzyou.html に遷移
+    window.location.href = 'kansyzyou.html';  
+  }
+  else{
+    setTimeout(function() {
+      window.location.href = 'folder.html';
+    }, 3000); // 3000ミリ秒 = 3秒
+  }
+}
+/*------------------------------------------------------------------*/
+
 
 //メニュー遷移ボタンをクリック
 function setupEventListeners() {
