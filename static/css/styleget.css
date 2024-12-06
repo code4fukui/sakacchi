@@ -1,4 +1,4 @@
-/* styleget.css */
+/*styleget.css*/
 body {
   font-family: 'Arial', sans-serif;
   background-color: #f2f2f2;
@@ -6,31 +6,28 @@ body {
   margin: 0;
   padding: 0;
 }
-
+/*getcardで使用*/
 .container {
   margin-top: 100px;
 }
-
+/*getcardで使用*/
 .chest-container {
   margin: 20px auto;
   position: relative;
   width: 200px;
   height: 200px;
 }
-
 #treasure-chest {
   width: 100%;
   transition: transform 0.3s ease-in-out;
 }
-
+/*getcardで使用*/
 .closed {
   transform: scale(1);
 }
-
 .open {
   transform: scale(1.2);
 }
-
 button {
   padding: 10px 20px;
   font-size: 16px;
@@ -39,59 +36,60 @@ button {
   border-radius: 5px;
   cursor: pointer;
 }
-
 button:hover {
   background-color: #e6b800;
 }
-
 .message {
   margin-top: 20px;
   font-size: 18px;
   color: #28a745;
 }
-
 .hidden {
   display: none;
 }
-
 .visible {
   display: block;
   animation: fadeIn 1s;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+/*カードリストのレイアウト*/
+#card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+/*カードのスタイル*/
 .card {
-  margin: 20px;
-  display: inline-block;
-  text-align: center;
-  border: 2px solid #ddd;
-  border-radius: 8px;
+  border: 2px solid #ccc;
+  padding: 15px;
+  border-radius: 10px;
   width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card img {
+/*画像サイズの調整  getcard,folderで使用*/
+.card-img {
   width: 100%;
   height: auto;
-  border-bottom: 2px solid #ddd;
+  border-radius: 8px;
 }
-
 .card h2 {
   font-size: 1.2em;
   margin: 10px 0;
 }
-
 .card p {
   margin: 5px 0;
 }
-
 .unlocked {
   background-color: #d3f8e2;
 }
-
 .locked {
   background-color: #f2f2f2;
 }
