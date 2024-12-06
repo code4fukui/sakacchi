@@ -99,14 +99,13 @@ button:hover {
   display: flex;
   flex-direction: column; /* 縦方向に要素を並べる */
   box-sizing: border-box; /* パディングやボーダーを含める */
-  overflow: hidden; /* カード内の要素が枠をはみ出さないように */
 }
 
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅を100%に */
   height: 180px; /* 画像部分の高さを固定 */
-  object-fit: contain; /* 画像が枠内に収まるように縮小 */
+  object-fit: contain; /* 画像を枠内に収める（縮小して表示） */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
   box-sizing: border-box; /* パディングやボーダーを含める */
@@ -126,6 +125,7 @@ button:hover {
   padding: 0; /* パディングをリセット */
   color: #333; /* テキストカラーを設定 */
 }
+
 
 
 /* ロック状態のカードの色分け */
