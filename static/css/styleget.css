@@ -142,33 +142,33 @@ button:hover {
   color: #333; /* 文字色 */
 }
 
-/* タイトル（h2） */
+/* カード内のタイトル（h2） */
 .card h2 {
-  font-family: 'Roboto', sans-serif; /* よりモダンでスタイリッシュなフォント */
-  font-size: 18px; /* 見出し文字の大きさ */
-  font-weight: 500; /* 中程度の太さ */
-  text-transform: uppercase; /* 大文字に */
-  letter-spacing: 1px; /* 文字間を広げてスタイリッシュに */
-  color: #2C3E50; /* 深い青緑の色 */
-  margin-bottom: 8px; /* 下に少し余白を */
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #2C3E50; /* タイトルの文字色（深い青緑） */
+  margin-bottom: 8px;
 }
 
-/* 説明文（p） */
+/* カード内の説明文（p） */
 .card p {
-  font-size: 14px; /* 説明文字の大きさ */
-  font-weight: 400; /* 標準的な太さ */
-  color: #7f8c8d; /* グレーっぽい文字色 */
-  text-align: center; /* 中央揃え */
-  word-wrap: break-word; /* 長い単語でも折り返して表示 */
+  font-size: 14px;
+  font-weight: 400;
+  color: #7f8c8d; /* 説明文の文字色（グレー） */
+  text-align: center;
+  word-wrap: break-word;
 }
 
 /* カードのレア度表示 */
 .card .rarity {
   font-size: 12px;
   font-weight: 600;
-  color: #e74c3c; /* 赤系統の色 */
-  text-transform: uppercase; /* 大文字に */
-  margin-top: 10px; /* 上に余白を追加 */
+  color: #e74c3c; /* 赤系統の文字色 */
+  text-transform: uppercase;
+  margin-top: 10px;
   font-family: 'Roboto', sans-serif;
 }
 
