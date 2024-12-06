@@ -105,7 +105,7 @@ button:hover {
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅いっぱいに広げる */
-  height: auto; /* 高さを固定 */
+  height: 150px; /* 高さを固定 */
   object-fit: cover; /* 画像を枠内に収める（切り取りあり） */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
