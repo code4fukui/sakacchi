@@ -17,30 +17,7 @@
       // ローカルストレージからカードデータをロード
       
 
-      // アンロックされたカードのみを表示する関数
-      function displayUnlockedCards() {
-        const currentCards = loadCards();
-        const unlockedCards = currentCards.filter(card => card.unlocked); // unlockedがtrueのカードのみを抽出
-
-        const cardListContainer = document.getElementById('card-list');
-        cardListContainer.innerHTML = ''; // 既存のカードリストをリセット
-
-        unlockedCards.forEach(card => {
-          const cardElement = document.createElement('div');
-          cardElement.classList.add('card');
-          cardElement.innerHTML = `
-             <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
-             <h2>${card.name}</h2>
-             <p>${card.description} (レア度: ${card.rarity})</p>
-          `;
-          cardListContainer.appendChild(cardElement);
-        });
-      }
-
-      // ページ読み込み後にアンロックされたカードを表示
-      document.addEventListener('DOMContentLoaded', () => {
-        displayUnlockedCards();
-      });
+      
     </script>
 
     
