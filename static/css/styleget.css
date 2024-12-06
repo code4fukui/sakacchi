@@ -88,58 +88,94 @@ button:hover {
   }
 }
 
+/* Google Fontsでおしゃれなフォントを使用 */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap');
+
 /* カード全体のスタイル */
 .card {
-  width: 250px; /* 幅を固定 */
+  width: 200px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
   background-color: #fff; /* 背景色を白に */
   border: 2px solid #ccc; /* 枠線を追加 */
-  border-radius: 10px; /* カードの角を丸める */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
+  border-radius: 12px; /* 角を少し丸くする */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* 影を少し強く */
   display: flex;
   flex-direction: column; /* 縦方向に要素を並べる */
   box-sizing: border-box; /* パディングやボーダーを含める */
+  transition: transform 0.3s ease-in-out; /* ホバー時のアニメーション */
+}
+
+/* ホバー時にカードが少し浮き上がるエフェクト */
+.card:hover {
+  transform: translateY(-5px);
 }
 
 /* 画像部分 */
 .card img {
   width: 100%; /* 横幅を100%に */
   height: 180px; /* 画像部分の高さを固定 */
-  object-fit: contain; /* 画像を枠内に収める（縮小して表示） */
+  object-fit: cover; /* 画像を枠内に収める（縮小して表示） */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
+  border-radius: 12px 12px 0 0; /* 画像の角も丸くする */
   box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
 /* テキスト部分 */
 .card .card-text {
-  padding: 10px; /* テキスト部分に余白を設定 */
+  padding: 15px; /* テキスト部分に余白を設定 */
   text-align: center; /* テキストを中央揃え */
   flex-grow: 1; /* 残りのスペースを埋める */
   overflow: hidden; /* テキストがはみ出さないように */
   text-overflow: ellipsis; /* 長すぎるテキストに「...」を追加 */
+  color: #444; /* ダークなテキストカラー */
+  font-family: 'Open Sans', sans-serif; /* フォントを指定 */
+  line-height: 1.4; /* 行間を広めに */
 }
 
 /* カード内のテキスト */
 .card h2,
 .card p {
-  margin: 5px 0; /* 上下のマージンを均一に */
+  margin: 0 0 10px 0; /* 上下のマージンを調整 */
   padding: 0; /* パディングをリセット */
-  color: #333; /* テキストカラーを設定 */
-  word-wrap: break-word; /* 長い単語でも折り返して表示 */
+  color: #333; /* 文字色 */
 }
-/* カードのテキスト部分の高さ調整 */
+
+/* タイトル（h2） */
 .card h2 {
+  font-family: 'Roboto', sans-serif; /* よりモダンでスタイリッシュなフォント */
   font-size: 18px; /* 見出し文字の大きさ */
+  font-weight: 500; /* 中程度の太さ */
+  text-transform: uppercase; /* 大文字に */
+  letter-spacing: 1px; /* 文字間を広げてスタイリッシュに */
+  color: #2C3E50; /* 深い青緑の色 */
+  margin-bottom: 8px; /* 下に少し余白を */
 }
+
+/* 説明文（p） */
 .card p {
   font-size: 14px; /* 説明文字の大きさ */
+  font-weight: 400; /* 標準的な太さ */
+  color: #7f8c8d; /* グレーっぽい文字色 */
+  text-align: center; /* 中央揃え */
+  word-wrap: break-word; /* 長い単語でも折り返して表示 */
+}
+
+/* カードのレア度表示 */
+.card .rarity {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e74c3c; /* 赤系統の色 */
+  text-transform: uppercase; /* 大文字に */
+  margin-top: 10px; /* 上に余白を追加 */
+  font-family: 'Roboto', sans-serif;
 }
 
 /* ロック状態のカードの色分け */
 .unlocked {
-  background-color: #d3f8e2; /* アンロック状態の背景色 */
+  background-color: #d3f8e2;
 }
 .locked {
-  background-color: #f2f2f2; /* ロック状態の背景色 */
+  background-color: #f2f2f2;
 }
+
