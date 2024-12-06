@@ -97,7 +97,7 @@ function checkAllCardsUnlocked() {
     // kansyzyou.html に遷移
     window.location.href = 'kansyzyou.html';
   }
-  
+
 //ローカルストレージからkansyzyouの値を取得
 const kansyzyouValue = localStorage.getItem('kansyzyou');
 
@@ -147,16 +147,19 @@ function renderAcquiredCard(card) {
    <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
    <h2>${card.name}</h2>
    <p>${card.description} (レア度: ${card.rarity})</p>
- `;
- 
+ `; 
  //カードを表示エリアに追加
  const cardDisplay = document.getElementById('card-display');
  cardDisplay.style.display = 'block';  //表示
+
+//すべてのカードが開放されたかをチェック
+checkAllCardsUnlocked();
  
  setTimeout(function() {
   window.location.href = 'folder.html';
 }, 3000); // 3000ミリ秒 = 3秒
 }
+
 //ボタンが押された時にカードをランダムに取得
 function handleCardAcquire() {
  const newCard = getRandomCard();
@@ -173,10 +176,7 @@ function handleCardAcquire() {
      card.unlocked = true; // 獲得したカードをアンロック状態に
    }
  });
- localStorage.setItem('cards', JSON.stringify(savedCards));
-
- //すべてのカードが開放されたかをチェック
- checkAllCardsUnlocked();
+ localStorage.setItem('cards', JSON.stringify(savedCards)); 
 }
 /*------------------------------------------------------------------*/
 
