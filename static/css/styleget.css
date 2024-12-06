@@ -69,27 +69,27 @@ button:hover {
   border: 2px solid #ccc;
   padding: 15px;
   border-radius: 10px;
-  width: 200px; /* 幅を固定 */
-  height: 300px; /* 高さを固定 */
+  width: 200px; /*幅を固定*/
+  height: 300px; /*高さを固定*/
   text-align: center;
-  box-sizing: border-box; /* ボーダーとパディングを含める */
+  box-sizing: border-box;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex; /* フレックスボックスを使用 */
-  flex-direction: column; /* 縦方向に配置 */
-  justify-content: center; /* 垂直方向に中央揃え */
-  align-items: center; /* 水平方向に中央揃え */
-  background-color: #fff; /* 背景色を設定 */
-  overflow: hidden; /* 枠内に収める */
-  text-overflow: ellipsis; /* テキストが長い場合に省略記号を表示 */
-  white-space: nowrap; /* テキストを1行に制限 */
+  background-color: #fff; /*背景色を設定*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /*画像とテキストの間隔を調整*/
+  align-items: center;
 }
 
 /*画像サイズの調整  getcard,folderで使用*/
-.card-img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+/*画像のスタイル*/
+.card img {
+  width: 100%; /* 枠の幅に合わせる */
+  height: auto; /* 縦横比を維持 */
+  max-height: 180px; /* 高さを超えないようにする */
+  object-fit: contain; /* 画像を枠内に収める（縦横比を保持） */
 }
+
 .card h2 {
   font-size: 1.2em;
   margin: 10px 0;
