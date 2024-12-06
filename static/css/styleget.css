@@ -26,6 +26,7 @@ body {
 #card-display {
   display: none; /* 初期状態では非表示 */
   background-color: rgba(255, 215, 0, 0.1); /* 軽い金色っぽい背景 */
+  opacity: 1; /* 完全に不透明に */
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
