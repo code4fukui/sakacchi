@@ -139,7 +139,6 @@ button:hover {
   margin: 0 0 10px 0; /* 上下のマージンを調整 */
   padding: 0; /* パディングをリセット */
   color: #333; /* 文字色 */
-  background-color: #f0f0f0; /* 背景色をライトグレーに設定 */
 }
 
 /*カード内のタイトル(h2)*/
