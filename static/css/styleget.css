@@ -144,7 +144,7 @@ button:hover {
   font-size: 14px;
   font-weight: 400;
   color: #7f8c8d; /* 説明文の文字色（グレー） */
-  text-align: left;
+  text-align: center;
   word-wrap: break-word;
 }
 
