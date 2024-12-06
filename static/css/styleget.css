@@ -77,7 +77,6 @@ button:hover {
     height: 150px; /* 画像の高さを小さくする */
   }
 }
-
 /* さらに画面が小さい場合（モバイル端末など） */
 @media (max-width: 480px) {
   .card {
@@ -91,9 +90,9 @@ button:hover {
 /* Google Fontsでおしゃれなフォントを使用 */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap');
 
-/* カード全体のスタイル */
+/*カード全体のスタイル*/
 .card {
-  width: 250px; /* 幅を固定 */
+  width: 240px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
   background-color: #fff; /* 背景色を白に */
   border: 2px solid #ccc; /* 枠線を追加 */
@@ -105,12 +104,12 @@ button:hover {
   transition: transform 0.3s ease-in-out; /* ホバー時のアニメーション */
 }
 
-/* ホバー時にカードが少し浮き上がるエフェクト */
+/*ホバー時にカードが少し浮き上がるエフェクト*/
 .card:hover {
   transform: translateY(-5px);
 }
 
-/* 画像部分 */
+/*画像部分*/
 .card img {
   width: 100%; /* 横幅を100%に */
   height: 180px; /* 画像部分の高さを固定 */
@@ -121,8 +120,7 @@ button:hover {
   box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
-
-/* テキスト部分 */
+/*テキスト部分*/
 .card .card-text {
   padding: 15px; /* テキスト部分に余白を設定 */
   text-align: center; /* テキストを中央揃え */
@@ -134,7 +132,7 @@ button:hover {
   line-height: 1.4; /* 行間を広めに */
 }
 
-/* カード内のテキスト */
+/*カード内のテキスト*/
 .card h2,
 .card p {
   margin: 0 0 10px 0; /* 上下のマージンを調整 */
@@ -142,7 +140,7 @@ button:hover {
   color: #333; /* 文字色 */
 }
 
-/* カード内のタイトル（h2） */
+/*カード内のタイトル(h2)*/
 .card h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
@@ -153,12 +151,12 @@ button:hover {
   margin-bottom: 8px;
 }
 
-/* カード内の説明文（p） */
+/*カード内の説明文（p）*/
 .card p {
   font-size: 14px;
   font-weight: 400;
   color: #7f8c8d; /* 説明文の文字色（グレー） */
-  text-align: center;
+  text-align: left;
   word-wrap: break-word;
 }
 
