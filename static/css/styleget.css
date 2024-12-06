@@ -24,7 +24,7 @@ body {
 }
 /*getcardで使用*/
 .closed {
-  transform: scale(1);
+  transform: scale(2);
 }
 /*.open {
   transform: scale(1.2);
