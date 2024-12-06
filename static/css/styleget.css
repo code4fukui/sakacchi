@@ -99,19 +99,19 @@ button:hover {
   display: flex;
   flex-direction: column; /* 縦方向に要素を並べる */
   box-sizing: border-box; /* パディングやボーダーを含める */
-  overflow: hidden; /* 画像が枠からはみ出さないように */
+  overflow: hidden; /* カード内の要素が枠をはみ出さないように */
 }
 
 /* 画像部分 */
 .card img {
-  width: 100%; /* 横幅いっぱいに広げる */
-  height: 200px; /* 高さを固定 */
-  object-fit: cover; /* 画像を枠内に収める（切り取りあり） */
+  width: 100%; /* 横幅を100%に */
+  height: 100%; /* 高さを100%に */
+  object-fit: contain; /* 画像が枠内に収まるように縮小 */
   background-color: #fff; /* 背景色を白に */
   border-bottom: 2px solid #ccc; /* 画像とテキスト部分の境界線を追加 */
   box-sizing: border-box; /* パディングやボーダーを含める */
-  overflow: hidden; /* はみ出さないように */
 }
+
 
 /* テキスト部分 */
 .card .card-text {
