@@ -78,14 +78,10 @@
           const cardElement = document.createElement('div');
           cardElement.classList.add('card');
           cardElement.innerHTML = `
-            <div class="card">
              <img src="${card.imageUrl}" alt="${card.name}" class="card-img">
-             <div class="card-text">
              <h2>${card.name}</h2>
              <p>${card.description}</p>
              <p>レア度: ${card.rarity}</p>
-             </div>
-            </div>
           `;
           cardListContainer.appendChild(cardElement);
         });
