@@ -65,40 +65,39 @@ button:hover {
   padding: 20px; /* 全体の余白 */
 }
 
-/*カードのスタイル*/
+/* カード全体のスタイル */
 .card {
-  border: 2px solid #ccc;
-  border-radius: 10px;
   width: 200px; /* 幅を固定 */
   height: 300px; /* 高さを固定 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+  background-color: #fff; /* 背景色を白に */
+  border: 1px solid #ccc; /* 枠線を追加 */
+  border-radius: 10px; /* カードの角を丸める */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 影をつける */
+  overflow: hidden; /* 内容がはみ出さないように */
   display: flex; /* フレックスボックスを使用 */
-  flex-direction: column; /* 縦方向に要素を配置 */
-  justify-content: space-between; /* 画像とテキストを等間隔に配置 */
-  align-items: center; /* 中央揃え */
-  overflow: hidden; /* 内容が枠を超えた場合に隠す */
-  box-sizing: border-box; /* ボーダーやパディングを含める */
+  flex-direction: column; /* 縦方向に要素を並べる */
+  justify-content: space-between; /* 要素を均等に配置 */
+  align-items: center; /* 要素を中央揃え */
+  box-sizing: border-box; /* パディングやボーダーを含める */
 }
 
-/*画像サイズの調整*/
+/* カード内の画像 */
 .card img {
-  width: 100%; /* カード幅に合わせる */
+  width: 100%; /* 横幅いっぱいに広げる */
   height: 180px; /* 高さを固定 */
-  object-fit: cover; /* 画像を枠いっぱいに収める（切り取り） */
-  border-bottom: 1px solid #ccc; /* 画像と説明文の間に線を追加 */
+  object-fit: cover; /* カード枠内に収める（切り取りあり） */
+  background-color: #fff; /* 画像背景を白に設定 */
 }
 
-/*タイトルと説明文のスタイル*/
-.card h2 {
-  font-size: 1.2em;
-  margin: 10px 0;
-}
+/* カード内のテキスト */
+.card h2,
 .card p {
-  margin: 5px 0;
-  font-size: 0.9em;
-  text-align: center;
+  margin: 5px 0; /* 上下のマージンを均一に */
+  padding: 0; /* パディングをリセット */
+  text-align: center; /* テキストを中央揃え */
+  color: #333; /* テキストカラーを設定 */
 }
+
 
 /*ロック状態のカードの色分け*/
 .unlocked {
