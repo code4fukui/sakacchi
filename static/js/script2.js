@@ -148,11 +148,8 @@ function checkAllCardsUnlocked() {
   const allUnlocked = currentCards.every(card => card.unlocked);
 
   if (allUnlocked) {
-    // ローカルストレージに保存
-    const savedState = JSON.parse(localStorage.getItem('kansyzyou')) || {};
-    savedState.kansyzyou = 1; // すべてのカードが開放された場合、kansyzyouに1を設定
-    localStorage.setItem('kansyzyou', JSON.stringify(savedState));
-    //kansyzyou.html に遷移
+    //ローカルストレージに保存
+    localStorage.setItem('kansyzyou', '1'); // kansyzyou に単純な文字列 '1' を保存
     window.location.href = 'kansyzyou.html';  
   }
   else{
