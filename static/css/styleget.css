@@ -84,7 +84,7 @@ button:hover {
 /* カード内の画像 */
 .card img {
   width: 100%; /* 横幅いっぱいに広げる */
-  height: 180px; /* 高さを固定 */
+  height: auto; /* 高さを固定 */
   object-fit: cover; /* カード枠内に収める（切り取りあり） */
   background-color: #fff; /* 画像背景を白に設定 */
 }
