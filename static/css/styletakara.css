@@ -20,8 +20,8 @@ h1 {
   justify-items: center;
 }
 .card {
-  width: 90px; /* カードの幅を縮小 */
-  height: 130px; /* カードの高さを縮小 */
+  width: 100px; /* カードの幅を縮小 */
+  height: 140px; /* カードの高さを縮小 */
   border: 2px solid #ddd;
   border-radius: 8px;
   text-align: center;
