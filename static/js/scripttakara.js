@@ -1,4 +1,4 @@
-import { initialCards } from "card.js"; //カードデータをインポート
+import { initialCards } from "./card.js"; //カードデータをインポート
 
 //カードの獲得条件
 const unlockConditions = {
