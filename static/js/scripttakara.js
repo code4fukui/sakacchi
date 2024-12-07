@@ -126,7 +126,7 @@ function unlockCard(cardId) {
        card.unlocked = true;  // 解放
        saveCards(cards); // ローカルストレージに保存
 
-       // 解放されたカードをカードコンテナに追加
+       //解放されたカードをカードコンテナに追加
        const cardContainer = document.getElementById('card-container');
        const cardElement = createCardElement(card);  //createCardElementを使ってカード要素を作成
        cardContainer.appendChild(cardElement);  //カードをコンテナに追加
