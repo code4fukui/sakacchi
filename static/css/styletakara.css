@@ -14,14 +14,15 @@ h1 {
 /*カードコンテナのスタイル*/
 #card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズはそのまま */
-  gap: 7px; /* カード間の余白をさらに小さく */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* カードの幅を少し大きく */
+  gap: 10px; /* カード間の余白 */
   margin-top: 10px;
   justify-items: center;
 }
+/* カードのスタイル */
 .card {
-  width: 100px; /* カードの幅を縮小 */
-  height: 140px; /* カードの高さを縮小 */
+  width: 100px; /* カードの幅を少し大きく */
+  height: 140px; /* カードの高さを少し大きく */
   border: 2px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -42,7 +43,7 @@ h1 {
 }
 .card img {
   max-width: 90%; /* 横幅に合わせる */
-  max-height: 60px; /* 高さを制限 */
+  max-height: 80px; /* 高さを制限 */
   object-fit: contain; /* 縦横比を保ちながら枠内に収める */
   border-radius: 4px;
   margin-top: 12px; /* 画像上部の余白を広げる */
