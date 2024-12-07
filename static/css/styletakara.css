@@ -16,7 +16,7 @@ body {
 }
 
 h1 {
-  font-size: 32px;
+  font-size: 28px;
   color: #333;
   margin-bottom: 20px;
 }
@@ -24,15 +24,15 @@ h1 {
 /* カードのスタイル */
 #card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 15px;
   margin-top: 20px;
   justify-items: center;
 }
 
 .card {
-  width: 150px;
-  height: 220px; /* カード全体の高さを固定 */
+  width: 100px;
+  height: 150px; /* 高さを縮小 */
   border: 2px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -42,10 +42,10 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 5px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
-  overflow: hidden; /* コンテンツが枠をはみ出さないようにする */
+  overflow: hidden;
 }
 
 .card:hover {
@@ -54,38 +54,38 @@ h1 {
 }
 
 .card img {
-  max-width: 100%; /* カード幅に収める */
-  max-height: 100px; /* 高さを制限してカード内に収まるよう調整 */
-  object-fit: contain; /* 縦横比を保ちながら画像を収める */
+  max-width: 90%; /* 横幅に合わせる */
+  max-height: 70px; /* 高さを制限 */
+  object-fit: contain; /* 縦横比を保ちながら枠内に収める */
   border-radius: 4px;
 }
 
 .card p {
-  font-size: 14px; /* カード名のフォントサイズを小さく */
+  font-size: 12px; /* フォントサイズをさらに小さく */
   color: #555;
-  margin: 5px 0;
-  word-wrap: break-word; /* 長いテキストを折り返し表示 */
-  line-height: 1.4; /* テキストの読みやすさを調整 */
+  margin: 4px 0;
+  word-wrap: break-word;
+  line-height: 1.3;
 }
 
 /* カードフォルダのスタイル */
 #folder {
   margin-top: 30px;
-  padding: 20px;
+  padding: 15px;
   background-color: #f0f8ff;
   border: 2px dashed #6c63ff;
   border-radius: 8px;
   text-align: center;
-  min-height: 250px;
+  min-height: 180px; /* 高さを調整 */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 10px;
 }
 
 .folder-card {
-  width: 120px;
-  height: 160px;
+  width: 90px;
+  height: 130px; /* フォルダ内のカードも縮小 */
   border: 2px solid #007acc;
   background-color: #e6f7ff;
   border-radius: 8px;
@@ -93,12 +93,12 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 5px;
 }
 
 #treasure-box {
   margin-top: 20px;
-  padding: 20px;
+  padding: 15px;
   background-color: #ffeb3b;
   border-radius: 8px;
   border: 2px solid #ff9800;
@@ -113,8 +113,8 @@ h1 {
 /* リセットボタン */
 #reset-button {
   margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: bold;
   color: white;
   background-color: #ff5722;
