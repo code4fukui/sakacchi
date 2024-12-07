@@ -64,7 +64,7 @@ h1 {
 
 /*カードフォルダのスタイル*/
 #folder {
-  margin-top: 70px;
+  margin-top: 60px;
   padding: 15px;
   background-color: #f0f8ff;
   border: 2px dashed #6c63ff;
@@ -75,7 +75,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px; /* フォルダ内カード間の余白をさらに小さく */
-  width: 200px; /* フォルダの横幅を400pxに設定 */
+  width: 400px; /* フォルダの横幅を400pxに設定 */
   margin-left: auto;  /* 左右中央に配置 */
   margin-right: auto; /* 左右中央に配置 */
 }
