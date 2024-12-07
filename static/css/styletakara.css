@@ -45,6 +45,7 @@ h1 {
   max-height: 60px; /* 高さを制限 */
   object-fit: contain; /* 縦横比を保ちながら枠内に収める */
   border-radius: 4px;
+  margin-top: 10px; /* 画像上部の余白を広げる */
 }
 .card p {
   font-size: 10px; /* フォントサイズをさらに小さく */
