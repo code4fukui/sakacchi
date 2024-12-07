@@ -32,7 +32,7 @@ h1 {
 
 .card {
   width: 150px;
-  height: 200px;
+  height: 220px; /* カード全体の高さを固定 */
   border: 2px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -45,6 +45,7 @@ h1 {
   padding: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
+  overflow: hidden; /* コンテンツが枠をはみ出さないようにする */
 }
 
 .card:hover {
@@ -53,15 +54,18 @@ h1 {
 }
 
 .card img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
+  max-width: 100%; /* カード幅に収める */
+  max-height: 100px; /* 高さを制限してカード内に収まるよう調整 */
+  object-fit: contain; /* 縦横比を保ちながら画像を収める */
+  border-radius: 4px;
 }
 
-.card h2 {
-  font-size: 16px;
+.card p {
+  font-size: 14px; /* カード名のフォントサイズを小さく */
   color: #555;
   margin: 5px 0;
+  word-wrap: break-word; /* 長いテキストを折り返し表示 */
+  line-height: 1.4; /* テキストの読みやすさを調整 */
 }
 
 /* カードフォルダのスタイル */
