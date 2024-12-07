@@ -15,7 +15,7 @@ h1 {
 #card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズはそのまま */
-  gap: 4px; /* カード間の余白をさらに小さく */
+  gap: 5px; /* カード間の余白をさらに小さく */
   margin-top: 20px;
   justify-items: center;
 }
