@@ -2,10 +2,10 @@ import { initialCards } from "./card.js"; //カードデータをインポート
 
 //カードの獲得条件
 const unlockConditions = {
-   31: [1, 2, 3],  // カード31はカード1、カード2、カード3が必要
-   32: [4, 5, 6],  // カード32はカード4、カード5、カード6が必要
-   33: [7, 8, 9],  // カード33はカード7、カード8、カード9が必要
-   34: [10, 11, 12], // カード34はカード10、カード11、カード12が必要
+   31: [12, 21, 30],  //カード31(猫神様)はカード12、カード21、カード30が必要
+   32: [31, 33, 34],  //カード32(よつばちゃん〜清掃)はカード31、カード33、カード34が必要
+   33: [6, 9, 17],  //カード33(西洋の鎧)はカード6、カード9、カード17が必要
+   34: [20, 22, 24], //カード34(鳳凰（赤）)はカード20、カード22、カード24が必要
 };
 
 //ローカルストレージからカードデータを取得、なければ初期データを保存
@@ -17,7 +17,6 @@ function loadCards() {
    localStorage.setItem('cards', JSON.stringify(initialCards));
    return initialCards;
 }
-
 //ローカルストレージにカードデータを保存
 function saveCards(cards) {
    localStorage.setItem('cards', JSON.stringify(cards));
@@ -56,10 +55,10 @@ function displayCards() {
    const cardContainer = document.getElementById('card-container');
    const cards = loadCards();
 
-   // 解放されているカードのみ表示
+   //解放されているカードのみ表示
    const unlockedCards = cards.filter(card => card.unlocked && ![31, 32, 33, 34].includes(card.id));
 
-   // 表示するカードが解放されている場合のみ追加
+   //表示するカードが解放されている場合のみ追加
    cardContainer.innerHTML = ''; // 以前のカードを消す
    unlockedCards.forEach(card => {
        const cardElement = createCardElement(card);
@@ -107,14 +106,32 @@ function checkFolderForUnlock() {
    }
 }
 
-//特定のカードを解放
+/*//特定のカードを解放
 function unlockCard(cardId) {
    const cards = loadCards();
    const card = cards.find(c => c.id === cardId);
    if (card && !card.unlocked) {
+       card.unlocked = true;  //解放
+       saveCards(cards); //ローカルストレージに保存
+       alert(`${card.name}を獲得しました！`);
+   }
+}*/
+
+//特定のカードを解放
+function unlockCard(cardId) {
+   const cards = loadCards();
+   const card = cards.find(c => c.id === cardId);
+   
+   if (card && !card.unlocked) {
        card.unlocked = true;  // 解放
        saveCards(cards); // ローカルストレージに保存
-       alert(`${card.name}を獲得しました！`);
+
+       // 解放されたカードをカードコンテナに追加
+       const cardContainer = document.getElementById('card-container');
+       const cardElement = createCardElement(card);  //createCardElementを使ってカード要素を作成
+       cardContainer.appendChild(cardElement);  //カードをコンテナに追加
+
+       alert(`${card.name}を獲得しました！`); //アラートで表示
    }
 }
 
