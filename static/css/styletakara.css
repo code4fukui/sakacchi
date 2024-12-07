@@ -21,11 +21,11 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* カードのスタイル */
+/* カードコンテナのスタイル */
 #card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズをさらに縮小 */
-  gap: 8px; /* カード間の余白を小さく */
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズはそのまま */
+  gap: 4px; /* カード間の余白をさらに小さく */
   margin-top: 20px;
   justify-items: center;
 }
@@ -76,11 +76,11 @@ h1 {
   border: 2px dashed #6c63ff;
   border-radius: 8px;
   text-align: center;
-  min-height: 150px; /* 高さを調整 */
+  min-height: 150px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px; /* フォルダ内のカード間の余白を小さく */
+  gap: 4px; /* フォルダ内カード間の余白をさらに小さく */
 }
 
 .folder-card {
