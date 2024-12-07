@@ -15,7 +15,7 @@ h1 {
 #card-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズはそのまま */
-  gap: 5px; /* カード間の余白をさらに小さく */
+  gap: 7px; /* カード間の余白をさらに小さく */
   margin-top: 10px;
   justify-items: center;
 }
@@ -45,10 +45,10 @@ h1 {
   max-height: 60px; /* 高さを制限 */
   object-fit: contain; /* 縦横比を保ちながら枠内に収める */
   border-radius: 4px;
-  margin-top: 10px; /* 画像上部の余白を広げる */
+  margin-top: 12px; /* 画像上部の余白を広げる */
 }
 .card p {
-  font-size: 10px; /* フォントサイズをさらに小さく */
+  font-size: 12px; /* フォントサイズをさらに小さく */
   color: #555;
   margin: 2px 0;
   word-wrap: break-word;
