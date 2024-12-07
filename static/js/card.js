@@ -1,5 +1,5 @@
 //初期カードデータ（カード情報）
-const initialCards = [
+export const initialCards = [
   { id: 1, name: '青薔薇', description: '100年に1度だけ咲く青薔薇 出会うと夢が叶う', unlocked: false, rarity: 4, imageUrl: 'images/bara1.png' },
  { id: 2, name: '赤薔薇', description: '情熱の赤いバラ 好きな人に渡そう♡', unlocked: false, rarity: 2, imageUrl: 'images/bara2.png' },
  { id: 3, name: 'ドクロ', description: 'はずれ！まだまだ頑張ろう！', unlocked: false, rarity: 2, imageUrl: 'images/dokuro.png' },
