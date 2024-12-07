@@ -24,15 +24,15 @@ h1 {
 /* カードのスタイル */
 #card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* カードサイズをさらに縮小 */
+  gap: 8px; /* カード間の余白を小さく */
   margin-top: 20px;
   justify-items: center;
 }
 
 .card {
-  width: 100px;
-  height: 150px; /* 高さを縮小 */
+  width: 80px; /* カードの幅を縮小 */
+  height: 120px; /* カードの高さを縮小 */
   border: 2px solid #ddd;
   border-radius: 8px;
   text-align: center;
@@ -42,7 +42,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 5px;
+  padding: 4px;
   transition: transform 0.3s, box-shadow 0.3s;
   cursor: pointer;
   overflow: hidden;
@@ -55,17 +55,17 @@ h1 {
 
 .card img {
   max-width: 90%; /* 横幅に合わせる */
-  max-height: 70px; /* 高さを制限 */
+  max-height: 60px; /* 高さを制限 */
   object-fit: contain; /* 縦横比を保ちながら枠内に収める */
   border-radius: 4px;
 }
 
 .card p {
-  font-size: 12px; /* フォントサイズをさらに小さく */
+  font-size: 10px; /* フォントサイズをさらに小さく */
   color: #555;
-  margin: 4px 0;
+  margin: 2px 0;
   word-wrap: break-word;
-  line-height: 1.3;
+  line-height: 1.2; /* 行間を詰める */
 }
 
 /* カードフォルダのスタイル */
@@ -76,16 +76,16 @@ h1 {
   border: 2px dashed #6c63ff;
   border-radius: 8px;
   text-align: center;
-  min-height: 180px; /* 高さを調整 */
+  min-height: 150px; /* 高さを調整 */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 8px; /* フォルダ内のカード間の余白を小さく */
 }
 
 .folder-card {
-  width: 90px;
-  height: 130px; /* フォルダ内のカードも縮小 */
+  width: 70px;
+  height: 100px; /* フォルダ内のカードも縮小 */
   border: 2px solid #007acc;
   background-color: #e6f7ff;
   border-radius: 8px;
@@ -93,7 +93,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 4px;
 }
 
 #treasure-box {
@@ -113,8 +113,8 @@ h1 {
 /* リセットボタン */
 #reset-button {
   margin-top: 20px;
-  padding: 10px 20px;
-  font-size: 16px;
+  padding: 8px 16px; /* ボタンサイズも調整 */
+  font-size: 14px;
   font-weight: bold;
   color: white;
   background-color: #ff5722;
@@ -131,9 +131,9 @@ h1 {
 /* アニメーション */
 @keyframes glow {
   from {
-    box-shadow: 0 0 10px #fbd700;
+    box-shadow: 0 0 8px #fbd700;
   }
   to {
-    box-shadow: 0 0 20px #ffd700;
+    box-shadow: 0 0 16px #ffd700;
   }
 }
