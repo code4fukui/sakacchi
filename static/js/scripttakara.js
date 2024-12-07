@@ -56,7 +56,7 @@ function displayCards() {
    const cards = loadCards();
 
    //解放されているカードのみ表示
-   const unlockedCards = cards.filter(card => card.unlocked && ![31, 32, 33, 34].includes(card.id));
+   const unlockedCards = cards.filter(card => card.unlocked && ![32].includes(card.id));
 
    //表示するカードが解放されている場合のみ追加
    cardContainer.innerHTML = ''; // 以前のカードを消す
