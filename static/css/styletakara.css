@@ -69,9 +69,17 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px; /* フォルダ内カード間の余白をさらに小さく */
-  width: 400px; /* フォルダの横幅を400pxに設定 */
+  width: 90%; /* デフォルトで親要素の幅の90% */
+  max-width: 400px; /* 最大幅を400pxに制限 */
   margin-left: auto;  /* 左右中央に配置 */
   margin-right: auto; /* 左右中央に配置 */
+}
+/*小さい画面用*/
+@media (max-width: 600px) {
+  #folder {
+    width: 100%; /*画面幅いっぱいに広げる*/
+    padding: 10px; /*パディングを少なくして調整*/
+  }
 }
 
 .folder-card {
