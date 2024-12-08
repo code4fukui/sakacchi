@@ -2,11 +2,11 @@ import { initialCards } from "./card.js"; //カードデータをインポート
 
 //レアリティごとの重み付け（レア度が高いほど重みが大きくなる）
 const rarityWeights = {
- 1: 5,  // レア度1のカードは5回
- 2: 4,  // レア度2のカードは4回
- 3: 3,  // レア度3のカードは3回
- 4: 2,  // レア度4のカードは2回
- 5: 1,  // レア度5のカードは1回だけ
+ 1: 5,  //レア度1のカードは5回
+ 2: 4,  //レア度2のカードは4回
+ 3: 3,  //レア度3のカードは3回
+ 4: 2,  //レア度4のカードは2回
+ 5: 1,  //レア度5のカードは1回だけ
 };
 
 /*出現率の計算方法
@@ -63,18 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleCardAcquire() {
 
 //カード獲得状態を`localStorage`から確認
-const isCardAcquired = localStorage.getItem('cardAcquired') === 'true'; //kk
+const isCardAcquired = localStorage.getItem('cardAcquired') === 'true';
 
 //初期化処理: カード獲得済みの場合はボタンを無効化
-if (isCardAcquired) {//
-  openChestButton.disabled = true;//
-  alert('既にカードを獲得済みです。');//
-  return;//
-}//
-else{//kk
+if (isCardAcquired) {
+  openChestButton.disabled = false;
+  alert('既にカードを獲得済みです。');
+  return;
+}
+else{
   const newCard = getRandomCard();
   renderAcquiredCard(newCard);
-  localStorage.setItem('cardAcquired', 'true');//kk  
+  localStorage.setItem('cardAcquired', 'true');//カードを獲得したことを証明
 
  //ローカルストレージに獲得したカードを保存
  const savedCards = loadCards();
@@ -132,13 +132,13 @@ function checkAllCardsUnlocked() {
 
   if (allUnlocked) {
     //ローカルストレージに保存
-    localStorage.setItem('kansyzyou', '1'); // kansyzyou に単純な文字列 '1' を保存
+    localStorage.setItem('kansyzyou', '1'); // kansyzyouに文字列 '1' を保存
     window.location.href = 'kansyzyou.html';  
   }
-  else{
+  else{//3秒後に強制的にリストページに移動
     setTimeout(function() {
       window.location.href = 'folder.html';
-    }, 3000); // 3000ミリ秒 = 3秒
+    }, 3000); //3000ミリ秒 = 3秒
   }
 }
 //メニュー遷移ボタンをクリック
