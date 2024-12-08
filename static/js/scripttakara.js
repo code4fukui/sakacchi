@@ -55,7 +55,7 @@ function displayCards() {
    const cardContainer = document.getElementById('card-container');
    const cards = loadCards();
 
-   //解放されているカードのみ表示
+   //解放されているカードのみ表示（四つ葉ちゃん以外は表示できるようにした）
    const unlockedCards = cards.filter(card => card.unlocked && ![32].includes(card.id));
 
    //表示するカードが解放されている場合のみ追加
@@ -79,7 +79,7 @@ function addCardToFolder(cardElement, cardId) {
 
    //カードの状態を変更（unlockedをtrueに）
    card.unlocked = true;
-   saveCards(cards); // ローカルストレージに保存
+   saveCards(cards); //ローカルストレージに保存
 
    //カードがフォルダに追加されたら選択済みにする
    cardElement.style.pointerEvents = 'none';
@@ -106,18 +106,7 @@ function checkFolderForUnlock() {
    }
 }
 
-/*//特定のカードを解放
-function unlockCard(cardId) {
-   const cards = loadCards();
-   const card = cards.find(c => c.id === cardId);
-   if (card && !card.unlocked) {
-       card.unlocked = true;  //解放
-       saveCards(cards); //ローカルストレージに保存
-       alert(`${card.name}を獲得しました！`);
-   }
-}*/
-
-//特定のカードを解放
+//特定のカードを解放してリストに表示
 function unlockCard(cardId) {
    const cards = loadCards();
    const card = cards.find(c => c.id === cardId);
