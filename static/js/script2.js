@@ -75,7 +75,7 @@ if (isCardAcquired) {
 else{
   const newCard = getRandomCard();
   renderAcquiredCard(newCard);
-  localStorage.setItem('cardAcquired', 'true');//カードを獲得したことを証明
+  localStorage.setItem('cardAcquired', 'true');//カードを獲得したことをﾛｰｶﾙｽﾄﾚｰｼﾞ(key:cardAcquired)に保存
 
  //ローカルストレージに獲得したカードを保存
  const savedCards = loadCards();
