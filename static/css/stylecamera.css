@@ -60,12 +60,13 @@ body {
 }
 
 @media (max-width: 768px) {
-  #capture {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-  }
   #video, #canvas {
     width: 100%;
     height: auto;
+  }
+  #capture {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 12px;
   }
 }
