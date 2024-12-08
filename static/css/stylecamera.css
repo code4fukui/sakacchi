@@ -18,6 +18,7 @@ body {
   color: #3e3e3e;
 }
 
+/*ボタンのスタイル*/
 #capture {
   background-color: #4caf50;
   color: white;
@@ -29,11 +30,10 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease;
 }
-
 #capture:hover {
   transform: scale(1.1);
 }
-
+/*結果表示のスタイル*/
 #result {
   font-size: 1.5rem;
   font-weight: bold;
@@ -57,3 +57,15 @@ body {
 
 .a {
   text-align: right;
+}
+
+@media (max-width: 768px) {
+  #capture {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+  }
+  #video, #canvas {
+    width: 100%;
+    height: auto;
+  }
+}
