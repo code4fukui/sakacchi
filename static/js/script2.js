@@ -146,3 +146,14 @@ function setupEventListeners() {
 document.addEventListener('DOMContentLoaded', () => {
  setupEventListeners();
 });
+
+//ページの更新を無効化
+document.addEventListener('DOMContentLoaded', () => {
+  //ページをリロードまたは閉じる操作を防止
+  const preventReload = (event) => {
+    event.preventDefault();
+    event.returnValue = ''; //標準ではデフォルトの警告メッセージが表示される
+  };
+
+  window.addEventListener('beforeunload', preventReload);
+});
