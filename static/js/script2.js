@@ -59,15 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*getcardで使用------------------------------------------------------------------*/
+
 //ボタン(open-chest-button)が押された時にカードをランダムに取得
 function handleCardAcquire() {
-
 //カード獲得状態を`localStorage`から確認
+const openChestButton = document.getElementById('open-chest-button');
 const isCardAcquired = localStorage.getItem('cardAcquired') === 'true';
 
 //初期化処理: カード獲得済みの場合はボタンを無効化
 if (isCardAcquired) {
-  openChestButton.disabled = false;
+  openChestButton.disabled = true;
   alert('既にカードを獲得済みです。');
   return;
 }
