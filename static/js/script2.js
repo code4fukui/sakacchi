@@ -59,14 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*getcardで使用------------------------------------------------------------------*/
-//ボタンが押された時にカードをランダムに取得
+//ボタン(open-chest-button)が押された時にカードをランダムに取得
 function handleCardAcquire() {
- const newCard = getRandomCard();
- renderAcquiredCard(newCard);
- 
- //カードを引くボタンを無効化
- const openButton = document.getElementById('open-chest-button');
- openButton.disabled = true;
+
+//カード獲得状態を`localStorage`から確認
+const isCardAcquired = localStorage.getItem('cardAcquired') === 'true'; //kk
+
+//初期化処理: カード獲得済みの場合はボタンを無効化
+if (isCardAcquired) {//
+  openChestButton.disabled = true;//
+  alert('既にカードを獲得済みです。');//
+  return;//
+}//
+else{//kk
+  const newCard = getRandomCard();
+  renderAcquiredCard(newCard);
+  localStorage.setItem('cardAcquired', 'true');//kk  
 
  //ローカルストレージに獲得したカードを保存
  const savedCards = loadCards();
@@ -77,6 +85,8 @@ function handleCardAcquire() {
  });
  localStorage.setItem('cards', JSON.stringify(savedCards)); 
 }
+}
+
 //ランダムにカードを1枚選ぶ処理（レアリティごとの重み付けを適用）
 function getRandomCard() {
   const currentCards = loadCards();
@@ -98,6 +108,7 @@ function getRandomCard() {
   const randomIndex = Math.floor(Math.random() * weightedCards.length);
   return weightedCards[randomIndex];
  }
+
 //獲得したカードを表示する
 function renderAcquiredCard(card) {
   const cardDetails = document.getElementById('card-details');
@@ -145,15 +156,4 @@ function setupEventListeners() {
 //ページ読み込み後の初期設定
 document.addEventListener('DOMContentLoaded', () => {
  setupEventListeners();
-});
-
-//ページの更新を無効化
-document.addEventListener('DOMContentLoaded', () => {
-  //ページをリロードまたは閉じる操作を防止
-  const preventReload = (event) => {
-    event.preventDefault();
-    event.returnValue = ''; //標準ではデフォルトの警告メッセージが表示される
-  };
-
-  window.addEventListener('beforeunload', preventReload);
 });
