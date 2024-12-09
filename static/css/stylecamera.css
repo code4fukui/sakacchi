@@ -26,9 +26,7 @@ body {
   padding: 15px 30px;
   border-radius: 10px;
   border: none;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s ease;
 }
 #capture:hover {
   transform: scale(1.1);
@@ -59,14 +57,15 @@ body {
   text-align: right;
 }
 
+/* モバイル対応*/
 @media (max-width: 768px) {
-  #video, #canvas {
-    width: 100%;
-    height: auto;
-  }
   #capture {
     width: 100%;
     font-size: 1.2rem;
     padding: 12px;
+  }
+  #video, #canvas {
+    width: 100%;
+    height: auto;
   }
 }
