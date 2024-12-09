@@ -2,6 +2,18 @@ body {
   background-color: #f8f9fa;
 }
 
+.styled-title {
+  font-family: 'Pacifico', cursive; /* おしゃれなフォント */
+  font-size: 2.5rem;
+  text-align: center;
+  color: white;
+  background: linear-gradient(to right, #4caf50, #8bc34a); /* 背景のグラデーション */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* シャドウ */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* テキストシャドウ */
+}
+
 .alert {
   text-align: center; /* テキストを中央揃え */
   padding: 10px; /* 十分な余白を確保 */
