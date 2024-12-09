@@ -1,7 +1,29 @@
 body {
   background-color: #f8f9fa;
 }
+.container {
+  margin-top: 30px;
+  padding: 30px;
+  text-align: center;
+}
 
+.alert {
+  text-align: center; /* テキストを中央揃え */
+  padding: 10px; /* 十分な余白を確保 */
+}
+.alert h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* テキストシャドウ */
+  border: 3px solid #ff9800; /* 枠線 */
+  padding: 10px;
+  border-radius: 10px; /* 角丸 */
+  display: inline-block; /* テキストをボックス化 */
+}
+
+/*拾ったゴミをカメラで撮影*/
 .styled-title {
   font-family: 'Pacifico', cursive; /* おしゃれなフォント */
   font-size: 2.5rem;
@@ -29,35 +51,6 @@ body {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.alert {
-  text-align: center; /* テキストを中央揃え */
-  padding: 10px; /* 十分な余白を確保 */
-}
-
-.alert h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #333;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* テキストシャドウ */
-  border: 3px solid #ff9800; /* 枠線 */
-  padding: 10px;
-  border-radius: 10px; /* 角丸 */
-  display: inline-block; /* テキストをボックス化 */
-}
-
-
-@media (max-width: 768px) {
-  .alert h1 {
-    font-size: 1.5rem; /* モバイル用フォントサイズ */
-  }
-}
-
-.alert p {
-  font-size: 1.2rem;
-  color: #3e3e3e;
-}
-
 /*結果表示のスタイル*/
 #result {
   font-size: 1.5rem;
@@ -67,7 +60,7 @@ body {
   text-align: center;
 }
 
-/* ビデオとキャンバスの共通スタイル */
+/*ビデオとキャンバスの共通スタイル*/
 #video, #canvas {
   width: 480px; /* 固定幅 */
   height: 360px; /* 固定高さ */
@@ -78,7 +71,7 @@ body {
   box-sizing: border-box; /* 枠線を含むサイズ計算 */
 }
 
-/* ボタンのスタイル */
+/*ボタンのスタイル*/
 #capture {
   background-color: #4caf50;
   color: white;
@@ -93,18 +86,21 @@ body {
   transform: scale(1.05);
 }
 
-.container {
-  margin-top: 30px;
-  padding: 30px;
-  text-align: center;
-}
-
 .a {
   text-align: right;
 }
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
+
+  .alert h1 {
+    font-size: 1.5rem; /* モバイル用フォントサイズ */
+  }
+  .alert p {
+    font-size: 1.2rem;
+    color: #3e3e3e;
+  }
+
   #video, #canvas {
     width: 100%; /* 画面幅にフィット */
     height: auto; /* 高さを自動調整 */
