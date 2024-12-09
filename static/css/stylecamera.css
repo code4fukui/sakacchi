@@ -14,6 +14,20 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* テキストシャドウ */
 }
 
+.notice {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #d9534f; /* 赤系の色 */
+  background-color: #fff3cd; /* 明るい背景色 */
+  padding: 10px;
+  border: 2px solid #d9534f;
+  border-radius: 8px;
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .alert {
   text-align: center; /* テキストを中央揃え */
   padding: 10px; /* 十分な余白を確保 */
