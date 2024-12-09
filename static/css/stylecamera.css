@@ -3,14 +3,17 @@ body {
 }
 
 .alert {
-  background-color: #ffecb3;
-  color: #3e3e3e;
-  font-weight: bold;
+  text-align: center; /* テキストを中央揃え */
+  padding: 10px; /* 十分な余白を確保 */
 }
 
 .alert h1 {
-  font-size: 2.2rem;
-  color: #ff9800;
+  font-size: 2rem; /* デフォルトサイズ */
+}
+@media (max-width: 768px) {
+  .alert h1 {
+    font-size: 1.5rem; /*モバイルでのサイズ */
+  }
 }
 
 .alert p {
