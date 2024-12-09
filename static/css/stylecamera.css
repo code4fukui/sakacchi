@@ -66,15 +66,18 @@ body {
   text-align: center;
 }
 
-/* 動画とキャンバスの共通スタイル */
+/* ビデオとキャンバスの共通スタイル */
 #video, #canvas {
-  max-width: 100%;
-  height: auto; /* 自動で高さを調整 */
-  border: 3px solid #4caf50; /* 枠線 */
+  width: 480px; /* 固定幅 */
+  height: 360px; /* 固定高さ */
+  max-width: 100%; /* 親要素の幅に収まる */
+  max-height: auto; /* 自動調整 */
+  border: 3px solid #4caf50; /* 緑色の枠線 */
   border-radius: 8px; /* 角丸 */
+  box-sizing: border-box; /* 枠線を含むサイズ計算 */
 }
 
-/* ボタンスタイル */
+/* ボタンのスタイル */
 #capture {
   background-color: #4caf50;
   color: white;
@@ -84,6 +87,7 @@ body {
   cursor: pointer;
   transition: transform 0.2s ease;
 }
+
 #capture:hover {
   transform: scale(1.05);
 }
@@ -98,11 +102,11 @@ body {
   text-align: right;
 }
 
-/* モバイル対応*/
+/* レスポンシブ対応 */
 @media (max-width: 768px) {
   #video, #canvas {
-    width: 100%; /* 画面幅に収まる */
-    height: auto;
+    width: 100%; /* 画面幅にフィット */
+    height: auto; /* 高さを自動調整 */
   }
 
   #capture {
@@ -112,6 +116,6 @@ body {
   }
 
   h3 {
-    font-size: 1.2rem; /* ヘッダを小さく調整 */
+    font-size: 1.2rem; /* 見出しサイズを調整 */
   }
 }
