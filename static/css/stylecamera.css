@@ -46,9 +46,11 @@ body {
   border: 2px solid #d9534f;
   border-radius: 8px;
   margin: 20px auto;
-  width: 50%;
+  max-width: 600px; /* 最大幅を指定 */
+  width: 90%; /* 幅を画面サイズに応じて調整 */
   text-align: center;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word; /* テキストが長い場合に折り返し */
 }
 
 /*結果表示のスタイル*/
@@ -62,10 +64,9 @@ body {
 
 /*ビデオとキャンバスの共通スタイル*/
 #video, #canvas {
-  width: 480px; /* 固定幅 */
-  height: 360px; /* 固定高さ */
-  max-width: 100%; /* 親要素の幅に収まる */
-  max-height: auto; /* 自動調整 */
+  width: 100%; /* 画面幅にフィット */
+  max-width: 480px; /* 最大幅を設定 */
+  aspect-ratio: 4 / 3; /* 縦横比を固定 */
   border: 3px solid #4caf50; /* 緑色の枠線 */
   border-radius: 8px; /* 角丸 */
   box-sizing: border-box; /* 枠線を含むサイズ計算 */
@@ -90,20 +91,27 @@ body {
   text-align: right;
 }
 
-/* レスポンシブ対応 */
+/*レスポンシブ対応*/
 @media (max-width: 768px) {
-
   .alert h1 {
     font-size: 1.5rem; /* モバイル用フォントサイズ */
   }
+
   .alert p {
     font-size: 1.2rem;
     color: #3e3e3e;
   }
 
+  .notice {
+    font-size: 1.2rem; /* モバイル用フォントサイズを調整 */
+    padding: 8px; /* 余白を減らしてコンパクトに */
+    width: 100%; /* モバイル画面では幅を100%に */
+  }
+
   #video, #canvas {
-    width: 100%; /* 画面幅にフィット */
+    width: 100%; /* モバイル画面の幅に合わせる */
     height: auto; /* 高さを自動調整 */
+    aspect-ratio: 4 / 3; /* 縦横比を維持 */
   }
 
   #capture {
