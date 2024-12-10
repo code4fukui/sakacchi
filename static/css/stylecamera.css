@@ -1,5 +1,6 @@
 body {
   background-color: #f8f9fa;
+  margin: 0; /*ページ全体の余白をリセット*/
 }
 .container {
   margin-top: 10px;
