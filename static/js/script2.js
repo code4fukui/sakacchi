@@ -133,8 +133,8 @@ function checkAllCardsUnlocked() {
 
   if (allUnlocked) {
     //ローカルストレージに保存
-    localStorage.setItem('kansyzyou', '1'); // kansyzyouに文字列 '1' を保存
-    window.location.href = 'kansyzyou.html';  
+    localStorage.setItem('thanks', '1'); //thanksに文字列 '1' を保存
+    window.location.href = 'thanks.html';  
   }
   else{//3秒後に強制的にリストページに移動
     setTimeout(function() {
