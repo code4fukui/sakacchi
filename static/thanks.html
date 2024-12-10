@@ -1,10 +1,9 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>感謝状ページ</title>
-  <link rel="stylesheet" href="css/stylethanks.css">  
+  <title>感謝状ページ</title>  
 </head>
 <body>
   <h1>感謝状ページ</h1>
@@ -25,8 +24,8 @@ if (thanksValue === '1') {
 
   //画像を表示
   const img = document.createElement('img');
-  img.src = 'images/celebration_image.jpg';  //感謝状用の画像のパス
-  img.alt = 'Celebration Image';  //画像の説明文
+  img.src = 'images/celebration_image.jpg';  // 感謝状用の画像のパス
+  img.alt = 'Celebration Image';  // 画像の説明文
   document.getElementById('cardImage').appendChild(img);
 } else {
   document.getElementById('message').textContent = 'カードがすべて開放されていません。';
