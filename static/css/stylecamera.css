@@ -8,16 +8,6 @@ body {
   text-align: center;
 }
 
-/*ボタンと文字の共通スタイル*/
-.btn {
-  font-size: 1rem;
-  padding: 10px 15px;
-}
-
-h1, h3 {
-  font-size: clamp(1.5rem, 2.5vw, 2.5rem); /* 画面幅に応じた動的サイズ */
-}
-
 .alert {
   text-align: center; /* テキストを中央揃え */
   padding: 10px; /* 十分な余白を確保 */
@@ -135,10 +125,6 @@ h1, h3 {
     font-size: 1.2rem; /* 見出しサイズを調整 */
   }
 
-  .btn {
-    font-size: 0.9rem; /* 小画面用のフォントサイズ */
-    padding: 8px 12px;
-  }
   #result {
     font-size: 1rem; /* 小画面用のサイズ調整 */
   }
