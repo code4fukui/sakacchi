@@ -70,20 +70,11 @@ img {
 }
 
 /*印刷専用のスタイル*/
-@media print {  
+@media print {
   body {
     margin: 0;
     padding: 0;
     background: white;
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    max-width: 297mm; /* A4横幅 */
-    max-height: 210mm; /* A4高さ */
   }
 
   #cardImage {
@@ -91,15 +82,25 @@ img {
     text-align: center;
   }
 
+  #cardImage img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-width: 297mm; /* A4横幅 */
+    max-height: 210mm; /* A4高さ */
+    object-fit: contain; /* A4内に画像を収める */
+  }
+
   #message,
   .button-container,
   .btn,
   h1 {
-    display: none; /* 印刷時に非表示にする */
+    display: none; /* 印刷時に非表示 */
   }
 
   @page {
     size: A4 landscape; /* A4横向き */
-    margin: 0; /* 余白なし */
+    margin: 0; /* ページの余白をゼロに */
   }
 }
