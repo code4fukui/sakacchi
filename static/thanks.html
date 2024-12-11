@@ -21,7 +21,7 @@ const thanksValue = localStorage.getItem('thanks') || '0';
 console.log(thanksValue); //ローカルストレージから取得した値を確認
 
 //画像の表示ロジック
-if (thanksValue === '1') {
+if (thanks == '1') {
   document.getElementById('message').textContent = 'おめでとうございます！すべてのカードが開放されました！';
 
   //画像を表示
