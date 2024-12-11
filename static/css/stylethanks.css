@@ -70,45 +70,43 @@ img {
 }
 
 /*印刷専用のスタイル*/
-@media print {
-body {
-  margin: 0;
-  padding: 0;
-  background: white;
-  color: black;
-}
+@media print {  
+  body {
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: black;
+    height: 100%; /* ページ全体の高さを制限 */
+    overflow: hidden; /* 印刷範囲外を隠す */
+  }
 
-img {
-  display: block;
-  margin: 0 auto;
-  width: 100%; /* ページ幅に合わせる */
-  height: auto; /* アスペクト比を保持 */
-  max-width: none; /* 制限を解除 */
-  max-height: none; /* 制限を解除 */
-}
+  h1 {
+    display: none;
+  }
 
-#cardImage {
-  display: block; /* 感謝状画像を表示 */
-  text-align: center; /* 画像を中央揃え */
-}
+  #cardImage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* ページ内で画像を中央揃え */
+    text-align: center;
+  }
 
-#cardImage img {
-  display: block;
-  margin: 0 auto;
-  width: 100%; /* ページ幅に合わせる */
-  height: auto; /* アスペクト比を保持 */
-  max-width: 100%; /* 幅制限を解除 */
-  max-height: 100%; /* 高さ制限を解除 */
-}
+  img {
+    max-width: 100%; /* ページ幅にフィット */
+    max-height: 100%; /* ページ高さにフィット */
+    margin: auto; /* 中央揃え */
+    display: block; /* ブロック表示に */
+  }
 
-#message,
-.button-container,
-.btn {
-  display: none; /* 他の要素を非表示 */
-}
+  #message,
+  .button-container,
+  .btn {
+    display: none; /* 他の要素を非表示 */
+  }
 
-@page {
-  size: A4 landscape; /* 横向きで印刷 */
-  margin: 0; /* 余白なしで印刷 */
-}
+  @page {
+    size: A4 landscape; /* 横向きで印刷 */
+    margin: 0; /* 余白をなくす */
+  }
 }
