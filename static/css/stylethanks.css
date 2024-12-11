@@ -75,38 +75,31 @@ img {
     margin: 0;
     padding: 0;
     background: white;
-    color: black;
-    height: 100%; /* ページ全体の高さを制限 */
-    overflow: hidden; /* 印刷範囲外を隠す */
-  }
-
-  h1 {
-    display: none;
-  }
-
-  #cardImage {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%; /* ページ内で画像を中央揃え */
-    text-align: center;
   }
 
   img {
-    max-width: 100%; /* ページ幅にフィット */
-    max-height: 100%; /* ページ高さにフィット */
-    margin: auto; /* 中央揃え */
-    display: block; /* ブロック表示に */
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+    max-width: 297mm; /* A4横幅 */
+    max-height: 210mm; /* A4高さ */
+  }
+
+  #cardImage {
+    display: block;
+    text-align: center;
   }
 
   #message,
   .button-container,
-  .btn {
-    display: none; /* 他の要素を非表示 */
+  .btn,
+  h1 {
+    display: none; /* 印刷時に非表示にする */
   }
 
   @page {
-    size: A4 landscape; /* 横向きで印刷 */
-    margin: 0; /* 余白をなくす */
+    size: A4 landscape; /* A4横向き */
+    margin: 0; /* 余白なし */
   }
 }
