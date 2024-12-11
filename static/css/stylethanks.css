@@ -71,28 +71,44 @@ img {
 
 /*印刷専用のスタイル*/
 @media print {
-  body {
-    margin: 0;
-    padding: 0;
-    background: white;
-    color: black;
-  }
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  color: black;
+}
 
-  * {
-    display: none;
-  }
+img {
+  display: block;
+  margin: 0 auto;
+  width: 100%; /* ページ幅に合わせる */
+  height: auto; /* アスペクト比を保持 */
+  max-width: none; /* 制限を解除 */
+  max-height: none; /* 制限を解除 */
+}
 
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 100%; /* ページ幅に合わせる */
-    height: auto; /* アスペクト比を保持 */
-    max-width: none; /* 制限を解除 */
-    max-height: none; /* 制限を解除 */
-  }
+#cardImage {
+  display: block; /* 感謝状画像を表示 */
+  text-align: center; /* 画像を中央揃え */
+}
 
-  @page {
-    size: A4 landscape; /* 横向き */
-    margin: 1cm; /* 印刷余白を調整 */
-  }
+#cardImage img {
+  display: block;
+  margin: 0 auto;
+  width: 100%; /* ページ幅に合わせる */
+  height: auto; /* アスペクト比を保持 */
+  max-width: 100%; /* 幅制限を解除 */
+  max-height: 100%; /* 高さ制限を解除 */
+}
+
+#message,
+.button-container,
+.btn {
+  display: none; /* 他の要素を非表示 */
+}
+
+@page {
+  size: A4 landscape; /* 横向きで印刷 */
+  margin: 0; /* 余白なしで印刷 */
+}
 }
