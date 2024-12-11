@@ -24,7 +24,7 @@ h1 {
 }
 
 img {
-  width: 500px;
+  width: auto;
   height: auto;
   margin: 20px 0;
   border: 5px solid #fff;
