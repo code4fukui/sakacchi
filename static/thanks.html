@@ -12,7 +12,7 @@
   <p id="message"></p>
   <div id="cardImage"></div>
   <div class="button-container">
-    <button class="print-button" onclick="window.print()">感謝状を印刷</button>
+    <button class="print-button">感謝状を印刷</button>
   </div>
 
 <script>
@@ -32,6 +32,15 @@ if (thanksValue == '1') {
 } else {
   document.getElementById('message').textContent = 'カードがすべて開放されていません。';
 }
+//印刷ボタン処理
+document.querySelector('.print-button').addEventListener('click', () => {
+  const cardImage = document.getElementById('cardImage');
+  if (cardImage.innerHTML.trim() !== '') {
+    window.print();
+  } else {
+    alert('感謝状が表示されていません！');
+  }
+});
 </script>
 </body>
 </html>
