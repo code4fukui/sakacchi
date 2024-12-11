@@ -68,6 +68,12 @@ img {
   transform: scale(1.1);
 }
 
+.large-image {
+  width: 100%;  /* 画面いっぱいに画像を広げる */
+  max-width: 800px;  /* 最大幅を指定（必要に応じて変更） */
+  height: auto;  /* アスペクト比を維持 */
+}
+
 /* 印刷専用のスタイル */
 @media print {
   body {
