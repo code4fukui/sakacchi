@@ -44,6 +44,7 @@ captureButton.addEventListener('click', async () => {
     // 結果の処理
     if (res && typeof res.is_waste === 'boolean' && res.description) {
       resultElement.textContent = res.description;
+      sleep(30000);
       if (res.is_waste) {
         localStorage.setItem('cardAcquired', 'false');//カードが獲得できるように解除
         location.href = "getcard.html";  //ゴミと判定された場合の処理
