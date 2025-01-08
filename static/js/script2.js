@@ -139,7 +139,7 @@ function checkAllCardsUnlocked() {
   else{//3秒後に強制的にリストページに移動
     setTimeout(function() {
       window.location.href = 'folder.html';
-    }, 30000); //3000ミリ秒 = 3秒
+    }, 3000); //3000ミリ秒 = 3秒
   }
 }
 //メニュー遷移ボタンをクリック
