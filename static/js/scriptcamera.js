@@ -6,32 +6,44 @@ const context = canvas.getContext('2d');
 const captureButton = document.getElementById('capture');
 const resultElement = document.getElementById('result');
 
-// カメラ映像を取得して表示
-let cameraActive = false;  // カメラの起動状態を管理するフラグ
-let facingText = document.getElementById('camera-facing');
+//let video = document.querySelector('video');
+let facingMode = 'user'; // 初期モード: インカメラ
+let currentStream = null;
 
-navigator.mediaDevices.getUserMedia({ video: true })
-  .then(stream => {
-    video.srcObject = stream;
-    video.onloadedmetadata = () => {
-      cameraActive = true;  // 映像が表示されて初めてカメラが有効と判断
-      facingText.innerText = "インカメラ";
-      document.getElementById('btn').onclick = () => {
-        if(cameraActive){
-            facingText.innerText = "アウトカメラ";
-            cameraActive = false;
-        }else{
-            facingText.innerText = "インカメラ";
-            cameraActive = true;
-        } 
+function startCamera(mode) {
+  const constraints = {
+    video: {
+      facingMode: mode // "user" (インカメラ) or "environment" (アウトカメラ)
     }
-      
-    };
-  })
-  .catch(err => {
-    console.error('Error accessing the camera: ', err);
-    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
-  });
+  };
+
+  navigator.mediaDevices.getUserMedia(constraints)
+    .then(stream => {
+      // 現在のストリームを停止
+      if (currentStream) {
+        currentStream.getTracks().forEach(track => track.stop());
+      }
+
+      // 新しいストリームを設定
+      currentStream = stream;
+      video.srcObject = stream;
+      video.onloadedmetadata = () => video.play();
+    })
+    .catch(err => {
+      console.error('カメラの起動に失敗しました:', err);
+      alert('カメラにアクセスできませんでした。再度お試しください。');
+    });
+}
+
+// ボタンのクリックイベントでカメラを切り替え
+document.getElementById('btn').onclick = () => {
+  facingMode = facingMode === 'user' ? 'environment' : 'user'; // モードを切り替える
+  startCamera(facingMode); // 新しいモードでカメラを起動
+};
+
+// 初期カメラの起動
+startCamera(facingMode);
+
 
 // 画像を撮影してCanvasに描画し、分析する
 captureButton.addEventListener('click', async () => {
