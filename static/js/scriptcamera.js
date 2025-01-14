@@ -1,55 +1,55 @@
 import { analyzeImage } from "./analyzeImage.js";
 
-//const video = document.getElementById('video');
+const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const captureButton = document.getElementById('capture');
 const resultElement = document.getElementById('result');
+const facingText = document.getElementById('camera-facing');
+const toggleButton = document.getElementById('btn'); // カメラ切り替えボタン
 
-let video = document.querySelector('video');
-let facingMode = 'user'; // 初期モード: インカメラ
-let currentStream = null;
+let currentStream = null; // 現在のカメラストリーム
+let facingMode = 'user'; // 初期設定はインカメラ（"user"）、アウトカメラは "environment"
 
-function startCamera(mode) {
-  const constraints = {
-    video: {
-      facingMode: mode // "user" (インカメラ) or "environment" (アウトカメラ)
-    }
-  };
-
-  navigator.mediaDevices.getUserMedia(constraints)
-    .then(stream => {
-      // 現在のストリームを停止
-      if (currentStream) {
-        currentStream.getTracks().forEach(track => track.stop());
+// カメラを開始する関数
+async function startCamera(mode) {
+  try {
+    const constraints = {
+      video: {
+        facingMode: mode // "user" or "environment"
       }
+    };
 
-      // 新しいストリームを設定
-      currentStream = stream;
-      video.srcObject = stream;
-      video.onloadedmetadata = () => video.play();
-    })
-    .catch(err => {
-      console.error('カメラの起動に失敗しました:', err);
-      alert('カメラにアクセスできませんでした。再度お試しください。');
-    });
+    // 現在のストリームを停止
+    if (currentStream) {
+      currentStream.getTracks().forEach(track => track.stop());
+    }
+
+    // 新しいストリームを取得
+    currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+    video.srcObject = currentStream;
+
+    // カメラ起動状態を更新
+    facingText.innerText = mode === 'user' ? "インカメラ" : "アウトカメラ";
+  } catch (err) {
+    console.error('Error accessing the camera: ', err);
+    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
+  }
 }
 
-// ボタンのクリックイベントでカメラを切り替え
-document.getElementById('btn').onclick = () => {
-  facingMode = facingMode === 'user' ? 'environment' : 'user'; // モードを切り替える
-  startCamera(facingMode); // 新しいモードでカメラを起動
-};
+// カメラの切り替えボタンイベント
+toggleButton.addEventListener('click', () => {
+  facingMode = facingMode === 'user' ? 'environment' : 'user'; // モードを切り替え
+  startCamera(facingMode); // 新しいカメラを起動
+});
 
-// 初期カメラの起動
+// 初期カメラを起動
 startCamera(facingMode);
-
 
 // 画像を撮影してCanvasに描画し、分析する
 captureButton.addEventListener('click', async () => {
-  // カメラが起動しているかと映像が取得できるかを確認
-  if (!cameraActive || video.readyState !== video.HAVE_ENOUGH_DATA) {
-    alert("カメラが起動していないか、映像がまだ表示されていません。カメラを有効にしてからもう一度お試しください。");
+  if (!currentStream) {
+    alert("カメラが起動していません。");
     return;
   }
 
@@ -65,14 +65,14 @@ captureButton.addEventListener('click', async () => {
 
     // 画像解析のリクエストを送信
     const res = await analyzeImage(canvas, "ごみかどうかの判定を属性名is_wasteでtrueかfalseで、写真の日本語での説明を属性名descriptionのJSONで返して");
-    
+
     // 結果の処理
     if (res && typeof res.is_waste === 'boolean' && res.description) {
       resultElement.textContent = res.description;
-      
+
       if (res.is_waste) {
-        localStorage.setItem('cardAcquired', 'false');//カードが獲得できるように解除
-        location.href = "getcard.html";  //ゴミと判定された場合の処理
+        localStorage.setItem('cardAcquired', 'false'); // カードが獲得できるように解除
+        location.href = "getcard.html"; // ゴミと判定された場合の処理
       } else {
         alert("これはごみではありません");
       }
