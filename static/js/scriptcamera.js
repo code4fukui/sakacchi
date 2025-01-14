@@ -23,7 +23,7 @@ async function getCameraDevices() {
     console.log('利用可能なデバイス:', devices);
   } catch (err) {
     console.error('Error getting camera devices:', err);
-    //alert("カメラデバイスを取得できませんでした。");
+    alert("カメラデバイスを取得できませんでした。");
   }
 }
 
@@ -47,7 +47,7 @@ async function startCamera(deviceId = null) {
     facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
   } catch (err) {
     console.error('Error accessing the camera: ', err);
-    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
+    //alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
   }
 }
 
