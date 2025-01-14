@@ -23,7 +23,7 @@ async function getCameraDevices() {
     console.log('利用可能なデバイス:', devices);
   } catch (err) {
     console.error('Error getting camera devices:', err);
-    alert("カメラデバイスを取得できませんでした。");
+    //alert("カメラデバイスを取得できませんでした。");
   }
 }
 
