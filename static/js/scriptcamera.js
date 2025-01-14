@@ -47,7 +47,7 @@ async function startCamera(deviceId = null) {
     facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
   } catch (err) {
     console.error('Error accessing the camera: ', err);
-    //alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
+    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
   }
 }
 
