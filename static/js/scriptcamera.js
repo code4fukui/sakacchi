@@ -8,11 +8,24 @@ const resultElement = document.getElementById('result');
 
 // カメラ映像を取得して表示
 let cameraActive = false;  // カメラの起動状態を管理するフラグ
+let facingText = document.getElementById('camera-facing');
+
 navigator.mediaDevices.getUserMedia({ video: true })
   .then(stream => {
     video.srcObject = stream;
     video.onloadedmetadata = () => {
       cameraActive = true;  // 映像が表示されて初めてカメラが有効と判断
+      facingText.innerText = "インカメラ";
+      document.getElementById('btn').onclick = () => {
+        if(cameraActive){
+            facingText.innerText = "アウトカメラ";
+            cameraActive = false;
+        }else{
+            facingText.innerText = "インカメラ";
+            cameraActive = true;
+        } 
+    }
+      
     };
   })
   .catch(err => {
