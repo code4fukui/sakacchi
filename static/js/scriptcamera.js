@@ -1,12 +1,12 @@
 import { analyzeImage } from "./analyzeImage.js";
 
-const video = document.getElementById('video');
+//const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 const captureButton = document.getElementById('capture');
 const resultElement = document.getElementById('result');
 
-//let video = document.querySelector('video');
+let video = document.querySelector('video');
 let facingMode = 'user'; // 初期モード: インカメラ
 let currentStream = null;
 
