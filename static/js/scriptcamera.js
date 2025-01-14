@@ -9,15 +9,29 @@ const facingText = document.getElementById('camera-facing');
 const toggleButton = document.getElementById('btn'); // カメラ切り替えボタン
 
 let currentStream = null; // 現在のカメラストリーム
-let facingMode = 'user'; // 初期設定はインカメラ（"user"）、アウトカメラは "environment"
+let devices = []; // 利用可能なデバイス
+let currentDeviceIndex = 0; // 現在使用中のデバイスのインデックス
+
+// 利用可能なカメラデバイスを取得
+async function getCameraDevices() {
+  try {
+    const allDevices = await navigator.mediaDevices.enumerateDevices();
+    devices = allDevices.filter(device => device.kind === 'videoinput');
+    if (devices.length === 0) {
+      throw new Error("カメラデバイスが見つかりません");
+    }
+    console.log('利用可能なデバイス:', devices);
+  } catch (err) {
+    console.error('Error getting camera devices:', err);
+    alert("カメラデバイスを取得できませんでした。");
+  }
+}
 
 // カメラを開始する関数
-async function startCamera(mode) {
+async function startCamera(deviceId = null) {
   try {
     const constraints = {
-      video: {
-        facingMode: mode // "user" or "environment"
-      }
+      video: deviceId ? { deviceId: { exact: deviceId } } : true
     };
 
     // 現在のストリームを停止
@@ -29,8 +43,8 @@ async function startCamera(mode) {
     currentStream = await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = currentStream;
 
-    // カメラ起動状態を更新
-    facingText.innerText = mode === 'user' ? "インカメラ" : "アウトカメラ";
+    // 現在のデバイス名を表示
+    facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
   } catch (err) {
     console.error('Error accessing the camera: ', err);
     alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
@@ -38,13 +52,22 @@ async function startCamera(mode) {
 }
 
 // カメラの切り替えボタンイベント
-toggleButton.addEventListener('click', () => {
-  facingMode = facingMode === 'user' ? 'environment' : 'user'; // モードを切り替え
-  startCamera(facingMode); // 新しいカメラを起動
+toggleButton.addEventListener('click', async () => {
+  if (devices.length > 1) {
+    currentDeviceIndex = (currentDeviceIndex + 1) % devices.length; // 次のカメラデバイスを選択
+    await startCamera(devices[currentDeviceIndex].deviceId); // 新しいカメラを起動
+  } else {
+    alert("利用可能なカメラが1つしかありません。");
+  }
 });
 
-// 初期カメラを起動
-startCamera(facingMode);
+// 初期化処理
+async function init() {
+  await getCameraDevices(); // デバイスを取得
+  await startCamera(devices[currentDeviceIndex]?.deviceId); // 初期カメラを起動
+}
+
+init(); // 初期化関数を実行
 
 // 画像を撮影してCanvasに描画し、分析する
 captureButton.addEventListener('click', async () => {
