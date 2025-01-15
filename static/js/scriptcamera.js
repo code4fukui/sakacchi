@@ -44,8 +44,8 @@ async function startCamera(deviceId = null) {
     video.srcObject = currentStream;
 
     // 現在のデバイス名を表示
-    /*facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
-  } catch (err) {
+    facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
+  } /*catch (err) {
     console.error('Error accessing the camera: ', err);
     alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
   }*/
