@@ -57,7 +57,7 @@ toggleButton.addEventListener('click', async () => {
     currentDeviceIndex = (currentDeviceIndex + 1) % devices.length; // 次のカメラデバイスを選択
     await startCamera(devices[currentDeviceIndex].deviceId); // 新しいカメラを起動
   } else {
-    alert("利用可能なカメラが1つしかありません。");
+    alert("利用可能なカメラが1つ又はありません。");
   }
 });
 
