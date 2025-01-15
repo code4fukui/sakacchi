@@ -45,10 +45,10 @@ async function startCamera(deviceId = null) {
 
     // 現在のデバイス名を表示
     facingText.innerText = devices[currentDeviceIndex]?.label || "カメラ";
-  } /*catch (err) {
+  } catch (err) {
     console.error('Error accessing the camera: ', err);
-    alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
-  }*/
+    //alert("カメラにアクセスできませんでした。カメラを有効にしてから再度お試しください。");
+  }
 }
 
 // カメラの切り替えボタンイベント
