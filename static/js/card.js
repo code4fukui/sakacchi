@@ -31,7 +31,7 @@ export const initialCards = [
  { id: 29, name: 'ハートの弓矢', description: '撃ち抜かれた人は恋に落ちてしまう', unlocked: false, rarity: 2, imageUrl: 'images/yumiya.png' },
  { id: 30, name: '(猫３)思いの力starlight wings', description: '想いの力でリボンの大きさが変わる', unlocked: false, rarity: 4, imageUrl: 'images/ribonn.png' },
  { id: 31, name: 'EX1.猫神様', description: '人々に幸福を与えるために突如現れるねこ', unlocked: false, rarity: 5, imageUrl: 'images/kawaii.png' },
- { id: 32, name: 'よつばちゃん〜清掃ver〜', description: 'みんなゴミ拾いしてありがとう！これからも続けてね！', unlocked: false, rarity: 5, imageUrl: 'images/yotuba.png' },
- { id: 33, name: 'EX2.西洋の鎧', description: '中世の時代に英雄が着ていた鎧', unlocked: false, rarity: 5, imageUrl: 'images/yoroi.png' },
- { id: 34, name: 'EX3.鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/tori1.png' },
+ { id: 32, name: 'EX2.西洋の鎧', description: '中世の時代に英雄が着ていた鎧', unlocked: false, rarity: 5, imageUrl: 'images/yoroi.png' },
+ { id: 33, name: 'EX3.鳳凰（赤）', description: '本物の神の化身 見た人は幸せになるとか･･･', unlocked: false, rarity: 5, imageUrl: 'images/tori1.png' },
+ { id: 34, name: 'よつばちゃん〜清掃ver〜', description: 'みんなゴミ拾いしてありがとう！これからも続けてね！', unlocked: false, rarity: 5, imageUrl: 'images/yotuba.png' },
 ];
